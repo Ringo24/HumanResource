@@ -29,31 +29,41 @@ alter table HR_MEMBER add(jm_point number(11));
 
 select * from HR_MEMBER;
 ----------------------------------------------------------
-create table JSC_SNS(
-	js_no number(5) primary key,
-	js_id varchar2(16 char) not null,
-	js_txt varchar2(700 char) not null,
-	js_date date not null
+--급여신청, 지급
+create table HR_APPLICATION(
+	a_no number(6) primary key,
+	r_no number(6) not null,
+	m_id varchar2(16 char) not null,
+	a_state number(1) not null
 );
+create sequence HR_APPLICATION_seq;
 
-create sequence jsc_sns_seq;
+create table HR_REQUEST(
+	rq_no number(6) primary key,
+	r_no number(6) not null,
+	rq_sdate date not null,
+	rq_edate date not null,
+	m_id varchar2(16 char) not null,
+	rq_state number(1) not null
+);
+create sequence HR_REQUEST_seq;
 
-select * from jsc_sns;
+select * from HR_APPLICATION;
 
-delete from jsc_sns;
+delete from HR_APPLICATION;
 
-drop table jsc_sns cascade constraint purge;
+drop table HR_APPLICATION cascade constraint purge;
 
-insert into jsc_sns values(
-	jsc_sns_seq.nextval,
+insert into HR_APPLICATION values(
+	HR_REQUEST_seq.nextval,
 	'test',
 	'ㅋㅋㅋㅋ',
 	sysdate
 );
 
-select * from JSC_SNS, JSC_MEMBER 
-where js_id = jm_id
-order by js_no;
+select * from HR_APPLICATION a, HR_REQUEST rq 
+where a.m_id = rq.m_id
+order by a.a_no;
 
 select * from (
 select rownum r, js_no, js_txt, js_date from (select * from JSC_SNS order by js_no desc))
@@ -68,37 +78,63 @@ select * from JSC_SNS, JSC_MEMBER
 where js_id = jm_id 
 and js_id like '%nako%'
 order by js_date;
+----------------------------------------
+-- 근무지
+create table HR_GENBA(
+	g_no number(6) primary key,
+	g_name varchar2(25 char) not null,
+	g_category varchar2(50 char) not null,
+	g_pay number(10) not null,
+	g_time number(2) not null,
+	g_detail varchar2(150 char) not null,
+	g_addr varchar2(60 char) not null
+);
+create sequence HR_GENBA_seq;
+
+create table HR_RECRUIT(
+	r_no number(6) primary key,
+	r_date date not null,
+	g_no number(6) not null,
+	r_state number(1) not null
+);
+create sequence HR_RECRUIT_seq;
 
 ----------------------------------------
-create table JSC_REPLY(
-	jr_no number(5) primary key,
-	jr_jsno number(5) not null,
-	jr_id varchar2(16 char) not null,
-	jr_txt varchar2(300 char) not null,
-	jr_date date not null,
+-- 게시판 DB
+create table HR_BBS(
+	b_no number(6) primary key,
+	b_category varchar2(10 char) not null,
+	b_title varchar2(30 char) not null,
+	b_content varchar2(1000 char) not null,
+	b_id varchar2(16 char) not null,
+	b_name varchar2(6 char) not null,
+	b_date date not null,
+	b_hit number(8) not null
+);
+create sequence HR_BBS_seq;
+
+create table HR_REPLY(
+	rp_no number(6) primary key,
+	b_no number(6) not null,
+	rp_content varchar2(300 char) not null,
+	rp_id varchar2(16 char) not null,
+	rp_name varchar2(6 char) not null,
+	rp_date date not null
 );
 
 --리플을 글에 참조시켜서 글 삭제 시 자동으로 삭제
-alter table JSC_REPLY 
-add constraint sns_reply_cj foreign key (jr_jsno) 
-	references JSC_SNS(js_no) 
+alter table HR_REPLY 
+add constraint hr_reply_cb foreign key (b_no) 
+	references HR_BBS(b_no) 
 	on delete cascade;
 
-create sequence jsc_reply_seq;
+create sequence HR_REPLY_seq;
 
-select * from JSC_REPLY order by jr_date;
+select * from HR_REPLY order by rp_date;
 
-insert into jsp_reply values(
-	jsc_reply_seq.nextval,
-	jr_jsno,
-	'test',
-	'ㅋㅋㅋㅋ',
-	sysdate
-);
-
-select r.*, m.jm_name from JSC_REPLY r, JSC_SNS s, JSC_MEMBER m 
-where jr_jsno=js_no and jr_id=jm_id 
-order by jr_date;
+select r.*, m.m_name from HR_REPLY r, HR_BBS b, HR_MEMBER m 
+where r.b_no=b.b_no and b_id=m_id 
+order by rp_date;
 
 select * from JSC_SNS, JSC_REPLY 
 where js_no = 17 and js_no = jr_jsno; 
