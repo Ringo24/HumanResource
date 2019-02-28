@@ -53,7 +53,7 @@
             <img class="android-logo-image" src="../resources/images/android-logo.png">
           </span>
           <!-- 회원가입 버튼 -->
-          <a href="./SignUp/" class="android-more-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Sign up</a>
+          <a href="../SignUp/" class="android-more-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Sign up</a>
         </div>
       </div>
 
@@ -90,96 +90,96 @@
       <div class="android-content mdl-layout__content">
         <a name="top"></a>
         <div class="android-screen-section mdl-typography--text-center">
-          <form action="#">
+          <form action="Join/" method="post" name="joinForm" enctype="multipart/form-data">
   			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-   		 	  <input class="mdl-textfield__input" type="text" id="m_id">
+   		 	  <input class="mdl-textfield__input" type="text" id="m_id" name="m_id" maxlength="16">
     		  <label class="mdl-textfield__label" for="m_id">ID...</label>
   			</div><br>
   			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-   		 	  <input class="mdl-textfield__input" type="password" id="m_pw">
+   		 	  <input class="mdl-textfield__input" type="password" id="m_pw" name="m_pw" maxlength="16">
     		  <label class="mdl-textfield__label" for="m_pw">Password...</label>
   			</div><br>
   			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-   		 	  <input class="mdl-textfield__input" type="password" id="m_pw2">
+   		 	  <input class="mdl-textfield__input" type="password" id="m_pw2" maxlength="16">
     		  <label class="mdl-textfield__label" for="m_pw2">Confirm Password...</label>
     		  <span class="mdl-textfield__error">Password is incorrect!</span>
   			</div><br>
   			<br>
   			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-   		 	  <input class="mdl-textfield__input" type="text" id="m_name">
+   		 	  <input class="mdl-textfield__input" type="text" id="m_name" name="m_name">
     		  <label class="mdl-textfield__label" for="m_name">Name...</label>
   			</div><br>
   			<div class="mdl-textfield mdl-js-textfield">
    		 	  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="male">
-  				<input checked class="mdl-radio__button" id="male" name="m_gender" type="radio" value="male">
+  				<input checked class="mdl-radio__button" id="male" name="m_gender" type="radio" value="0">
   				<span class="mdl-radio__label">Male</span>
 			  </label>
 			  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="female">
-  				<input class="mdl-radio__button" id="female" name="m_gender" type="radio" value="female">
+  				<input class="mdl-radio__button" id="female" name="m_gender" type="radio" value="1">
   				<span class="mdl-radio__label">Female</span>
 			  </label>
   			</div><br>
   			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-   		 	  <input class="mdl-textfield__input" type="text" id="m_email">
+   		 	  <input class="mdl-textfield__input" type="text" id="m_email" name="m_name">
     		  <label class="mdl-textfield__label" for="m_email">E-Mail...</label>
     		</div><br>
     		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    		  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="m_bdate" maxlength="6">
+    		  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="m_bdate" name="m_bdate" maxlength="6">
 			  <label class="mdl-textfield__label" for="m_bdate">Birthday...</label>
     		  <span class="mdl-textfield__error">Input is not a number!</span>
   			</div><br>
     		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    		  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="m_phone" maxlength="11">
+    		  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="m_phone" name="m_phone" maxlength="11">
 			  <label class="mdl-textfield__label" for="m_phone">Phone Number...</label>
     		  <span class="mdl-textfield__error">Input is not a number!</span>
   			</div><br>
   			<br>
   			<div class="mdl-textfield mdl-js-textfield">
    		 	  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="being">
-  				<input checked class="mdl-radio__button" id="being" name="m_school" type="radio" value="재학">
+  				<input checked class="mdl-radio__button" id="being" name="m_school" type="radio" value="0">
   				<span class="mdl-radio__label">재학</span>
 			  </label>
 			  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="rest">
-  				<input class="mdl-radio__button" id="rest" name="m_school" type="radio" value="휴학">
+  				<input class="mdl-radio__button" id="rest" name="m_school" type="radio" value="1">
   				<span class="mdl-radio__label">휴학</span>
 			  </label>
 			  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="prospective">
-  				<input class="mdl-radio__button" id="prospective" name="m_school" type="radio" value="졸업예정">
+  				<input class="mdl-radio__button" id="prospective" name="m_school" type="radio" value="2">
   				<span class="mdl-radio__label">졸업예정</span>
 			  </label>
 			  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="graduation">
-  				<input class="mdl-radio__button" id="graduation" name="m_school" type="radio" value="졸업">
+  				<input class="mdl-radio__button" id="graduation" name="m_school" type="radio" value="3">
   				<span class="mdl-radio__label">졸업</span>
 			  </label>
   			</div><br>
   			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-   		 	  <input class="mdl-textfield__input" type="text" id="m_schoolname">
+   		 	  <input class="mdl-textfield__input" type="text" id="m_schoolname" name="m_schoolname">
     		  <label class="mdl-textfield__label" for="m_schoolname">School...</label>
     		</div><br>
   			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-   		 	  <input class="mdl-textfield__input" type="text" id="m_schoolmajor">
+   		 	  <input class="mdl-textfield__input" type="text" id="m_schoolmajor" name="m_schoolmajor">
     		  <label class="mdl-textfield__label" for="m_schoolmajor">Major...</label>
     		</div><br>
     		<div class="mdl-textfield mdl-js-textfield">
    		 	  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="worked">
-  				<input checked class="mdl-radio__button" id="worked" name="m_working" type="radio" value="true">
+  				<input checked class="mdl-radio__button" id="worked" name="m_working" type="radio" value="0">
   				<span class="mdl-radio__label">근무경험 유</span>
 			  </label>
 			  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="notworked">
-  				<input class="mdl-radio__button" id="notworked" name="m_working" type="radio" value="false">
+  				<input class="mdl-radio__button" id="notworked" name="m_working" type="radio" value="1">
   				<span class="mdl-radio__label">근무경험 무</span>
 			  </label>
   			</div><br>
     		<div class="mdl-textfield mdl-js-textfield">
    		 	  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="army">
-  				<input checked class="mdl-radio__button" id="army" name="m_army" type="radio" value="true">
+  				<input checked class="mdl-radio__button" id="army" name="m_army" type="radio" value="0">
   				<span class="mdl-radio__label">군필</span>
 			  </label>
 			  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="notarmy">
-  				<input class="mdl-radio__button" id="notarmy" name="m_army" type="radio" value="false">
+  				<input class="mdl-radio__button" id="notarmy" name="m_army" type="radio" value="1">
   				<span class="mdl-radio__label">미필</span>
 			  </label>
   			</div><br>
@@ -238,13 +238,13 @@
   			  <label class="mdl-selectfield__label" for="m_bank">Bank Name...</label>
 			</div><br>
     		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    		  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="m_account" maxlength="20">
+    		  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="m_account" name="m_account" maxlength="20">
 			  <label class="mdl-textfield__label" for="m_account">Account Number...</label>
     		  <span class="mdl-textfield__error">Input is not a number!</span>
   			</div><br>
   			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-   		 	  <input class="mdl-textfield__input" type="text" id="m_bankname">
-    		  <label class="mdl-textfield__label" for="m_bankname">Account Name...</label>
+   		 	  <input class="mdl-textfield__input" type="text" id="m_accname" name="m_accname">
+    		  <label class="mdl-textfield__label" for="m_accname">Account Name...</label>
     		</div><br>
   			<br>
   			<a id="addrSearch" class="android-more-button mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">Find Address</a><br>
@@ -254,21 +254,21 @@
     		  <span class="mdl-textfield__error">Input is not a number!</span>
   			</div><br>
     		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-   		 	  <input class="mdl-textfield__input" type="text" id="m_addr">
+   		 	  <input class="mdl-textfield__input" type="text" id="m_addr" name="m_addr">
     		  <label class="mdl-textfield__label" for="m_addr">Road Address...</label>
     		</div><br>
     		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-   		 	  <input class="mdl-textfield__input" type="text" id="m_addrdetail">
+   		 	  <input class="mdl-textfield__input" type="text" id="m_addrdetail" name="m_addrdetail">
     		  <label class="mdl-textfield__label" for="m_addrdetail">Detail Address...</label>
     		</div><br>
     		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-   		 	  <input class="mdl-textfield__input" type="text" id="m_station">
+   		 	  <input class="mdl-textfield__input" type="text" id="m_station" name="m_station">
     		  <label class="mdl-textfield__label" for="m_station">Subway Station...</label>
     		</div><br>
     		
     		<br>
   			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    		  <textarea class="mdl-textfield__input" type="text" rows="4" id="m_intro" ></textarea>
+    		  <textarea class="mdl-textfield__input" type="text" rows="4" id="m_intro" name="m_intro"></textarea>
     		  <label class="mdl-textfield__label" for="m_intro">Introduce Yourself...</label>
   			</div><br>
   			<div class="mdl-textfield mdl-js-textfield mdl-textfield--file mdl-textfield--floating-label">

@@ -25,9 +25,15 @@ create table HR_BANK(
 	m_accname varchar(6 char) not null
 );
 
+alter table HR_BANK 
+add constraint hr_bank_cb foreign key (m_id) 
+	references HR_MEMBER(m_id) 
+	on delete cascade;
+
 alter table HR_MEMBER add(jm_point number(11));
 
 select * from HR_MEMBER;
+select * from HR_BANK;
 ----------------------------------------------------------
 --급여신청, 지급
 create table HR_APPLICATION(

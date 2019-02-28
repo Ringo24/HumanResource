@@ -19,6 +19,10 @@ public class MemberController {
 	public String goJoin(HttpServletRequest req, HttpServletResponse res) {
 		return "member/signup";
 	}
+	@RequestMapping(value = "SignUp/Join/", method = RequestMethod.POST)
+	public String join(HttpServletRequest req, HttpServletResponse res) {
+		return "index";
+	}
 	
 	@RequestMapping(value = "member.id.check", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 	public @ResponseBody Members idCheck(Member m, HttpServletRequest req, HttpServletResponse res) {
