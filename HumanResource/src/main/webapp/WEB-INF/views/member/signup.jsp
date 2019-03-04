@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.min.css">
     <link rel="stylesheet" href="../resources/css/mdl-selectfield.min.css">
+    <link rel="stylesheet" href="../resources/css/angular-validation.css">
     <link rel="stylesheet" href="../resources/css/styles.css">
 </head>
 <body>
@@ -90,24 +91,41 @@
       <div class="android-content mdl-layout__content">
         <a name="top"></a>
         <div class="android-screen-section mdl-typography--text-center">
-          <form action="Join/" method="post" name="joinForm" enctype="multipart/form-data">
+      <div ng-app="validationApp" ng-controller="mainController" class="">
+          <form action="/hr/Resister/" method="post" name="joinForm" onsubmit="return joinCheck();" enctype="multipart/form-data" novalidate>
   			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-   		 	  <input class="mdl-textfield__input" type="text" id="m_id" name="m_id" maxlength="16">
+   		 	  <input class="mdl-textfield__input" type="text" id="m_id" name="m_id" maxlength="16" pattern="[A-Za-z\s]*" ng-model="data.m_id" ng-required="true">
     		  <label class="mdl-textfield__label" for="m_id">ID...</label>
+    		  <span class="mdl-tooltip mdl-tooltip--validation" for="m_id" ng-show="joinForm.m_id.$invalid && joinForm.m_id.$touched">
+                <span ng-show="joinForm.m_id.$error.required">Required.</span>
+                <span ng-show="joinForm.m_id.$error.pattern">Invalid pattern.</span>
+                <span ng-show="" id="joinIdCheckMsg">중복된 ID</span>
+              </span>
   			</div><br>
   			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-   		 	  <input class="mdl-textfield__input" type="password" id="m_pw" name="m_pw" maxlength="16">
+   		 	  <input class="mdl-textfield__input" type="password" id="m_pw" name="m_pw" maxlength="16" ng-model="data.m_pw" ng-required="true">
     		  <label class="mdl-textfield__label" for="m_pw">Password...</label>
+    		  <span class="mdl-tooltip mdl-tooltip--validation" for="m_pw">Password.</span>
+    		  <span class="mdl-tooltip mdl-tooltip--validation" for="m_pw" ng-show="joinForm.m_pw.$invalid && joinForm.m_pw.$touched">
+                <span ng-show="joinForm.m_pw.$error.required">Required.</span>
+              </span>
   			</div><br>
   			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-   		 	  <input class="mdl-textfield__input" type="password" id="m_pw2" maxlength="16">
+   		 	  <input class="mdl-textfield__input" type="password" id="m_pw2" name="m_pw2" maxlength="16" ng-model="data.m_pw2" ng-required="true" field-match="data.m_pw">
     		  <label class="mdl-textfield__label" for="m_pw2">Confirm Password...</label>
-    		  <span class="mdl-textfield__error">Password is incorrect!</span>
+    		  <span class="mdl-tooltip mdl-tooltip--validation" for="m_pw2" ng-show="joinForm.m_pw2.$invalid && joinForm.m_pw2.$touched">
+                <span ng-show="joinForm.m_pw2.$error.required">Required.</span>
+                <span ng-show="joinForm.m_pw2.$error.fieldmatch">Passwords do not match.</span>
+              </span>
   			</div><br>
   			<br>
   			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-   		 	  <input class="mdl-textfield__input" type="text" id="m_name" name="m_name">
+   		 	  <input class="mdl-textfield__input" type="text" id="m_name" name="m_name" pattern="[가-힣]*" ng-model="data.m_name" ng-required="true">
     		  <label class="mdl-textfield__label" for="m_name">Name...</label>
+    		  <span class="mdl-tooltip mdl-tooltip--validation" for="m_name" ng-show="joinForm.m_name.$invalid && joinForm.m_name.$touched">
+                <span ng-show="joinForm.m_name.$error.required">Required.</span>
+                <span ng-show="joinForm.m_name.$error.pattern">Invalid pattern.</span>
+              </span>
   			</div><br>
   			<div class="mdl-textfield mdl-js-textfield">
    		 	  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="male">
@@ -121,18 +139,30 @@
 			  </label>
   			</div><br>
   			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-   		 	  <input class="mdl-textfield__input" type="text" id="m_email" name="m_name">
+   		 	  <input class="mdl-textfield__input" type="email" id="m_email" name="m_email" ng-model="data.m_email" ng-required="true">
     		  <label class="mdl-textfield__label" for="m_email">E-Mail...</label>
+    		  <span class="mdl-tooltip mdl-tooltip--validation" for="m_email" ng-show="joinForm.m_email.$invalid && joinForm.m_email.$touched">
+                <span ng-show="joinForm.m_email.$error.required">Required.</span>
+                <span ng-show="joinForm.m_email.$error.email">Invalid email.</span>
+              </span>
     		</div><br>
     		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    		  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="m_bdate" name="m_bdate" maxlength="6">
+    		  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="m_bdate" name="m_bdate" maxlength="6" minlength="6" ng-model="data.m_bdate" ng-required="true">
 			  <label class="mdl-textfield__label" for="m_bdate">Birthday...</label>
-    		  <span class="mdl-textfield__error">Input is not a number!</span>
+    		  <span class="mdl-tooltip mdl-tooltip--validation" for="m_bdate" ng-show="joinForm.m_bdate.$invalid && joinForm.m_bdate.$touched">
+                <span ng-show="joinForm.m_bdate.$error.required">Required.</span>
+                <span ng-show="joinForm.m_bdate.$error.pattern">Invalid pattern.</span>
+                <span ng-show="joinForm.m_bdate.$error.minlength">Minimum of six characters.</span>
+              </span>
   			</div><br>
     		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    		  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="m_phone" name="m_phone" maxlength="11">
+    		  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="m_phone" name="m_phone" maxlength="11" minlength="6" ng-model="data.m_phone" ng-required="true">
 			  <label class="mdl-textfield__label" for="m_phone">Phone Number...</label>
-    		  <span class="mdl-textfield__error">Input is not a number!</span>
+    		  <span class="mdl-tooltip mdl-tooltip--validation" for="m_phone" ng-show="joinForm.m_bdate.$invalid && joinForm.m_bdate.$touched">
+                <span ng-show="joinForm.m_phone.$error.required">Required.</span>
+                <span ng-show="joinForm.m_phone.$error.pattern">Invalid pattern.</span>
+                <span ng-show="joinForm.m_phone.$error.minlength">Minimum of eleven characters.</span>
+              </span>
   			</div><br>
   			<br>
   			<div class="mdl-textfield mdl-js-textfield">
@@ -154,12 +184,20 @@
 			  </label>
   			</div><br>
   			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-   		 	  <input class="mdl-textfield__input" type="text" id="m_schoolname" name="m_schoolname">
+   		 	  <input class="mdl-textfield__input" type="text" id="m_schoolname" name="m_schoolname" pattern="[가-힣]*" ng-model="data.m_schoolname" ng-required="true">
     		  <label class="mdl-textfield__label" for="m_schoolname">School...</label>
+    		  <span class="mdl-tooltip mdl-tooltip--validation" for="m_schoolname" ng-show="joinForm.m_schoolname.$invalid && joinForm.m_schoolname.$touched">
+                <span ng-show="joinForm.m_schoolname.$error.required">Required.</span>
+                <span ng-show="joinForm.m_schoolname.$error.pattern">Invalid pattern.</span>
+              </span>
     		</div><br>
   			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-   		 	  <input class="mdl-textfield__input" type="text" id="m_schoolmajor" name="m_schoolmajor">
+   		 	  <input class="mdl-textfield__input" type="text" id="m_schoolmajor" name="m_schoolmajor" pattern="[가-힣]*" ng-model="data.m_schoolmajor" ng-required="true">
     		  <label class="mdl-textfield__label" for="m_schoolmajor">Major...</label>
+    		  <span class="mdl-tooltip mdl-tooltip--validation" for="m_schoolmajor" ng-show="joinForm.m_schoolmajor.$invalid && joinForm.m_schoolmajor.$touched">
+                <span ng-show="joinForm.m_schoolmajor.$error.required">Required.</span>
+                <span ng-show="joinForm.m_schoolmajor.$error.pattern">Invalid pattern.</span>
+              </span>
     		</div><br>
     		<div class="mdl-textfield mdl-js-textfield">
    		 	  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="worked">
@@ -238,50 +276,67 @@
   			  <label class="mdl-selectfield__label" for="m_bank">Bank Name...</label>
 			</div><br>
     		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    		  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="m_account" name="m_account" maxlength="20">
+    		  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="m_account" name="m_account" maxlength="20" ng-model="data.m_account" ng-required="true">
 			  <label class="mdl-textfield__label" for="m_account">Account Number...</label>
-    		  <span class="mdl-textfield__error">Input is not a number!</span>
+    		  <span class="mdl-tooltip mdl-tooltip--validation" for="m_account" ng-show="joinForm.m_account.$invalid && joinForm.m_account.$touched">
+                <span ng-show="joinForm.m_account.$error.required">Required.</span>
+                <span ng-show="joinForm.m_account.$error.pattern">Invalid pattern.</span>
+              </span>
   			</div><br>
   			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-   		 	  <input class="mdl-textfield__input" type="text" id="m_accname" name="m_accname">
+   		 	  <input class="mdl-textfield__input" type="text" id="m_accname" name="m_accname" pattern="[가-힣]*" ng-model="data.m_accname" ng-required="true">
     		  <label class="mdl-textfield__label" for="m_accname">Account Name...</label>
+    		  <span class="mdl-tooltip mdl-tooltip--validation" for="m_accname" ng-show="joinForm.m_accname.$invalid && joinForm.m_accname.$touched">
+                <span ng-show="joinForm.m_accname.$error.required">Required.</span>
+                <span ng-show="joinForm.m_accname.$error.pattern">Invalid pattern.</span>
+              </span>
     		</div><br>
   			<br>
   			<a id="addrSearch" class="android-more-button mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">Find Address</a><br>
     		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    		  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="m_post" name="m_post" maxlength="6">
+    		  <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="m_post" name="m_post" maxlength="6" readonly="readonly">
 			  <label class="mdl-textfield__label" for="m_post">Post Code...</label>
     		  <span class="mdl-textfield__error">Input is not a number!</span>
   			</div><br>
     		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-   		 	  <input class="mdl-textfield__input" type="text" id="m_addr" name="m_addr">
+   		 	  <input class="mdl-textfield__input" type="text" id="m_addr" name="m_addr" readonly="readonly">
     		  <label class="mdl-textfield__label" for="m_addr">Road Address...</label>
     		</div><br>
     		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-   		 	  <input class="mdl-textfield__input" type="text" id="m_addrdetail" name="m_addrdetail">
+   		 	  <input class="mdl-textfield__input" type="text" id="m_addrdetail" name="m_addrdetail" ng-model="data.m_addrdetail" ng-required="true">
     		  <label class="mdl-textfield__label" for="m_addrdetail">Detail Address...</label>
+    		  <span class="mdl-tooltip mdl-tooltip--validation" for="m_addrdetail" ng-show="joinForm.m_addrdetail.$invalid && joinForm.m_addrdetail.$touched">
+                <span ng-show="joinForm.m_addrdetail.$error.required">Required.</span>
+              </span>
     		</div><br>
     		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-   		 	  <input class="mdl-textfield__input" type="text" id="m_station" name="m_station">
+   		 	  <input class="mdl-textfield__input" type="text" id="m_station" name="m_station" pattern="[가-힣]*" ng-model="data.m_station" ng-required="true">
     		  <label class="mdl-textfield__label" for="m_station">Subway Station...</label>
+    		  <span class="mdl-tooltip mdl-tooltip--validation" for="m_station" ng-show="joinForm.m_station.$invalid && joinForm.m_station.$touched">
+                <span ng-show="joinForm.m_station.$error.required">Required.</span>
+                <span ng-show="joinForm.m_station.$error.pattern">Invalid pattern.</span>
+              </span>
     		</div><br>
     		
     		<br>
   			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    		  <textarea class="mdl-textfield__input" type="text" rows="4" id="m_intro" name="m_intro"></textarea>
+    		  <textarea class="mdl-textfield__input" type="text" rows="4" id="m_intro" name="m_intro" maxlength="300" ng-model="data.m_intro" ng-required="true"></textarea>
     		  <label class="mdl-textfield__label" for="m_intro">Introduce Yourself...</label>
+    		  <span class="mdl-tooltip mdl-tooltip--validation" for="m_intro" ng-show="joinForm.m_intro.$invalid && joinForm.m_intro.$touched">
+                <span ng-show="joinForm.m_intro.$error.required">Required.</span>
+              </span>
   			</div><br>
   			<div class="mdl-textfield mdl-js-textfield mdl-textfield--file mdl-textfield--floating-label">
-    		  <input class="mdl-textfield__input" placeholder="" type="text" id="uploadFile" name="m_photo" readonly/>
+    		  <input class="mdl-textfield__input" placeholder="" type="text" id="uploadFile" name="uploadFile" readonly/>
     		  <label class="mdl-textfield__label" for="uploadFile">Upload Photo...</label>
     		  <div class="mdl-button mdl-button--primary mdl-button--icon mdl-button--file">
-      			<i class="material-icons">attach_file</i><input type="file" id="uploadBtn">
+      			<i class="material-icons">attach_file</i><input type="file" id="uploadBtn" name="m_photo">
     		  </div>
   			</div><br>
-    		<button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Sign up</button>
+    		<button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Resister</button>
     		<a href="/hr/" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Cancel</a>
 		  </form>
-
+		</div>
         </div>
       
       <!-- 푸터 영역 -->
@@ -337,6 +392,10 @@
   	<!-- JavaScript -->
   	<script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   	<script src="../resources/js/mdl-selectfield.min.js"></script>
+  	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+  	<script src="../resources/js/angular-validation.js"></script>
+  	<script src="../resources/js/check.js"></script>
+  	<script src="../resources/js/validCheck.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
     <script src="../resources/js/execDaumPostcode.js"></script>

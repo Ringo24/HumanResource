@@ -19,7 +19,7 @@ public class MemberController {
 	public String goJoin(HttpServletRequest req, HttpServletResponse res) {
 		return "member/signup";
 	}
-	@RequestMapping(value = "SignUp/Join/", method = RequestMethod.POST)
+	@RequestMapping(value = "Resister/", method = RequestMethod.POST)
 	public String join(HttpServletRequest req, HttpServletResponse res) {
 		return "index";
 	}
