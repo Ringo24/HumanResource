@@ -1,5 +1,7 @@
 // create angular app
 var validationApp = angular.module('validationApp', ['fieldMatch']);
+//Id Duplicate directive
+
 //Field Match directive
 angular.module('fieldMatch', [])
 		.directive('fieldMatch', ["$parse", function($parse) {

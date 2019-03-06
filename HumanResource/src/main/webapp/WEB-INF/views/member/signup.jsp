@@ -402,6 +402,7 @@
     <script type="text/javascript">
     	$(function(){
     		execDaumPostcode();
+    		uploadFile();
     	});
     </script>
     
