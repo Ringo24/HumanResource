@@ -34,6 +34,8 @@ alter table HR_MEMBER add(jm_point number(11));
 
 select * from HR_MEMBER;
 select * from HR_BANK;
+
+insert into HR_MEMBER values('test','1234','test',0,'test@gmail.com','950611','01012345678',3,'test','test',1,1,'12345','test','test','test','test','test.jpg');
 ----------------------------------------------------------
 --급여신청, 지급
 create table HR_APPLICATION(

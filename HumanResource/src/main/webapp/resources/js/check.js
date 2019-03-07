@@ -76,26 +76,26 @@ function joinCheck(){
 	}
 }
 
-function connectIdCheck(){
-	$("#m_id").keyup(function(){
-		var id = $(this).val();
-		$.ajax({
-			url : "member.id.check",
-			data : {m_id:id},	// {파라메터명:값, 파라메터명:값, ..}
-			success : function(data){
-				if (id.length == 0) {
-					$("#joinIdCheckMsg").text("ID 입력").css("color", "");
-				} else if (id.length < 4) {
-					$("#joinIdCheckMsg").text("4자 이상").css("color", "");
-				} else if ($(data).find("member").length == 1) {
-					$("#joinIdCheckMsg").text("중복된 ID").css("color", "red");
-				} else {
-					$("#joinIdCheckMsg").text("OK").css("color", "green");
-				}
-			}
-		});
-	});
-}
+//function connectIdCheck(){
+//	$("#m_id").keyup(function(){
+//		var id = $(this).val();
+//		$.ajax({
+//			url : "member.id.check",
+//			data : {m_id:id},	// {파라메터명:값, 파라메터명:값, ..}
+//			success : function(data){
+//				if (id.length == 0) {
+//					$("#joinIdCheckMsg").text("ID 입력").css("color", "");
+//				} else if (id.length < 4) {
+//					$("#joinIdCheckMsg").text("4자 이상").css("color", "");
+//				} else if ($(data).find("member").length == 1) {
+//					$("#joinIdCheckMsg").text("중복된 ID").css("color", "red");
+//				} else {
+//					$("#joinIdCheckMsg").text("OK").css("color", "green");
+//				}
+//			}
+//		});
+//	});
+//}
 
 function loginCheck(){
 	var id = document.loginForm.jm_id;

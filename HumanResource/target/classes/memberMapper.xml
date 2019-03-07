@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ant.hr.member.MemberMapper">
-
+	<select id="getMemberInfoByM_ID" parameterType="com.ant.hr.member.Member" resultType="com.ant.hr.member.Member">
+		select * from HR_MEMBER where m_id = #{m_id}
+	</select>
 </mapper>
