@@ -4,11 +4,10 @@ var validationApp = angular.module('validationApp', ['fieldMatch']);
 function connectIdCheck(){
 	var id = $("#m_id").val();
 	$.getJSON("/hr/member.id.check?m_id="+id, function(data){
-		alert(data.member.length);
-		if (data.member.length == 1) {
+		if (data.member[0] != null) {
 			$("#joinIdCheckMsg").text("중복된 ID").css("color", "red");
-		} else {
-			$("#joinIdCheckMsg").text("괜찮은 ID").css("color", "blue");
+		} else if (data.member[0] == null) {
+			$("#joinIdCheckMsg").text("괜찮은 ID").css("color", "white");
 		}
 	});
 }

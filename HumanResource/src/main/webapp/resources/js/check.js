@@ -78,9 +78,9 @@ function joinCheck(){
 
 //function connectIdCheck(){
 //	$("#m_id").keyup(function(){
-//		var id = $(this).val();
+//		var id = $("#m_id").val();
 //		$.ajax({
-//			url : "member.id.check",
+//			url : "/hr/member.id.check",
 //			data : {m_id:id},	// {파라메터명:값, 파라메터명:값, ..}
 //			success : function(data){
 //				if (id.length == 0) {
@@ -90,7 +90,8 @@ function joinCheck(){
 //				} else if ($(data).find("member").length == 1) {
 //					$("#joinIdCheckMsg").text("중복된 ID").css("color", "red");
 //				} else {
-//					$("#joinIdCheckMsg").text("OK").css("color", "green");
+//					alert($(data).find("member").length);
+//					$("#joinIdCheckMsg").text("OK.").css("color", "");
 //				}
 //			}
 //		});
@@ -98,19 +99,46 @@ function joinCheck(){
 //}
 
 function loginCheck(){
-	var id = document.loginForm.jm_id;
-	var pw = document.loginForm.jm_pw;
+	var id = document.loginForm.m_id;
+	var pw = document.loginForm.m_pw;
 	
 	if (isEmpty(id) || containsHS(id) || lessThan(id, 4)) {
-		alert("아이디");
-		id.value = "";
 		id.focus();
 		return false;
 	} else if (isEmpty(pw) || containsHS(pw) || lessThan(pw, 4)) {
-		alert("비번");
 		pw.value = "";
 		pw.focus();
 		return false;
+	}
+}
+
+function levelCheck(){
+	var point = 0;
+	
+	if (point >= 50000000) {
+		filter_9_plus;
+	} else if (point > 30000000 && point <= 50000000) {
+		filter_8_plus;
+	} else if (point > 10000000 && point <= 30000000) {
+		filter_7_plus;
+	} else if (point > 7000000 && point <= 10000000) {
+		filter_6_plus;
+	} else if (point > 4000000 && point <= 7000000) {
+		filter_5_plus;
+	} else if (point > 2000000 && point <= 4000000) {
+		filter_4_plus;
+	} else if (point > 1000000 && point <= 20000000) {
+		filter_3_plus;
+	} else if (point > 500000 && point <= 1000000) {
+		filter_2_plus;
+	} else if (point < 500000) {
+		filter_1_plus;
+	}
+}
+
+function goodbyeCheck(){
+	if (confirm('정말로 탈퇴하시겠습니까?')){
+		location.href="index";
 	}
 }
 

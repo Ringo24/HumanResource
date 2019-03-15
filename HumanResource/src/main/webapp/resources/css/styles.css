@@ -168,7 +168,10 @@ a img{
   .android-drawer .mdl-layout-title {
     position: relative;
     background: #6ab344;
-    height: 160px;
+    height: 185px;
+  }
+  .mdl-layout__drawer>.mdl-layout__title, .mdl-layout__drawer>.mdl-layout-title {
+  	line-height: normal;
   }
 
     .android-drawer .android-logo-image {

@@ -4,4 +4,22 @@
 	<select id="getMemberInfoByM_ID" parameterType="com.ant.hr.member.Member" resultType="com.ant.hr.member.Member">
 		select * from HR_MEMBER where m_id = #{m_id}
 	</select>
+	<insert id="join" parameterType="com.ant.hr.member.Member">
+		insert into HR_MEMBER values(#{m_id},#{m_pw},#{m_name},#{m_gender},#{m_email},#{m_birth},#{m_phone},#{m_school},#{m_schoolname},#{m_schoolmajor},#{m_working},#{m_army},#{m_post},#{m_addr},#{m_addrdetail},#{m_station},#{m_intro},#{m_photo},0)
+	</insert>
+	<insert id="joinBankInfo" parameterType="com.ant.hr.member.Member">
+		insert into HR_BANK values(#{m_id},#{m_bank},#{m_account},#{m_accname})
+	</insert>
+	<delete id="delete" parameterType="com.ant.hr.member.Member">
+		delete from HR_MEMBER where m_id = #{m_id}
+	</delete>
+	<update id="updateWithPhoto" parameterType="com.ant.hr.member.Member">
+		update HR_MEMBER set m_pw=#{m_pw},m_name=#{m_name},m_gender=#{m_gender},m_email=#{m_email},m_birth=#{m_birth},m_phone=#{m_phone},m_school=#{m_school},m_schoolname=#{m_schoolname},m_schoolmajor=#{m_schoolmajor},m_working=#{m_working},m_army=#{m_army},m_post=#{m_post},m_addr=#{m_addr},m_addrdetail=#{m_addrdetail},m_station=#{m_station},m_intro=#{m_intro},m_photo=#{m_photo} where m_id=#{m_id}
+	</update>
+	<update id="updateWithoutPhoto" parameterType="com.ant.hr.member.Member">
+		update HR_MEMBER set m_pw=#{m_pw},m_name=#{m_name},m_gender=#{m_gender},m_email=#{m_email},m_birth=#{m_birth},m_phone=#{m_phone},m_school=#{m_school},m_schoolname=#{m_schoolname},m_schoolmajor=#{m_schoolmajor},m_working=#{m_working},m_army=#{m_army},m_post=#{m_post},m_addr=#{m_addr},m_addrdetail=#{m_addrdetail},m_station=#{m_station},m_intro=#{m_intro} where m_id=#{m_id}
+	</update>
+	<update id="updateBankInfo" parameterType="com.ant.hr.member.Member">
+		update HR_BANK set m_bank=#{m_bank},m_account=#{m_account},m_accname=#{m_accname} where mb_id=#{m_id}
+	</update>
 </mapper>

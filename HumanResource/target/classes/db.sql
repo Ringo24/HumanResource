@@ -1,42 +1,48 @@
+-- 멤버
 create table HR_MEMBER(
 	m_id varchar2(16 char) primary key,
 	m_pw varchar2(16 char) not null,
 	m_name varchar2(6 char) not null,
 	m_gender number(1) not null,
 	m_email varchar2(45 char) not null,
-	m_birth number(6) not null,
-	m_phone number(11) not null,
+	m_birth varchar2(6 char) not null,
+	m_phone varchar2(11 char) not null,
 	m_school number(1) not null,
 	m_schoolname varchar2(15 char) not null,
 	m_schoolmajor varchar2(20 char) not null,
 	m_working number(1) not null,
 	m_army number(1) not null,
-	m_post number(6) not null,
+	m_post varchar2(6 char) not null,
 	m_addr varchar2(150 char) not null,
 	m_addrdetail varchar2(150 char) not null,
 	m_station varchar2(15 char) not null,
 	m_intro varchar2(300 char) not null,
-	m_photo varchar2(100 char) not null
+	m_photo varchar2(100 char) not null,
+	m_point number(11) not null
 );
 create table HR_BANK(
-	m_id varchar(16 char) primary key,
-	m_bank varchar(20 char) not null,
-	m_account number(30) not null,
-	m_accname varchar(6 char) not null
+	mb_id varchar2(16 char) primary key,
+	m_bank varchar2(20 char) not null,
+	m_account varchar2(30 char) not null,
+	m_accname varchar2(6 char) not null
 );
 
 alter table HR_BANK 
-add constraint hr_bank_cb foreign key (m_id) 
+add constraint hr_bank_cb foreign key (mb_id) 
 	references HR_MEMBER(m_id) 
 	on delete cascade;
 
-alter table HR_MEMBER add(jm_point number(11));
+alter table HR_MEMBER add(m_point number(11));
 
 select * from HR_MEMBER;
 select * from HR_BANK;
 
-insert into HR_MEMBER values('test','1234','test',0,'test@gmail.com','950611','01012345678',3,'test','test',1,1,'12345','test','test','test','test','test.jpg');
-----------------------------------------------------------
+drop table HR_MEMBER cascade constraint purge;
+drop table HR_BANK cascade constraint purge;
+
+insert into HR_MEMBER values('test','1234','test',0,'test@gmail.com','950611','01012345678',3,'서운대학교','영문학과',1,1,'12345','서운시','집앞','서운대앞역','안녕하세요','test.jpg',0);
+insert into HR_BANK values('test','국민은행','3350303295302','test');
+---------------------------------------------------------------------------
 --급여신청, 지급
 create table HR_APPLICATION(
 	a_no number(6) primary key,
@@ -144,8 +150,8 @@ select r.*, m.m_name from HR_REPLY r, HR_BBS b, HR_MEMBER m
 where r.b_no=b.b_no and b_id=m_id 
 order by rp_date;
 
-select * from JSC_SNS, JSC_REPLY 
-where js_no = 17 and js_no = jr_jsno; 
+select * from HR_BBS b, HR_REPLY r 
+where b.b_no = 17 and b.b_no = r.b_no; 
 
 -----------------------------------------------------
 create table JSC_DATA(

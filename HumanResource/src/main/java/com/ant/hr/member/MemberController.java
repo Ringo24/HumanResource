@@ -15,12 +15,56 @@ public class MemberController {
 	@Autowired
 	private MemberDAO mDAO;
 	
-	@RequestMapping(value = "SignUp/", method = RequestMethod.GET)
+	@RequestMapping(value = "SignUp", method = RequestMethod.GET)
 	public String goJoin(HttpServletRequest req, HttpServletResponse res) {
-		return "member/signup";
+		mDAO.loginCheck(req, res);
+		req.setAttribute("contentPage", "member/signup.jsp");
+		return "index";
 	}
-	@RequestMapping(value = "Resister/", method = RequestMethod.POST)
-	public String join(HttpServletRequest req, HttpServletResponse res) {
+	@RequestMapping(value = "Resister", method = RequestMethod.POST)
+	public String join(Member m, HttpServletRequest req, HttpServletResponse res) {
+		mDAO.join(m, req, res);
+		mDAO.loginCheck(req, res);
+		req.setAttribute("contentPage", "main.jsp");
+		return "index";
+	}
+	@RequestMapping(value = "Login", method = RequestMethod.POST)
+	public String login(Member m, HttpServletRequest req, HttpServletResponse res) {
+		mDAO.login(m, req, res);
+		mDAO.loginCheck(req, res);
+		req.setAttribute("contentPage", "main.jsp");
+		return "index";
+	}
+	@RequestMapping(value = "Logout", method = RequestMethod.GET)
+	public String logout(HttpServletRequest req, HttpServletResponse res) {
+		mDAO.logout(req, res);
+		mDAO.loginCheck(req, res);
+		req.setAttribute("contentPage", "main.jsp");
+		return "index";
+	}
+	@RequestMapping(value = "GoodBye", method = RequestMethod.GET)
+	public String delete(Member m, HttpServletRequest req, HttpServletResponse res) {
+		if (mDAO.loginCheck(req, res)) {
+			mDAO.delete(req, res);
+		}
+		mDAO.loginCheck(req, res);
+		req.setAttribute("contentPage", "main.jsp");
+		return "index";
+	}
+	@RequestMapping(value = "Modify", method = RequestMethod.GET)
+	public String goUpdate(HttpServletRequest req, HttpServletResponse res) {
+		if (mDAO.loginCheck(req, res)) {
+			req.setAttribute("contentPage", "member/update.jsp");
+		} else {
+			req.setAttribute("contentPage", "main.jsp");
+		}
+		return "index";
+	}
+	@RequestMapping(value = "Crystal", method = RequestMethod.POST)
+	public String update(Member m, HttpServletRequest req, HttpServletResponse res) {
+		mDAO.update(m, req, res);
+		mDAO.loginCheck(req, res);
+		req.setAttribute("contentPage", "main.jsp");
 		return "index";
 	}
 	

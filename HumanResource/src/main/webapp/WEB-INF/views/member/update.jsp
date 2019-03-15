@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Introducing Lollipop, a sweet new take on Android.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-	<title>Sign Up</title>
+	<title>My Info</title>
 	
 	<!-- Page styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
@@ -21,10 +21,9 @@
         <a name="top"></a>
         <div class="android-screen-section mdl-typography--text-center">
       <div ng-app="validationApp" ng-controller="mainController" class="">
-          <form action="Resister" method="post" name="joinForm" enctype="multipart/form-data" onsubmit="return joinCheck();" novalidate>
-			  <span onclick="connectIdCheck()" class="mdl-button mdl-js-button mdl-js-ripple-effect">ID Check</span><br>
+          <form action="Crystal" method="post" name="joinForm" enctype="multipart/form-data" onsubmit="return joinCheck();" novalidate>
   			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-   		 	  <input class="mdl-textfield__input" type="text" id="m_id" name="m_id" maxlength="16" ng-model="data.m_id" ng-required="true">
+   		 	  <input class="mdl-textfield__input" type="text" id="m_id" name="m_id" maxlength="16" ng-model="data.m_id" ng-required="true" disabled>
     		  <label class="mdl-textfield__label" for="m_id">ID...</label>
               <span class="mdl-tooltip mdl-tooltip--validation" for="m_id" id="joinIdCheckMsg">ID.</span>
     		  <span class="mdl-tooltip mdl-tooltip--validation" for="m_id" ng-show="joinForm.m_id.$invalid && joinForm.m_id.$touched">
