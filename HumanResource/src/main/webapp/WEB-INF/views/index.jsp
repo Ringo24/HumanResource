@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +15,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.min.css">
     <link rel="stylesheet" href="resources/css/styles.css">
+    <link rel="stylesheet" href="resources/css/workdetail_styles.css">
     <link rel="stylesheet" href="resources/css/mdl-selectfield.min.css">
     <link rel="stylesheet" href="resources/css/angular-validation.css">
 </head>
@@ -67,10 +69,15 @@
         </span>
         <nav class="mdl-navigation">
           <span class="mdl-navigation__link" href="">My Page</span>
-          <a class="mdl-navigation__link" href="">신청내역 조회</a>
-          <a class="mdl-navigation__link" href="">급여신청</a>
+          <a class="mdl-navigation__link" href="MyRecruit">신청내역 조회</a>
+          <a class="mdl-navigation__link" href="Pay">급여신청</a>
           <a class="mdl-navigation__link" href="Modify">내 정보 수정</a>
           <a class="mdl-navigation__link" onclick="goodbyeCheck()">회원 탈퇴</a>
+          <div class="android-drawer-separator"></div>
+          <span class="mdl-navigation__link" href="">Recruit</span>
+          <a class="mdl-navigation__link" href="Detail">근무 검색</a>
+          <a class="mdl-navigation__link" href="">근무</a>
+          <a class="mdl-navigation__link" href="">자료실</a>
           <div class="android-drawer-separator"></div>
           <span class="mdl-navigation__link" href="">Community</span>
           <a class="mdl-navigation__link" href="Notice">공지사항</a>

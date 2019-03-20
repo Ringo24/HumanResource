@@ -146,12 +146,24 @@ create sequence HR_REPLY_seq;
 
 select * from HR_REPLY order by rp_date;
 
+insert into HR_BBS values(HR_BBS_seq.nextval, 'notice', 'test', 'test<br>message', 'test', 'test', sysdate, 0);
+
+select * from HR_BBS;
+
 select r.*, m.m_name from HR_REPLY r, HR_BBS b, HR_MEMBER m 
 where r.b_no=b.b_no and b_id=m_id 
 order by rp_date;
 
+select * from (
+			select rownum r, b_no, b_id, b_name, b_title, b_content, b_date, b_hit, m_photo 
+			from (select * from HR_BBS, HR_MEMBER where b_id = m_id order by b_no)
+		) where r <= 10 and r >= 1 
+		order by r desc;
+
 select * from HR_BBS b, HR_REPLY r 
 where b.b_no = 17 and b.b_no = r.b_no; 
+
+select count(*) from HR_BBS, HR_MEMBER where b_id = m_id;
 
 -----------------------------------------------------
 create table JSC_DATA(

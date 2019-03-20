@@ -1,5 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ant.hr.community.CommunityMapper">
-
+	<insert id="write" parameterType="com.ant.hr.community.BBS">
+		insert into HR_BBS values(HR_BBS_seq.nextval, #{b_category}, #{b_title}, #{b_content}, #{b_id}, #{b_name}, sysdate, 0)
+	</insert>
+	<insert id="writeReply" parameterType="com.ant.hr.community.Reply">
+		insert into HR_REPLY values(HR_REPLY_seq.nextval, #{b_no}, #{rp_content}, #{rp_id}, #{rp_name}, sysdate)
+	</insert>
+	
+	<update id="update" parameterType="com.ant.hr.community.BBS">
+		update HR_BBS set b_title=#{b_title}, b_content=#{b_content} where b_no = #{b_no}
+	</update>
+	<update id="updateReply" parameterType="com.ant.hr.community.Reply">
+		update HR_REPLY set rp_content = #{rp_content} where rp_no = #{rp_no}
+	</update>
+	
+	<delete id="delete" parameterType="com.ant.hr.community.BBS">
+		delete from HR_BBS where b_no = #{b_no}
+	</delete>
+	<delete id="deleteReplybyRpno" parameterType="com.ant.hr.community.Reply">
+		delete from HR_REPLY where rp_no = #{rp_no}
+	</delete>
+	<delete id="deleteReplybyBno" parameterType="com.ant.hr.community.BBS">
+		delete from HR_REPLY where b_no = #{b_no}
+	</delete>
+	
+	<select id="getOneSns" parameterType="com.ant.hr.community.BBS" resultType="com.ant.hr.community.BBS">
+		select * from HR_BBS where b_no = #{b_no}
+	</select>
+	<select id="getBBS" parameterType="com.ant.hr.community.BBSno" resultType="com.ant.hr.community.BBS">
+		select * from (
+			select rownum r, b_no, b_id, b_name, b_title, b_content, b_date, b_hit, m_photo 
+			from (select * from HR_BBS, HR_MEMBER where b_id = m_id order by b_no)
+		) where r &lt;= #{start} and r &gt;= #{end} 
+		order by r desc
+	</select>
+	<select id="getReply" parameterType="com.ant.hr.community.BBS" resultType="com.ant.hr.community.Reply">
+		select * from HR_REPLY 
+		where b_no = #{b_no} 
+		order by rp_date
+	</select>
+	<select id="search" parameterType="com.ant.hr.community.Query" resultType="com.ant.hr.community.BBS">
+		select * from HR_BBS, HR_MEMBER 
+		where b_id = m_id 
+		and ${search} like '%'||#{query}||'%' 
+		order by b_date
+	</select>
+	<select id="getAllBBSCount" resultType="java.lang.Integer">
+		select count(*) from HR_BBS, HR_MEMBER where b_id = m_id
+	</select>
+	
 </mapper>

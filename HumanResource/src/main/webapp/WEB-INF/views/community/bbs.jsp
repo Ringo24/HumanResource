@@ -1,5 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +14,6 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.min.css">
-	<link rel="stylesheet" href="resources/css/mdl-selectfield.min.css">
 	<link rel="stylesheet" href="resources/css/styles.css">
 </head>
 
@@ -30,30 +32,87 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Acrylic (Transparent)</td>
-						<td class="mdl-data-table__cell--non-numeric">James</td>
-						<td>2019-02-21</td>
-						<td>290</td>
+					<tr onclick="location.href='Article'" style="cursor: pointer;">
+						<td class="mdl-data-table__cell--non-numeric">
+							<i class="material-icons" style="font-size: 11pt;">notification_important</i>
+							<b>급여지급 시 안내사항</b>
+						</td>
+						<td class="mdl-data-table__cell--non-numeric">ADMIN</td>
+						<td>2019-01-09</td>
+						<td>20632</td>
 					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Plywood (Birch)</td>
-						<td class="mdl-data-table__cell--non-numeric">Mike</td>
-						<td>2019-02-21</td>
-						<td>125</td>
+					<tr style="cursor: pointer;">
+						<td class="mdl-data-table__cell--non-numeric">
+							<i class="material-icons" style="font-size: 11pt;">notification_important</i>
+							<b>급여지급날짜변경 - 매주 '월,수,금'</b>
+						</td>
+						<td class="mdl-data-table__cell--non-numeric">ADMIN</td>
+						<td>2019-01-09</td>
+						<td>27933</td>
 					</tr>
-					<tr>
-						<td class="mdl-data-table__cell--non-numeric">Laminate (Gold on Blue)</td>
-						<td class="mdl-data-table__cell--non-numeric">Mary</td>
-						<td>2019-02-21</td>
-						<td>235</td>
+					<tr style="cursor: pointer;">
+						<td class="mdl-data-table__cell--non-numeric">
+							<i class="material-icons" style="font-size: 11pt;">notification_important</i>
+							<b>무단결근 안되는 이유</b>
+						</td>
+						<td class="mdl-data-table__cell--non-numeric">ADMIN</td>
+						<td>2019-01-08</td>
+						<td>14889</td>
+					</tr>
+					<tr style="cursor: pointer;">
+						<td class="mdl-data-table__cell--non-numeric">
+							<i class="material-icons" style="font-size: 11pt;">notification_important</i>
+							<b>기본 규정</b>
+						</td>
+						<td class="mdl-data-table__cell--non-numeric">ADMIN</td>
+						<td>2019-01-07</td>
+						<td>18364</td>
+					</tr>
+				<c:forEach var="b" items="${BBSAl }">
+					<tr onclick="location.href='Content?b_no=${b.b_no }'" style="cursor: pointer;">
+						<td class="mdl-data-table__cell--non-numeric">${b.b_title }</td>
+						<td class="mdl-data-table__cell--non-numeric">${b.b_name }</td>
+						<td><fmt:formatDate value="${b.b_date }" pattern="yyyy-MM-dd"/></td>
+						<td>${b.b_hit }</td>
+					</tr>
+				</c:forEach>
+					<tr style="cursor: pointer;">
+						<td class="mdl-data-table__cell--non-numeric">
+							주민번호 수거관련 법규
+						</td>
+						<td class="mdl-data-table__cell--non-numeric">ADMIN</td>
+						<td>2019-01-03</td>
+						<td>2274</td>
+					</tr>
+					<tr style="cursor: pointer;">
+						<td class="mdl-data-table__cell--non-numeric">
+							귀중품 분실 사고
+						</td>
+						<td class="mdl-data-table__cell--non-numeric">ADMIN</td>
+						<td>2019-01-03</td>
+						<td>1106</td>
 					</tr>
 				</tbody>
 			</table>
-			<br> <i class="material-icons">first_page</i> <i
-				class="material-icons">chevron_left</i> <i class="material-icons">looks_one</i>
-			<i class="material-icons">looks_two</i> <i class="material-icons">looks_3</i>
-			<i class="material-icons">looks_4</i> <i class="material-icons">looks_5</i>
+			<br> 
+			<!-- <div class="page pad" id="page">
+				<c:forEach var="p" begin="1" end="${pageCount }">
+					<c:choose>
+						<c:when test="${p == curPage }">
+							${p }
+						</c:when>
+						<c:otherwise>
+							<a href="Page?p=${p }">${p }</a>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			</div>  -->
+			<i class="material-icons">first_page</i> <i class="material-icons">chevron_left</i> 
+			<i class="material-icons">looks_one</i>
+			<i class="material-icons">looks_two</i> 
+			<i class="material-icons">looks_3</i>
+			<i class="material-icons">looks_4</i> 
+			<i class="material-icons">looks_5</i>
 			<i class="material-icons">chevron_right</i> <i class="material-icons">last_page</i>
 			<br>
 			<div class="mdl-grid">
@@ -77,7 +136,6 @@
 		</div>
 
 		<script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-		<script src="resources/js/mdl-selectfield.min.js"></script>
 		<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </body>
 </html>

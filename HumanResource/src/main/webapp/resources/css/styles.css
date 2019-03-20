@@ -472,6 +472,20 @@ a img{
   cursor: pointer;
 }
 
+/**** Card layout ****/
+.demo-card-wide.mdl-card {
+  width: 638px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.demo-card-wide > .mdl-card__title {
+  color: #fff;
+  height: 176px;
+  background: url('../images/welcome_card.jpg') center / cover;
+}
+.demo-card-wide > .mdl-card__menu {
+  color: #fff;
+}
 
 /**** Mobile layout ****/
 @media (max-width: 900px) {
