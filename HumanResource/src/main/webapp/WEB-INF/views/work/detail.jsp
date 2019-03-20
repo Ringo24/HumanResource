@@ -19,19 +19,20 @@
 </head>
 
 <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+<a name="top"></a>
 <div class="android-screen-section mdl-typography--text-center">
-    <div class="mdl-layout mdl-js-layout">
+    <!-- <div class="mdl-layout mdl-js-layout"> -->
       <main class="mdl-layout__content">
           <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
             <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
               <img src="http://www.solupia.co.kr/wp/wp-content/uploads/2016/06/logo_b2.png">
             </header>
             <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
-              <div class="mdl-card__supporting-text">
+              <div class="mdl-card__supporting-text mdl-typography--text-left">
                 <h4>SOLUPIA Co.</h4>
                 Implementing, maintaining, and developing PC security solutions for 52 hours a week
               </div>
-              <div class="mdl-card__actions">
+              <div class="mdl-card__actions mdl-typography--text-left">
                 <a href="http://www.solupia.co.kr" target="_blank" class="mdl-button">Our homapage</a>
               </div>
             </div>
@@ -46,26 +47,26 @@
           </section>
           <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
             <div class="mdl-card mdl-cell mdl-cell--12-col">
-              <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+              <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing mdl-typography--text-left">
                 <h4 class="mdl-cell mdl-cell--12-col">Recruit</h4>
                 <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
                   <div class="section__circle-container__circle mdl-color--primary"></div>
                 </div>
-                <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                <div class="section__text mdl-typography--text-left mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
                   <h5>Recruit</h5>
                   Java programmer, engineer. 3 people.
                 </div>
                 <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
                   <div class="section__circle-container__circle mdl-color--primary"></div>
                 </div>
-                <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                <div class="section__text mdl-typography--text-left mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
                   <h5>Forms of employment</h5>
                   Regular worker. After 3 month later Internships.
                 </div>
                 <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
                   <div class="section__circle-container__circle mdl-color--primary"></div>
                 </div>
-                <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                <div class="section__text mdl-typography--text-left mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
                   <h5>Required condition</h5>
                   Java programmer : JAVA(Spring, JPA, JavaScript), MySql<br>
                   Engineer : Linux, Windows, MySql, MsSql<br>
@@ -87,7 +88,7 @@
           </section>
           <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
             <div class="mdl-card mdl-cell mdl-cell--12-col">
-              <div class="mdl-card__supporting-text">
+              <div class="mdl-card__supporting-text mdl-typography--text-left">
                 <h4>Working Conditions</h4>
                 26 million won per year (80 percent on training).<br>
                 a five-day workweek 09:00 to 18:00. <br>
@@ -103,7 +104,7 @@
           </section>
           <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
             <div class="mdl-card mdl-cell mdl-cell--12-col">
-              <div class="mdl-card__supporting-text">
+              <div class="mdl-card__supporting-text mdl-typography--text-left">
                 <h4>Contact us</h4>
 				<img src="resources/images/google_map.png" width="480px">
 				<p>서울특별시 영등포구 경인로 775 에이스하이테크시티 1-1동 411호 <br>07299</p>
@@ -126,7 +127,7 @@
            </section>
           </div>
       </main>
-    </div>
+    <!-- </div> -->
 </div>
 		<script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 		<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
