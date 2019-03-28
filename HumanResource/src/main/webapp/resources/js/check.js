@@ -143,15 +143,32 @@ function goodbyeCheck(){
 }
 
 function writeCheck(){
-	var txt = document.writeForm.jm_txt;
+	var title = document.bbsWriteForm.b_title;
+	var content = document.bbsWriteForm.b_content;
 	
-	if (isEmpty(txt)) {
-		alert("글");
-		txt.value = "";
-		txt.focus();
+	if (isEmpty(title)) {
+		title.value = "";
+		title.focus();
+		return false;
+	} else if (isEmpty(content)) {
+		content.value = "";
+		content.focus();
 		return false;
 	}
 }
+
+function loadImg(input){
+	if (input.files && input.files[0]) {
+        var reader = new FileReader();
+ 
+        reader.onload = function (e) {
+            $('#mdl-bbs-preview').attr('src', e.target.result);
+        }
+ 
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
 function snsSearchCheck(){
 	var query = document.writeForm.query;
 	

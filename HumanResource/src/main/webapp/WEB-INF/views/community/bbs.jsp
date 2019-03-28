@@ -69,29 +69,13 @@
 						<td>18364</td>
 					</tr>
 				<c:forEach var="b" items="${BBSAl }">
-					<tr onclick="location.href='Content?b_no=${b.b_no }'" style="cursor: pointer;">
+					<tr onclick="location.href='Article?b_no=${b.b_no }'" style="cursor: pointer;">
 						<td class="mdl-data-table__cell--non-numeric">${b.b_title }</td>
 						<td class="mdl-data-table__cell--non-numeric">${b.b_name }</td>
 						<td><fmt:formatDate value="${b.b_date }" pattern="yyyy-MM-dd"/></td>
 						<td>${b.b_hit }</td>
 					</tr>
 				</c:forEach>
-					<tr style="cursor: pointer;">
-						<td class="mdl-data-table__cell--non-numeric">
-							주민번호 수거관련 법규
-						</td>
-						<td class="mdl-data-table__cell--non-numeric">ADMIN</td>
-						<td>2019-01-03</td>
-						<td>2274</td>
-					</tr>
-					<tr style="cursor: pointer;">
-						<td class="mdl-data-table__cell--non-numeric">
-							귀중품 분실 사고
-						</td>
-						<td class="mdl-data-table__cell--non-numeric">ADMIN</td>
-						<td>2019-01-03</td>
-						<td>1106</td>
-					</tr>
 				</tbody>
 			</table>
 			<br> 
@@ -129,8 +113,7 @@
 								id="search-aticle">
 						</div>
 					</div>
-					<a href=""
-						class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Write</a>
+					<a href="Upload" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Write</a>
 				</div>
 			</div>
 		</div>

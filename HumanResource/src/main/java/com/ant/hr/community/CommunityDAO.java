@@ -1,6 +1,7 @@
 package com.ant.hr.community;
 
 import java.math.BigDecimal;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ant.hr.member.Member;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 @Service
 public class CommunityDAO {
@@ -85,15 +88,39 @@ public class CommunityDAO {
 	}
 	
 	public void write(BBS b, HttpServletRequest req, HttpServletResponse res) {
+		String path = null;
+		String b_photo = null;
+		
 		try {
+			path = req.getSession().getServletContext().getRealPath("resources/file");
+			
+			MultipartRequest mr = new MultipartRequest(req, path, 12*1024*1024,"utf-8", new DefaultFileRenamePolicy());
+			
+			b_photo = mr.getFilesystemName("b_photo");
+			if (b_photo != null) {
+				b_photo = URLEncoder.encode(b_photo, "utf-8"); // 새.png => %3A.png
+			}
+			// " " => "+"로 바뀌는데, " "는 " "로 놔둬야함
+			b_photo = b_photo.replace("+", " ");
+			b.setB_photo(b_photo);
+			
 			Member m = (Member) req.getSession().getAttribute("loginMember");
 			b.setB_id(m.getM_id());
 			b.setB_name(m.getM_name());
-			b.setB_content(b.getB_content().replace("\r\n", "<br>"));
+			b.setB_category(mr.getParameter("b_category"));
+			b.setB_title(mr.getParameter("b_title"));
+			b.setB_content(mr.getParameter("b_content").replace("\r\n", "<br>"));
 			
-			if (ss.getMapper(CommunityMapper.class).write(b) == 1) {
-				req.setAttribute("r", "글쓰기 성공");
-				allBBSCount++;
+			if (b_photo != null) {
+				if (ss.getMapper(CommunityMapper.class).writeWithPhoto(b) == 1) {
+					req.setAttribute("r", "글쓰기 성공");
+					allBBSCount++;
+				}
+			} else {
+				if (ss.getMapper(CommunityMapper.class).write(b) == 1) {
+					req.setAttribute("r", "글쓰기 성공");
+					allBBSCount++;
+				}
 			}
 		} catch (Exception e) {
 			req.setAttribute("r", "글쓰기 실패");
@@ -162,4 +189,8 @@ public class CommunityDAO {
 		}
 	}
 	
+	public void getOneBBS(BBS b, HttpServletRequest req, HttpServletResponse res) {
+		BBS dbB = ss.getMapper(CommunityMapper.class).getOneBBS(b);
+		req.setAttribute("b", dbB);
+	}
 }

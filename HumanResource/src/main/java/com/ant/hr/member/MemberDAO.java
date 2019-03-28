@@ -60,7 +60,7 @@ public class MemberDAO implements MemberDaoI {
 			m.setM_addr(mr.getParameter("m_addr"));
 			m.setM_addrdetail(mr.getParameter("m_addrdetail"));
 			m.setM_station(mr.getParameter("m_station"));
-			m.setM_intro(mr.getParameter("m_intro"));
+			m.setM_intro(mr.getParameter("m_intro").replace("\r\n", "<br>"));
 			
 			if (ss.getMapper(MemberMapper.class).join(m) == 1) {
 				if (ss.getMapper(MemberMapper.class).joinBankInfo(m) == 1) {

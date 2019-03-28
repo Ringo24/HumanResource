@@ -5,6 +5,7 @@ import java.util.List;
 public interface CommunityMapper {
 
 	public abstract int write(BBS b);
+	public abstract int writeWithPhoto(BBS b);
 	public abstract int writeReply(Reply r);
 	
 	public abstract int update(BBS b);

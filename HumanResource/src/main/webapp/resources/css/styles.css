@@ -487,6 +487,73 @@ a img{
   color: #fff;
 }
 
+/**** BBS Write Page ****/
+.mdl-card-bbs {
+	padding: 0 20px 0 20px;
+	text-align: center;
+	width: 800px;
+}
+.mdl-chip-bbs {
+  background-color: white;
+  font-weight: 700;
+}
+.mdl-bbs-title {
+	width: 100%;
+}
+.mdl-bbs-title input {
+	border: solid 1px #E0E0E0;
+	height: 34px;
+	border-radius: 4px;
+}
+.mdl-bbs-content {
+	border: solid 1px #E0E0E0;
+	border-radius: 4px;
+	width: 99.4%;
+	margin-bottom: 25px;
+	padding: 3px 0 3px 3px;
+}
+.mdl-bbs-photo {
+	width: 230px;
+	height: 300px;
+	left: 0;
+}
+#mdl-bbs-preview {
+	width: 230px; height: 300px;
+    object-fit: cover;
+    border: none;
+}
+.mdl-bbs-textfield {
+	vertical-align: top;
+	width: 60%;
+}
+.mdl-bbs-textarea {
+	font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+	font-size: 12pt;
+	border: none;
+	vertical-align: top;
+	width: 95%;
+	resize: none;
+}
+.mdl-bbs-textarea:FOCUS {
+	outline: none;
+}
+.mdl-bbs-upload {
+	border: solid 1px #E0E0E0;
+	border-radius: 4px;
+	width: 100%;
+	margin-bottom: 27px;
+}
+.mdl-bbs--file {
+	width: 88%;
+}
+.mdl-bbs-bottom {
+	margin-bottom: 50px;
+}
+.mdl-bbs-selectfield {
+	border: solid 1px #E0E0E0;
+	height: 30px;
+}
+
 /**** Mobile layout ****/
 @media (max-width: 900px) {
   .android-navigation-container {

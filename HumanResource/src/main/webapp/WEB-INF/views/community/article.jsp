@@ -23,35 +23,29 @@
 		<div class="android-screen-section mdl-typography--text-center">
 			<div class="demo-card-wide mdl-card mdl-shadow--2dp">
 			  <div class="mdl-card__title">
-			    <h2 class="mdl-card__title-text">Notice on Payment</h2>
+			    <h2 class="mdl-card__title-text">${b.b_title }</h2>
 			  </div>
 			  <div class="mdl-card__supporting-text mdl-card--border">
 			    <span class="mdl-chip mdl-chip--contact">
-				    <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">A</span>
-				    <span class="mdl-chip__text">Administer</span>
+				    <img class="mdl-chip__contact mdl-color--teal" src="resources/file/${b.m_photo }"></img>
+				    <span class="mdl-chip__text">${b.b_name }</span>
 				</span>
 			    <span class="mdl-chip mdl-chip--contact">
 				    <img class="mdl-chip__contact mdl-color--teal" src="resources/images/baseline_access_time_white_48dp.png"></img>
-				    <span class="mdl-chip__text">2019-01-09 00:02:09</span>
+				    <span class="mdl-chip__text">
+				    	<fmt:formatDate value="${b.b_date }" pattern="yyyy-MM-dd hh:mm:ss"/>  
+				    </span>
 				</span>
 			    <span class="mdl-chip mdl-chip--contact">
 				    <img class="mdl-chip__contact mdl-color--teal" src="resources/images/baseline_remove_red_eye_white_48dp.png"></img>
-				    <span class="mdl-chip__text">20633</span>
+				    <span class="mdl-chip__text">${b.b_hit }</span>
 				</span>
 			  </div>
 			  <div class="mdl-card__supporting-text mdl-typography--text-left">
-			    the social insurance of workers for the safety of employment and the welfare of workers.<Br>
-				Please note that we are giving a refund only to those who receive a refund after deducting the work pay.<Br> 
-				<br>
-				Pension deduction – pay after lump sum deduction for all payers<br>
-				<br>
-				Wage report – Daily worker's comprehensive benefit report progress on the end of the month<br>
-				<br>
-				Confirmation of the Industrial Complex – Receive confirmation notice for pensioners around the end of the next month.<br>
-				<br>
-				Refunds – Select by comparing the pension confirmation with the person on the monthly payout.<br>
-				<br>
-				Refund complete – a period of 12 months.
+			    <c:if test="${b.b_photo != null }">
+			    	<img src="resources/file/${b.b_photo }"><br>
+			    </c:if>
+			    ${b.b_content }
 			  </div>
 			  <div class="mdl-card__actions mdl-card--border">
 			    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">

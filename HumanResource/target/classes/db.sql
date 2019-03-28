@@ -123,7 +123,9 @@ create table HR_BBS(
 	b_id varchar2(16 char) not null,
 	b_name varchar2(6 char) not null,
 	b_date date not null,
-	b_hit number(8) not null
+	b_photo varchar2(100 char),
+	b_hit number(8) not null,
+	b_notice varchar2(1 char) not null
 );
 create sequence HR_BBS_seq;
 
@@ -146,13 +148,19 @@ create sequence HR_REPLY_seq;
 
 select * from HR_REPLY order by rp_date;
 
-insert into HR_BBS values(HR_BBS_seq.nextval, 'notice', 'test', 'test<br>message', 'test', 'test', sysdate, 0);
+insert into HR_BBS values(HR_BBS_seq.nextval, 'notice', 'test', 'test<br>message', 'test', 'test', sysdate, null, 0, '0');
+insert into HR_BBS values(HR_BBS_seq.nextval, 'notice', '공지테스트', 'test<br>message', 'test', 'test', sysdate, 'test.jpg', 0, '1');
 
 select * from HR_BBS;
+
+drop table HR_BBS cascade constraint purge;
+drop table HR_REPLY cascade constraint purge;
 
 select r.*, m.m_name from HR_REPLY r, HR_BBS b, HR_MEMBER m 
 where r.b_no=b.b_no and b_id=m_id 
 order by rp_date;
+
+select b.*, m.m_photo from HR_BBS b, HR_MEMBER m where b.b_no = 24 and b.b_id = m.m_id;
 
 select * from (
 			select rownum r, b_no, b_id, b_name, b_title, b_content, b_date, b_hit, m_photo 
@@ -161,7 +169,7 @@ select * from (
 		order by r desc;
 
 select * from HR_BBS b, HR_REPLY r 
-where b.b_no = 17 and b.b_no = r.b_no; 
+where b.b_no = 23 and b.b_no = r.b_no; 
 
 select count(*) from HR_BBS, HR_MEMBER where b_id = m_id;
 

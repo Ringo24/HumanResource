@@ -12,7 +12,9 @@ public class BBS {
 	private String b_id;
 	private String b_name;
 	private Date b_date;
+	private String b_photo;
 	private BigDecimal b_hit;
+	private String b_notice;
 	private String m_photo;
 	
 	private List<Reply> b_replies;
@@ -20,7 +22,7 @@ public class BBS {
 	public BBS() {super();}
 
 	public BBS(BigDecimal b_no, String b_category, String b_title, String b_content, String b_id, String b_name,
-			Date b_date, BigDecimal b_hit, String m_photo, List<Reply> b_replies) {
+			Date b_date, String b_photo, BigDecimal b_hit, String b_notice, String m_photo, List<Reply> b_replies) {
 		super();
 		this.b_no = b_no;
 		this.b_category = b_category;
@@ -29,7 +31,9 @@ public class BBS {
 		this.b_id = b_id;
 		this.b_name = b_name;
 		this.b_date = b_date;
+		this.b_photo = b_photo;
 		this.b_hit = b_hit;
+		this.b_notice = b_notice;
 		this.m_photo = m_photo;
 		this.b_replies = b_replies;
 	}
@@ -90,12 +94,28 @@ public class BBS {
 		this.b_date = b_date;
 	}
 
+	public String getB_photo() {
+		return b_photo;
+	}
+
+	public void setB_photo(String b_photo) {
+		this.b_photo = b_photo;
+	}
+
 	public BigDecimal getB_hit() {
 		return b_hit;
 	}
 
 	public void setB_hit(BigDecimal b_hit) {
 		this.b_hit = b_hit;
+	}
+
+	public String getB_notice() {
+		return b_notice;
+	}
+
+	public void setB_notice(String b_notice) {
+		this.b_notice = b_notice;
 	}
 
 	public List<Reply> getB_replies() {
