@@ -18,10 +18,10 @@
 	  <!-- 컨텐츠(content) 영역 -->
         <a name="top"></a>
         <div class="android-be-together-section mdl-typography--text-center">
-          <div class="logo-font android-slogan">아웃소싱 전문기업. 피라미드인력</div>
-          <div class="logo-font android-sub-slogan">다양한 채용정보를 통해 구인/구직을 편하게 도와드립니다.</div>
+          <div class="logo-font android-slogan">Welcome, Human Resource.</div>
+          <div class="logo-font android-sub-slogan">We will help you find a job with various recruitment information.</div>
           <div class="logo-font android-create-character">
-            <a href="SignUp"><img src="resources/images/andy.png"> 지금 회원가입 하세요!</a>
+            <a href="SignUp"><img src="resources/images/andy.png"> Sign up now!</a>
           </div>
 
           <a href="#screens">

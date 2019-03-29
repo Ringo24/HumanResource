@@ -119,6 +119,7 @@ public class CommunityController {
 	}
 	@RequestMapping(value = "Article", method = RequestMethod.GET)
 	public String goArticle(BBS b, HttpServletRequest req, HttpServletResponse res) {
+		cDAO.plusOneHit(b);
 		cDAO.getOneBBS(b, req, res);
 		mDAO.loginCheck(req, res);
 		req.setAttribute("contentPage", "community/article.jsp");
@@ -128,6 +129,17 @@ public class CommunityController {
 	public String goWrite(BBS b, HttpServletRequest req, HttpServletResponse res) {
 		if (mDAO.loginCheck(req, res)) {
 			req.setAttribute("contentPage", "community/write.jsp");
+		} else {
+			req.setAttribute("contentPage", "community/bbs.jsp");
+		}
+		cDAO.paging(1, req, res);
+		return "index";
+	}
+	@RequestMapping(value = "Revision", method = RequestMethod.GET)
+	public String goUpdate(BBS b, HttpServletRequest req, HttpServletResponse res) {
+		if (mDAO.loginCheck(req, res)) {
+			cDAO.getOneUpdate(b, req, res);
+			req.setAttribute("contentPage", "community/update.jsp");
 		} else {
 			req.setAttribute("contentPage", "community/bbs.jsp");
 		}

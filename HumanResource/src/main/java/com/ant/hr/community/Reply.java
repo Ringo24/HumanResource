@@ -10,10 +10,11 @@ public class Reply {
 	private String rp_id;
 	private String rp_name;
 	private Date rp_date;
+	private String m_photo;
 	
 	public Reply() {super();}
 
-	public Reply(BigDecimal rp_no, BigDecimal b_no, String rp_content, String rp_id, String rp_name, Date rp_date) {
+	public Reply(BigDecimal rp_no, BigDecimal b_no, String rp_content, String rp_id, String rp_name, Date rp_date, String m_photo) {
 		super();
 		this.rp_no = rp_no;
 		this.b_no = b_no;
@@ -21,6 +22,7 @@ public class Reply {
 		this.rp_id = rp_id;
 		this.rp_name = rp_name;
 		this.rp_date = rp_date;
+		this.m_photo = m_photo;
 	}
 
 	public BigDecimal getRp_no() {
@@ -69,6 +71,14 @@ public class Reply {
 
 	public void setRp_date(Date rp_date) {
 		this.rp_date = rp_date;
+	}
+
+	public String getM_photo() {
+		return m_photo;
+	}
+
+	public void setM_photo(String m_photo) {
+		this.m_photo = m_photo;
 	}
 	
 }

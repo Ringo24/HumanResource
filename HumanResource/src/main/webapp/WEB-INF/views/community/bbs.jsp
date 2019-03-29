@@ -32,45 +32,18 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr onclick="location.href='Article'" style="cursor: pointer;">
-						<td class="mdl-data-table__cell--non-numeric">
-							<i class="material-icons" style="font-size: 11pt;">notification_important</i>
-							<b>급여지급 시 안내사항</b>
-						</td>
-						<td class="mdl-data-table__cell--non-numeric">ADMIN</td>
-						<td>2019-01-09</td>
-						<td>20632</td>
-					</tr>
-					<tr style="cursor: pointer;">
-						<td class="mdl-data-table__cell--non-numeric">
-							<i class="material-icons" style="font-size: 11pt;">notification_important</i>
-							<b>급여지급날짜변경 - 매주 '월,수,금'</b>
-						</td>
-						<td class="mdl-data-table__cell--non-numeric">ADMIN</td>
-						<td>2019-01-09</td>
-						<td>27933</td>
-					</tr>
-					<tr style="cursor: pointer;">
-						<td class="mdl-data-table__cell--non-numeric">
-							<i class="material-icons" style="font-size: 11pt;">notification_important</i>
-							<b>무단결근 안되는 이유</b>
-						</td>
-						<td class="mdl-data-table__cell--non-numeric">ADMIN</td>
-						<td>2019-01-08</td>
-						<td>14889</td>
-					</tr>
-					<tr style="cursor: pointer;">
-						<td class="mdl-data-table__cell--non-numeric">
-							<i class="material-icons" style="font-size: 11pt;">notification_important</i>
-							<b>기본 규정</b>
-						</td>
-						<td class="mdl-data-table__cell--non-numeric">ADMIN</td>
-						<td>2019-01-07</td>
-						<td>18364</td>
-					</tr>
 				<c:forEach var="b" items="${BBSAl }">
-					<tr onclick="location.href='Article?b_no=${b.b_no }'" style="cursor: pointer;">
-						<td class="mdl-data-table__cell--non-numeric">${b.b_title }</td>
+					<tr onclick="location.href='Article?bbs=${param.bbs }&b_no=${b.b_no }'" style="cursor: pointer;">
+						<td class="mdl-data-table__cell--non-numeric">
+							<c:if test="${b.b_notice == 1 }">
+							  <i class="material-icons" style="font-size: 11pt;">notification_important</i>
+							  <b>
+							</c:if>
+							${b.b_title }
+							<c:if test="${b.b_notice == 1 }">
+							  </b>
+							</c:if>
+						</td>
 						<td class="mdl-data-table__cell--non-numeric">${b.b_name }</td>
 						<td><fmt:formatDate value="${b.b_date }" pattern="yyyy-MM-dd"/></td>
 						<td>${b.b_hit }</td>
@@ -113,7 +86,7 @@
 								id="search-aticle">
 						</div>
 					</div>
-					<a href="Upload" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Write</a>
+					<a href="Upload?bbs=${param.bbs }" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Write</a>
 				</div>
 			</div>
 		</div>

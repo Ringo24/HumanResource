@@ -25,14 +25,9 @@
       <div class="mld-loginfield">
 	      <form action="Login" method="post" name="loginForm" name="loginForm" onsubmit="return loginCheck();">
 	 		<div class="mdl-textfield mdl-js-textfield">
-	  		  <input class="mdl-textfield__input" type="text" id="lm_id" name="m_id" maxlength="16">
-	   		  <label class="mdl-textfield__label" for="lm_id">ID...</label>
-	   		  <span class="mdl-textfield__error mdl-id__error"></span>
-	 		</div>
-	 		<div class="mdl-textfield mdl-js-textfield">
-	  		  <input class="mdl-textfield__input" type="password" id="lm_pw" name="m_pw" maxlength="16">
-	   		  <label class="mdl-textfield__label" for="lm_pw">Password...</label>
-	   		  <span class="mdl-textfield__error mdl-pw__error"></span>
+	  		  <input class="mdl-textfield__input" type="text" id="lm_id" name="m_id" maxlength="16" placeholder="ID...">
+	  		  <br>
+	  		  <input class="mdl-textfield__input" type="password" id="lm_pw" name="m_pw" maxlength="16" placeholder="Password...">
 	 		</div><br>
 	   		<button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Sign In</button>
 		  </form>

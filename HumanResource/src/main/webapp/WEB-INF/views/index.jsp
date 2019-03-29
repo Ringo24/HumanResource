@@ -45,9 +45,9 @@
           <div class="android-navigation-container">
             <nav class="android-navigation mdl-navigation">
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="Modify">My Page</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="Notice">Community</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">About</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Service</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="Notice?bbs=notice">Community</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="Intro">About</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="FAQ">Service</a>
             </nav>
           </div>
           <span class="android-mobile-title mdl-layout-title">
@@ -69,30 +69,37 @@
         </span>
         <nav class="mdl-navigation">
           <span class="mdl-navigation__link" href="">My Page</span>
-          <a class="mdl-navigation__link" href="MyRecruit">신청내역 조회</a>
-          <a class="mdl-navigation__link" href="Pay">급여신청</a>
-          <a class="mdl-navigation__link" href="Modify">내 정보 수정</a>
-          <a class="mdl-navigation__link" onclick="goodbyeCheck()">회원 탈퇴</a>
+          <a class="mdl-navigation__link" href="MyRecruit">My Recruit</a>
+          <a class="mdl-navigation__link" href="Pay">Payment</a>
+          <a class="mdl-navigation__link" href="Modify">Modify Info</a>
+          <c:choose>
+            <c:when test="${sessionScope.loginMember != null }">
+	          <a class="mdl-navigation__link" onclick="goodbyeCheck()">Withdrawal</a>
+            </c:when>
+            <c:otherwise>
+	          <a class="mdl-navigation__link">Withdrawal</a>
+            </c:otherwise>
+          </c:choose>
           <div class="android-drawer-separator"></div>
           <span class="mdl-navigation__link" href="">Recruit</span>
-          <a class="mdl-navigation__link" href="Detail">근무 검색</a>
-          <a class="mdl-navigation__link" href="">근무</a>
-          <a class="mdl-navigation__link" href="">자료실</a>
+          <a class="mdl-navigation__link" href="Detail">Search Recruit</a>
+          <a class="mdl-navigation__link" href="">Menu 1</a>
+          <a class="mdl-navigation__link" href="">Menu 2</a>
           <div class="android-drawer-separator"></div>
           <span class="mdl-navigation__link" href="">Community</span>
-          <a class="mdl-navigation__link" href="Notice">공지사항</a>
-          <a class="mdl-navigation__link" href="">파견 후기</a>
-          <a class="mdl-navigation__link" href="">자료실</a>
+          <a class="mdl-navigation__link" href="Notice">Notice</a>
+          <a class="mdl-navigation__link" href="Review">Review</a>
+          <a class="mdl-navigation__link" href="Data">Data Room</a>
           <div class="android-drawer-separator"></div>
           <span class="mdl-navigation__link" href="">About</span>
-          <a class="mdl-navigation__link" href="">인사말</a>
-          <a class="mdl-navigation__link" href="">임원 프로필</a>
-          <a class="mdl-navigation__link" href="">사업 소개</a>
+          <a class="mdl-navigation__link" href="Greeting">Greeting</a>
+          <a class="mdl-navigation__link" href="Profile">Officer Profile</a>
+          <a class="mdl-navigation__link" href="Intro">Introduce</a>
           <div class="android-drawer-separator"></div>
           <span class="mdl-navigation__link" href="">Service</span>
-          <a class="mdl-navigation__link" href="">FAQ</a>
-          <a class="mdl-navigation__link" href="">1:1 문의</a>
-          <a class="mdl-navigation__link" href="">찾아오는 길</a>
+          <a class="mdl-navigation__link" href="FAQ">FAQ</a>
+          <a class="mdl-navigation__link" href="QnA">1:1 QnA</a>
+          <a class="mdl-navigation__link" href="Map">Map</a>
         </nav>
       </div>
 
@@ -120,7 +127,7 @@
           </div>
 
           <div class="mdl-mega-footer--middle-section">
-            <p class="mdl-typography--font-light">Satellite imagery: © 2014 Astrium, DigitalGlobe</p>
+            <p class="mdl-typography--font-light">Human Resource: © 2018 Soldesk, Java Bigdata 11th.</p>
             <p class="mdl-typography--font-light">Some features and devices may not be available in all areas</p>
           </div>
 
@@ -130,23 +137,27 @@
               <i class="material-icons">arrow_drop_up</i>
             </a>
             <ul class="mdl-menu mdl-js-menu mdl-menu--top-left mdl-js-ripple-effect" for="version-dropdown">
-              <li class="mdl-menu__item">신청내역 조회</li>
-              <li class="mdl-menu__item">급여신청</li>
-              <li class="mdl-menu__item">내 정보 수정</li>
+              <li class="mdl-menu__item">My Recruit</li>
+              <li class="mdl-menu__item">Payment</li>
+              <li class="mdl-menu__item">Modify Info</li>
             </ul>
             <a class="android-link android-link-menu mdl-typography--font-light" id="developers-dropdown">
               Community
               <i class="material-icons">arrow_drop_up</i>
             </a>
             <ul class="mdl-menu mdl-js-menu mdl-menu--top-left mdl-js-ripple-effect" for="developers-dropdown">
-              <li class="mdl-menu__item">공지사항</li>
-              <li class="mdl-menu__item">파견후기</li>
-              <li class="mdl-menu__item">자료실</li>
+              <li class="mdl-menu__item">Notice</li>
+              <li class="mdl-menu__item">Review</li>
+              <li class="mdl-menu__item">Dataroom</li>
             </ul>
             <a class="android-link mdl-typography--font-light" href="">Map</a>
             <a class="android-link mdl-typography--font-light" href="">Privacy Policy</a>
           </div>
-
+		<input type="hidden" value="${r }" id="resultMsg">
+		<div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar">
+	      <div class="mdl-snackbar__text"></div>
+  	      <button class="mdl-snackbar__action" type="button"></button>
+	    </div>
         </footer>
       </div>
     </div>
@@ -164,7 +175,19 @@
     <script src="resources/js/execDaumPostcode.js"></script>
     <script type="text/javascript">
     	$(function(){
-    		
+    	    var message = $("#resultMsg").val();
+    	    if (message != "") {
+	    		(function() {
+	      		  'use strict';
+	      		  window['counter'] = 0;
+	      		  var snackbarContainer = document.querySelector('#demo-toast-example');
+	      		  window.addEventListener('load', function() {
+	    		    'use strict';
+	    		    var data = {message: message};
+	    		    snackbarContainer.MaterialSnackbar.showSnackbar(data);
+	      		  });
+	      		}());
+			}
     	});
     </script>
     

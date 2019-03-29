@@ -12,10 +12,16 @@
 	</insert>
 	
 	<update id="update" parameterType="com.ant.hr.community.BBS">
-		update HR_BBS set b_title=#{b_title}, b_content=#{b_content} where b_no = #{b_no}
+		update HR_BBS set b_title=#{b_title}, b_content=#{b_content}, b_notice=#{b_notice} where b_no = #{b_no}
+	</update>
+	<update id="updateWithPhoto" parameterType="com.ant.hr.community.BBS">
+		update HR_BBS set b_title=#{b_title}, b_content=#{b_content}, b_photo=#{b_photo}, b_notice=#{b_notice} where b_no = #{b_no}
 	</update>
 	<update id="updateReply" parameterType="com.ant.hr.community.Reply">
 		update HR_REPLY set rp_content = #{rp_content} where rp_no = #{rp_no}
+	</update>
+	<update id="plusOneHit" parameterType="com.ant.hr.community.BBS">
+		update HR_BBS set b_hit = (b_hit + 1) where b_no = #{b_no}
 	</update>
 	
 	<delete id="delete" parameterType="com.ant.hr.community.BBS">
@@ -33,14 +39,14 @@
 	</select>
 	<select id="getBBS" parameterType="com.ant.hr.community.BBSno" resultType="com.ant.hr.community.BBS">
 		select * from (
-			select rownum r, b_no, b_id, b_name, b_title, b_content, b_date, b_hit, m_photo 
+			select rownum r, b_no, b_category, b_id, b_name, b_title, b_content, b_date, b_hit, b_notice, m_photo 
 			from (select * from HR_BBS, HR_MEMBER where b_id = m_id order by b_no)
 		) where r &lt;= #{start} and r &gt;= #{end} 
-		order by r desc
+		order by b_notice desc, r desc
 	</select>
 	<select id="getReply" parameterType="com.ant.hr.community.BBS" resultType="com.ant.hr.community.Reply">
-		select * from HR_REPLY 
-		where b_no = #{b_no} 
+		select r.*, m.m_photo from HR_REPLY r, HR_MEMBER m 
+		where b_no = #{b_no} and rp_id = m_id 
 		order by rp_date
 	</select>
 	<select id="search" parameterType="com.ant.hr.community.Query" resultType="com.ant.hr.community.BBS">

@@ -138,7 +138,7 @@ function levelCheck(){
 
 function goodbyeCheck(){
 	if (confirm('정말로 탈퇴하시겠습니까?')){
-		location.href="index";
+		location.href="GoodBye";
 	}
 }
 
@@ -157,6 +157,16 @@ function writeCheck(){
 	}
 }
 
+function wRPCheck(){
+	var content = document.replyForm.rp_content;
+	
+	if (isEmpty(content)) {
+		content.value = "";
+		content.focus();
+		return false;
+	}
+}
+
 function loadImg(input){
 	if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -167,6 +177,18 @@ function loadImg(input){
  
         reader.readAsDataURL(input.files[0]);
     }
+}
+
+function deleteCheck(no){
+	if (confirm('정말로 삭제하시겠습니까? (복구 불가능)')){
+		location.href="Delete?b_no="+no;
+	}
+}
+
+function delReply(no){
+	if (confirm('정말로 삭제하시겠습니까? (복구 불가능)')){
+		location.href="DeleteReply?rp_no="+no;
+	}
 }
 
 function snsSearchCheck(){

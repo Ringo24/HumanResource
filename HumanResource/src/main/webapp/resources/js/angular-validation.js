@@ -3,13 +3,17 @@ var validationApp = angular.module('validationApp', ['fieldMatch']);
 //Id Duplicate directive
 function connectIdCheck(){
 	var id = $("#m_id").val();
-	$.getJSON("/hr/member.id.check?m_id="+id, function(data){
-		if (data.member[0] != null) {
-			$("#joinIdCheckMsg").text("중복된 ID").css("color", "red");
-		} else if (data.member[0] == null) {
-			$("#joinIdCheckMsg").text("괜찮은 ID").css("color", "white");
-		}
-	});
+	if (id == "") {
+		$("#joinIdCheckMsg").text("Please Input ID.").css("color", "white").css("background-color", "");
+	} else {
+		$.getJSON("/hr/member.id.check?m_id="+id, function(data){
+			if (data.member[0] != null) {
+				$("#joinIdCheckMsg").text("Duplicated ID.").css("color", "white").css("background-color", "red");
+			} else if (data.member[0] == null) {
+				$("#joinIdCheckMsg").text("Nice ID.").css("color", "white").css("background-color", "");
+			}
+		});
+	}
 }
 //Field Match directive
 angular.module('fieldMatch', [])

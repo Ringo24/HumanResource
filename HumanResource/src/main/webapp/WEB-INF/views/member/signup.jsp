@@ -22,13 +22,17 @@
         <div class="android-screen-section mdl-typography--text-center">
       <div ng-app="validationApp" ng-controller="mainController" class="">
           <form action="Resister" method="post" name="joinForm" enctype="multipart/form-data" onsubmit="return joinCheck();" novalidate>
-			  <span onclick="connectIdCheck()" class="mdl-button mdl-js-button mdl-js-ripple-effect">ID Check</span><br>
+			  <span onclick="connectIdCheck()" class="mdl-button mdl-js-button mdl-js-ripple-effect" id="demo-show-toast">ID Check</span>
+			  <div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar">
+			    <div class="mdl-snackbar__text"></div>
+		  	    <button class="mdl-snackbar__action" type="button"></button>
+			  </div><br>
   			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
    		 	  <input class="mdl-textfield__input" type="text" id="m_id" name="m_id" maxlength="16" ng-model="data.m_id" ng-required="true">
     		  <label class="mdl-textfield__label" for="m_id">ID...</label>
-              <span class="mdl-tooltip mdl-tooltip--validation" for="m_id" id="joinIdCheckMsg">ID.</span>
+              <span class="mdl-tooltip mdl-tooltip--validation" for="m_id" id="joinIdCheckMsg">Please Input ID.</span>
     		  <span class="mdl-tooltip mdl-tooltip--validation" for="m_id" ng-show="joinForm.m_id.$invalid && joinForm.m_id.$touched">
-                <span ng-show="joinForm.m_id.$error.required">Required.</span>
+                <span ng-show="joinForm.m_id.$error.required">Please Input ID.</span>
               </span>
   			</div><br>
   			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -284,6 +288,20 @@
     		execDaumPostcode();
     		uploadFile();
     	});
+    	(function() {
+    		  'use strict';
+    		  window['counter'] = 0;
+    		  var snackbarContainer = document.querySelector('#demo-toast-example');
+    		  var showToastButton = document.querySelector('#demo-show-toast');
+    		  showToastButton.addEventListener('click', function() {
+    		    setTimeout(function(){
+	    		    'use strict';
+	    	        var message = $("#joinIdCheckMsg").text();
+	    		    var data = {message: message};
+	    		    snackbarContainer.MaterialSnackbar.showSnackbar(data);
+    		    }, 1000);
+    		  });
+    		}());
     </script>
     
 </body>

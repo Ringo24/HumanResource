@@ -27,8 +27,9 @@
       <!-- 컨텐츠(content) 영역 -->
       <div class="mld-logonfield">
         <img src="resources/file/${sessionScope.loginMember.m_photo }" style="width: 36px;border-radius: 28px;">
-        <i class="material-icons mdl-icons-level">filter_1</i> 
-        ${sessionScope.loginMember.m_name }<p>
+        &nbsp;
+        <i class="material-icons mdl-icons-level" style="font-size: 10pt;">filter_1</i> 
+        ${sessionScope.loginMember.m_name }<p><p>
     	<a href="Logout" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Sign Out</a>
 	  </div>
   

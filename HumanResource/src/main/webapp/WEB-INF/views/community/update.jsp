@@ -22,7 +22,7 @@
 	<!-- 컨텐츠(content) 영역 -->
 		<a name="top"></a>
 		<div class="android-screen-section mdl-typography--text-center">
-		<form action="Write" method="post" name="bbsWriteForm" enctype="multipart/form-data" onsubmit="return writeCheck();">
+		<form action="Update" method="post" name="bbsWriteForm" enctype="multipart/form-data" onsubmit="return writeCheck();">
 			<div class="demo-card-wide mdl-card mdl-shadow--2dp mdl-card-bbs">
 				<div class="mdl-card__supporting-text mdl-typography--text-left">
 					<span class="mdl-chip mdl-chip--contact mdl-chip-bbs">
@@ -31,16 +31,16 @@
 					</span>
 				</div>
 				<div class="mdl-textfield mdl-js-textfield mdl-bbs-title 제목">
-					<input class="mdl-textfield__input" type="text" name="b_title" placeholder="  Add Article Title">
+					<input class="mdl-textfield__input" type="text" name="b_title" value="${b.b_title }">
 				</div>
 				<div class="mdl-bbs-content 글쓰기부분">
 					<table>
 						<tr>
 							<td class="mdl-bbs-photo 사진">
-								<img id="mdl-bbs-preview" src="resources/images/nophoto.png">
+								<img id="mdl-bbs-preview" src="resources/file/${b.b_photo }">
 							</td>
 							<td class="mdl-bbs-textfield 글내용">
-								<textarea class="mdl-bbs-textarea" name="b_content" rows="15" cols=""></textarea>
+								<textarea class="mdl-bbs-textarea" name="b_content" rows="15" cols="">${b.b_content }</textarea>
 							</td>
 						</tr>
 					</table>
@@ -59,7 +59,8 @@
 							<option value="0">Public</option>
 							<option value="1">Notification</option>
 						</select>
-						<input type="hidden" name="b_category" value="${param.bbs }">
+						<input type="hidden" name="b_no" value="${b.b_no }">
+						<input type="hidden" name="b_category" value="${b.b_category }">
 					</div>&nbsp;&nbsp;&nbsp;
 					<button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Save</button>
 				</div>

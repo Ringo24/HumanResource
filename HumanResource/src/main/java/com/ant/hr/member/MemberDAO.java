@@ -94,7 +94,7 @@ public class MemberDAO implements MemberDaoI {
 					// 브라우저 닫으면 세션 종료
 					req.getSession().setAttribute("loginMember", dbm);
 					req.getSession().setMaxInactiveInterval(1 * 60 * 60);
-					req.setAttribute("r", "로그인 성공");
+					req.setAttribute("r", "Sign in success.");
 				} else {
 					req.setAttribute("r", "비밀번호를 확인하세요");
 				}
@@ -110,6 +110,7 @@ public class MemberDAO implements MemberDaoI {
 	public void logout(HttpServletRequest req, HttpServletResponse res) {
 		req.getSession().setAttribute("loginMember", null);
 		req.getSession().setAttribute("searchSnsAl", null);
+		req.setAttribute("r", "Sign Out.");
 	}
 
 	@Override

@@ -554,6 +554,19 @@ a img{
 	height: 30px;
 }
 
+/**** Reply layout ****/
+.mdl-reply--input {
+	border: none;
+	background-color: #dedede;
+	height: 17pt;
+	font-size: 13pt;
+	width: 450px;
+}
+.mdl-reply--input:FOCUS {
+	outline: none;
+}
+
+
 /**** Mobile layout ****/
 @media (max-width: 900px) {
   .android-navigation-container {

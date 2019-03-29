@@ -9,7 +9,9 @@ public interface CommunityMapper {
 	public abstract int writeReply(Reply r);
 	
 	public abstract int update(BBS b);
+	public abstract int updateWithPhoto(BBS b);
 	public abstract int updateReply(Reply r);
+	public abstract int plusOneHit(BBS b);
 	
 	public abstract int delete(BBS b);
 	public abstract int deleteReplybyRpno(Reply r);
