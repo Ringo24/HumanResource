@@ -25,7 +25,7 @@
 <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
       <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
         <div class="mdl-layout__header-row">
-          <span class="mdl-layout-title">Home</span>
+          <span class="mdl-layout-title">Adiminister</span>
           <div class="mdl-layout-spacer"></div>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
             <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
@@ -48,9 +48,9 @@
       </header>
       <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
         <header class="demo-drawer-header">
-          <img src="resources/images/user.jpg" class="demo-avatar">
+          <img src="resources/file/${sessionScope.loginMember.m_photo }" class="demo-avatar">
           <div class="demo-avatar-dropdown">
-            <span>hello@example.com</span>
+            <span>${sessionScope.loginMember.m_email }</span>
             <div class="mdl-layout-spacer"></div>
             <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
               <i class="material-icons" role="presentation">arrow_drop_down</i>
@@ -64,15 +64,15 @@
           </div>
         </header>
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Inbox</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Trash</a>
+          <a class="mdl-navigation__link" href="Admin"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
+          <a class="mdl-navigation__link" href="Admin.Company"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">business</i>Company</a>
+          <a class="mdl-navigation__link" href="Admin.Work"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">work</i>Work</a>
+          <a class="mdl-navigation__link" href="Admin.QnA"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>QnA</a>
+          <a class="mdl-navigation__link" href="Admin.Members"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Members</a>
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Spam</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Forums</a>
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Promos</a>
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Purchases</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Social</a>
           <div class="mdl-layout-spacer"></div>
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
         </nav>
@@ -81,6 +81,11 @@
       <main class="mdl-layout__content mdl-color--grey-100">
       	<jsp:include page="${contentPage }"></jsp:include>
       </main>
+      <input type="hidden" value="${r }" id="resultMsg">
+	  <div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar">
+      <div class="mdl-snackbar__text"></div>
+ 	    <button class="mdl-snackbar__action" type="button"></button>
+      </div>
 </div>
       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" style="position: fixed; left: -1000px; height: -1000px;">
         <defs>
@@ -131,6 +136,23 @@
       </svg>
       
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    
+    <script type="text/javascript">
+    	$(function(){
+    	    var message = $("#resultMsg").val();
+    	    if (message != "") {
+	    		(function() {
+	      		  'use strict';
+	      		  window['counter'] = 0;
+	      		  var snackbarContainer = document.querySelector('#demo-toast-example');
+	      		  window.addEventListener('load', function() {
+	    		    'use strict';
+	    		    var data = {message: message};
+	    		    snackbarContainer.MaterialSnackbar.showSnackbar(data);
+	      		  });
+	      		}());
+			}
+    	});
+    </script>
+        
 </body>
 </html>

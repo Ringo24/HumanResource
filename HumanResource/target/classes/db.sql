@@ -99,6 +99,7 @@ order by js_date;
 create table HR_GENBA(
 	g_no number(6) primary key,
 	g_name varchar2(25 char) not null,
+	g_intro varchar2(100 char) not null,
 	g_category varchar2(50 char) not null,
 	g_pay number(10) not null,
 	g_time number(2) not null,
@@ -130,6 +131,30 @@ create table HR_RECRUIT(
 	r_state number(1) not null
 );
 create sequence HR_RECRUIT_seq;
+
+create table HR_GENBA(
+	g_no number(6) primary key,
+	g_name varchar2(50 char) not null,
+	g_inst varchar2(200 char) not null,
+	g_logo varchar2(200 char) not null,
+	g_hp varchar2(100 char) not null,
+	g_recruit varchar2(300 char) not null,
+	g_employment varchar2(300 char) not null,
+	g_required varchar2(300 char) not null,
+	g_infoPage varchar2(100 char) not null,
+	g_condition varchar2(300 char) not null,
+	g_post varchar2(6 char) not null,
+	g_addr varchar2(100 char) not null,
+	g_addrdetail varchar2(100 char) not null,
+	g_tel varchar2(12 char) not null,
+	g_email varchar2(50 char) not null
+);
+
+select * from (
+			select rownum r, g_no, g_name, g_inst,g_logo,g_hp,g_recruit,g_employment,g_required,g_infoPage,g_condition,g_post,g_addr,g_addrdetail,g_tel,g_email 
+			from (select * from HR_GENBA order by g_no)
+		) where r <= 9 and r >= 1 
+		order by r desc;
 
 ----------------------------------------
 -- 게시판 DB

@@ -233,3 +233,15 @@ html, body {
 .mdl-demo .mdl-menu__container {
   /* z-index: 99; */
 }
+
+/**** custom ****/
+.mdl-work-title__input {
+	font-size: 13pt;
+}
+.mdl-work-content__input {
+	font-size: 10pt;
+	height: 10pt;
+}
+#company-logo {
+	max-width: 190px;
+}

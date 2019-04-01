@@ -23,3 +23,50 @@ function execDaumPostcode() {
 	    }).open();
 	});
 }
+
+function exeDaumMap() {
+	var map;				// 지도 객체
+	var mMarker = null;		// 마커 객체
+
+	function go(lat, lng){
+		var position = new daum.maps.LatLng(lat, lng);
+		map.panTo(position);
+		
+		if (mMarker == null) {
+			mMarker = new daum.maps.Marker({
+			    map: map,
+			    position: position			// 지도에 마커를 생성합니다 
+			});
+		} else {
+			mMarker.setPosition(position);		// 마커 위치를 옮깁니다
+		}
+	}
+
+	$(function() {
+		var container = document.getElementById('map');		//지도를 담을 영역의 DOM 레퍼런스
+		var mapCenter = new daum.maps.LatLng(37.569357, 126.986047);
+		var options = { 	//지도를 생성할 때 필요한 기본 옵션
+			center: mapCenter,	//지도의 중심좌표.
+			level: 3		//지도의 레벨(확대, 축소 정도)
+		};
+		map = new daum.maps.Map(container, options);		 //지도 생성 및 객체 리턴
+		
+		$("#m_addr").change(function(e){
+			var what = $(this).val();
+			//if(e.keyCode == 13){
+				$.ajax({
+					url : "https://dapi.kakao.com/v2/local/search/address.json",
+					data : {query : what},
+					beforeSend : function(req){
+						req.setRequestHeader("Authorization", "KakaoAK adbfc124b4b8faba06f34df8ae1a2187");
+					},
+					jsonpCallback : "?",
+					success : function(data){
+						var position = new daum.maps.LatLng(data.documents[0].y, data.documents[0].x);
+					    map.panTo(position);
+					}
+				});
+			//}
+		});
+	});
+}

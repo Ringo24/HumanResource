@@ -179,6 +179,12 @@ function loadImg(input){
     }
 }
 
+function loadLogo(){
+	var logoAddr = prompt('Input Company Logo Address');
+	$("#company-logo").attr("src", logoAddr);
+	$("#g_logo").val(logoAddr);
+}
+
 function deleteCheck(no){
 	if (confirm('정말로 삭제하시겠습니까? (복구 불가능)')){
 		location.href="Delete?b_no="+no;
@@ -191,6 +197,81 @@ function delReply(no){
 	}
 }
 
+function regCompanyCheck(){
+	var name = document.regcomForm.g_name;
+	var inst = document.regcomForm.g_inst;
+	var logo = document.regcomForm.g_logo;
+	var hp = document.regcomForm.g_hp;
+	var recruit = document.regcomForm.g_recruit;
+	var employment = document.regcomForm.g_employment;
+	var required = document.regcomForm.g_required;
+	var infoPage = document.regcomForm.g_infoPage;
+	var condition = document.regcomForm.g_condition;
+	var post = document.regcomForm.g_post;
+	var addr = document.regcomForm.g_addr;
+	var addrdetail = document.regcomForm.g_addrdetail;
+	var tel = document.regcomForm.g_tel;
+	var email = document.regcomForm.g_email;
+	
+	if (isEmpty(name)) {
+		name.value = "";
+		name.focus();
+		return false;
+	} else if (isEmpty(inst)) {
+		inst.value = "";
+		inst.focus();
+		return false;
+	} else if (isEmpty(logo)) {
+		logo.value = "";
+		logo.focus();
+		return false;
+	} else if (isEmpty(hp)) {
+		hp.value = "";
+		hp.focus();
+		return false;
+	} else if (isEmpty(recruit)) {
+		recruit.value = "";
+		recruit.focus();
+		return false;
+	} else if (isEmpty(employment)) {
+		employment.value = "";
+		employment.focus();
+		return false;
+	} else if (isEmpty(required)) {
+		required.value = "";
+		required.focus();
+		return false;
+	} else if (isEmpty(condition)) {
+		condition.value = "";
+		condition.focus();
+		return false;
+	} else if (isEmpty(infoPage)) {
+		infoPage.value = "";
+		infoPage.focus();
+		return false;
+	} else if (isEmpty(post)) {
+		post.value = "";
+		post.focus();
+		return false;
+	} else if (isEmpty(addr)) {
+		addr.value = "";
+		addr.focus();
+		return false;
+	} else if (isEmpty(addrdetail)) {
+		addrdetail.value = "";
+		addrdetail.focus();
+		return false;
+	} else if (isEmpty(tel)) {
+		tel.value = "";
+		tel.focus();
+		return false;
+	} else if (isEmpty(email)) {
+		email.value = "";
+		email.focus();
+		return false;
+	}
+}
+
 function snsSearchCheck(){
 	var query = document.writeForm.query;
 	
@@ -198,54 +279,6 @@ function snsSearchCheck(){
 		alert("검색어");
 		query.value = "";
 		query.focus();
-		return false;
-	}
-}
-function updateCheck(){
-	var txt = document.updateForm.jm_txt;
-	
-	if (isEmpty(txt)) {
-		alert("글");
-		txt.value = "";
-		txt.focus();
-		return false;
-	}
-}
-
-function replWriteCheck(replyForm){
-	var txt = replyForm.jr_txt;
-	
-	if (isEmpty(txt)) {
-		alert("내용");
-		txt.value = "";
-		txt.focus();
-		return false;
-	}
-}
-
-function dataWriteCheck(){
-	var title = document.dataWriteForm.jd_title;
-	var file = document.dataWriteForm.jd_file;
-	
-	if (isEmpty(title)) {
-		alert("제목");
-		title.value = "";
-		title.focus();
-		return false;
-	} else if (isEmpty(file)) {
-		alert("파일");
-		file.value = "";
-		file.focus();
-		return false;
-	}
-}
-function dataUpdateCheck(){
-	var title = document.dataWriteForm.jd_title;
-	
-	if (isEmpty(title)) {
-		alert("제목");
-		title.value = "";
-		title.focus();
 		return false;
 	}
 }

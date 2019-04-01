@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="description" content="Introducing Lollipop, a sweet new take on Android.">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-	<title>Work Detail</title>
+	<title>Resister Work</title>
 
 	<!-- Page styles -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
@@ -21,19 +20,27 @@
 <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
 <a name="top"></a>
 <div class="android-screen-section mdl-typography--text-center">
-    <!-- <div class="mdl-layout mdl-js-layout"> -->
+    <form action="Admin.RegCom" method="post" name="regcomForm">
       <main class="mdl-layout__content">
           <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-            <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
-              <img src="http://www.solupia.co.kr/wp/wp-content/uploads/2016/06/logo_b2.png">
+            <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--white mdl-color-text--white">
+              <img src="resources/images/android-logo.png" id="company-logo">
             </header>
             <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
               <div class="mdl-card__supporting-text mdl-typography--text-left">
-                <h4>SOLUPIA Co.</h4>
-                Implementing, maintaining, and developing PC security solutions for 52 hours a week
+                <div class="mdl-textfield mdl-js-textfield">
+					<input class="mdl-textfield__input mdl-work-title__input" type="text" name="g_name" placeholder="Company Name..">
+				</div>
+				<div class="mdl-textfield mdl-js-textfield">
+					<input class="mdl-textfield__input mdl-work-content__input" type="text" name="g_inst" placeholder="Company Instruction.." maxlength="100">
+				</div><br>
+	              <a onclick="loadLogo();" class="mdl-button mdl-js-button mdl-js-ripple-effect">Logo</a>
+	              <input type="hidden" id="g_logo" name="g_logo">
               </div>
               <div class="mdl-card__actions mdl-typography--text-left">
-                <a href="http://www.solupia.co.kr" target="_blank" class="mdl-button">Our homepage</a>
+				<div class="mdl-textfield mdl-js-textfield">
+					<input class="mdl-textfield__input mdl-work-content__input" type="text" name="g_hp" placeholder="Homepage.." maxlength="100">
+				</div>
               </div>
             </div>
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn1">
@@ -54,27 +61,34 @@
                 </div>
                 <div class="section__text mdl-typography--text-left mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
                   <h5>Recruit</h5>
-                  Java programmer, engineer. 3 people.
+                  <div class="mdl-textfield mdl-js-textfield">
+	    		    <textarea class="mdl-textfield__input" type="text" rows="2" id="g_recruit" name="g_recruit" maxlength="300"></textarea>
+	  			  </div>
                 </div>
                 <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
                   <div class="section__circle-container__circle mdl-color--primary"></div>
                 </div>
                 <div class="section__text mdl-typography--text-left mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
                   <h5>Forms of employment</h5>
-                  Regular worker. After 3 month later Internships.
+                  <div class="mdl-textfield mdl-js-textfield">
+	    		    <textarea class="mdl-textfield__input" type="text" rows="2" id="g_employment" name="g_employment" maxlength="300"></textarea>
+	  			  </div>
                 </div>
                 <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
                   <div class="section__circle-container__circle mdl-color--primary"></div>
                 </div>
                 <div class="section__text mdl-typography--text-left mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
                   <h5>Required condition</h5>
-                  Java programmer : JAVA(Spring, JPA, JavaScript), MySql<br>
-                  Engineer : Linux, Windows, MySql, MsSql<br>
-                  Positive Mind, Passion for new Technology.
+                  <div class="mdl-textfield mdl-js-textfield">
+	    		    <textarea class="mdl-textfield__input" type="text" rows="3" id="g_required" name="g_required" maxlength="300">
+	    		    </textarea>
+	  			  </div>
                 </div>
               </div>
               <div class="mdl-card__actions">
-                <a href="http://www.solupia.co.kr/wp/06-2/%EC%B1%84%EC%9A%A9%EC%95%88%EB%82%B4/" target="_blank" class="mdl-button">Recruit Infomation</a>
+                <div class="mdl-textfield mdl-js-textfield">
+					<input class="mdl-textfield__input mdl-work-content__input" type="text" name="g_infoPage" placeholder="Recruit Infomation Homepage.." maxlength="100">
+				</div>
               </div>
             </div>
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn2">
@@ -90,12 +104,9 @@
             <div class="mdl-card mdl-cell mdl-cell--12-col">
               <div class="mdl-card__supporting-text mdl-typography--text-left">
                 <h4>Working Conditions</h4>
-                26 million won per year (80 percent on training).<br>
-                a five-day workweek 09:00 to 18:00. <br>
-                Sign up for four major insurance.<br><br>
-				Mobile phone deposit support. <br>
-				Four other non-insurance policies. <br>
-				Support for IT qualifications and training costs.
+                <div class="mdl-textfield mdl-js-textfield">
+                  <textarea class="mdl-textfield__input" type="text" rows="5" id="g_condition" name="g_condition" maxlength="300"></textarea>
+                </div>
               </div>
               <div class="mdl-card__actions">
                 <a href="#" class="mdl-button"></a>
@@ -106,17 +117,32 @@
             <div class="mdl-card mdl-cell mdl-cell--12-col">
               <div class="mdl-card__supporting-text mdl-typography--text-left">
                 <h4>Contact us</h4>
-				<img src="resources/images/google_map.png" width="480px">
-				<p>서울특별시 영등포구 경인로 775 에이스하이테크시티 1-1동 411호 <br>07299</p>
-				<p>Tel<br>
-				+82 70 4610 7000</p>
-				<p>E-Mail<br>
-				사업부 : chang@solupia.co.kr<br>
-				Security : chang@solupia.co.kr, djkim@solupia.co.kr<br>
-				SW품질 : silver@solupia.co.kr</p>
+                <div id="map"></div>
+				<br>
+				<a id="addrSearch" class="android-more-button mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">Find Address</a><br>
+	    		<div class="mdl-textfield mdl-js-textfield">
+	    		  <input class="mdl-textfield__input mdl-work-content__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="m_post" name="g_post" maxlength="6" readonly="readonly" placeholder="Post Code..">
+	  			</div>
+	    		<div class="mdl-textfield mdl-js-textfield">
+	   		 	  <input class="mdl-textfield__input mdl-work-content__input" type="text" id="m_addr" name="g_addr" readonly="readonly" placeholder="Road Address..">
+	    		</div><br>
+	    		<div class="mdl-textfield mdl-js-textfield">
+	   		 	  <input class="mdl-textfield__input mdl-work-content__input" type="text" id="m_addrdetail" name="g_addrdetail" placeholder="Detail Address..">
+	    		</div><br>
+	    		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+	   		 	  <input class="mdl-textfield__input mdl-work-content__input" type="text" id="m_station" name="g_station" pattern="[가-힣]*" placeholder="Subway Station..">
+	    		</div><br>
+				<div class="mdl-textfield mdl-js-textfield">
+					<input class="mdl-textfield__input mdl-work-content__input" type="text" name="g_tel" placeholder="Telephone..">
+				</div><br>
+				<div class="mdl-textfield mdl-js-textfield">
+					<input class="mdl-textfield__input mdl-work-content__input" type="text" name="g_email" placeholder="E-mail..">
+				</div>
               </div>
               <div class="mdl-card__actions">
-                <a href="#" class="mdl-button"></a>
+                <c:if test="${sessionScope.loginMember.m_id == 'test' }">
+	                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Resister</button>
+                </c:if>
               </div>
             </div>
           </section>
@@ -127,9 +153,21 @@
            </section>
           </div>
       </main>
-    <!-- </div> -->
+    </form>
 </div>
 		<script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 		<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="resources/js/check.js"></script>
+  		<script src="resources/js/validCheck.js"></script>
+  		<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+    	<script src="resources/js/execDaumPostcode.js"></script>
+    	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7d59a19ccee2485f7bedede2b51ec6f9"></script>
+    	<script type="text/javascript">
+	    	$(function(){
+	    		exeDaumMap();
+	    		execDaumPostcode();
+	    		uploadFile();
+	    	});
+    	</script>
 </body>
 </html>

@@ -486,6 +486,13 @@ a img{
 .demo-card-wide > .mdl-card__menu {
   color: #fff;
 }
+.demo-card-square.mdl-card {
+  width: 320px;
+  height: 320px;
+}
+.demo-card-square > .mdl-card__title {
+  color: #fff;
+}
 
 /**** BBS Write Page ****/
 .mdl-card-bbs {
