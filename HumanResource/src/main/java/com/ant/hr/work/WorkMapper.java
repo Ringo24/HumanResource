@@ -10,6 +10,8 @@ public interface WorkMapper {
 	
 	public abstract List<Company> getCompany(BBSno bn);
 	
+	public abstract Company getOneCompany(Company c);
+	
 	public abstract int getAllCompanyCount();
 	public abstract int getAllWorkCount();
 }

@@ -18,12 +18,13 @@ public class Company {
 	private String g_addrdetail;
 	private String g_tel;
 	private String g_email;
+	private String g_station;
 	
 	public Company() {super();}
 
 	public Company(BigDecimal g_no, String g_name, String g_inst, String g_logo, String g_hp, String g_recruit,
 			String g_employment, String g_required, String g_infoPage, String g_condition, String g_post, String g_addr,
-			String g_addrdetail, String g_tel, String g_email) {
+			String g_addrdetail, String g_tel, String g_email, String g_station) {
 		super();
 		this.g_no = g_no;
 		this.g_name = g_name;
@@ -40,6 +41,7 @@ public class Company {
 		this.g_addrdetail = g_addrdetail;
 		this.g_tel = g_tel;
 		this.g_email = g_email;
+		this.g_station = g_station;
 	}
 
 	public BigDecimal getG_no() {
@@ -160,6 +162,14 @@ public class Company {
 
 	public void setG_email(String g_email) {
 		this.g_email = g_email;
+	}
+
+	public String getG_station() {
+		return g_station;
+	}
+
+	public void setG_station(String g_station) {
+		this.g_station = g_station;
 	}
 	
 }

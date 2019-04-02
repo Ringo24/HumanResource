@@ -147,14 +147,21 @@ create table HR_GENBA(
 	g_addr varchar2(100 char) not null,
 	g_addrdetail varchar2(100 char) not null,
 	g_tel varchar2(12 char) not null,
-	g_email varchar2(50 char) not null
+	g_email varchar2(50 char) not null,
+	g_station varchar2(15 char) not null
 );
+
+alter table HR_GENBA add(g_station varchar2(15 char));
 
 select * from (
 			select rownum r, g_no, g_name, g_inst,g_logo,g_hp,g_recruit,g_employment,g_required,g_infoPage,g_condition,g_post,g_addr,g_addrdetail,g_tel,g_email 
 			from (select * from HR_GENBA order by g_no)
 		) where r <= 9 and r >= 1 
 		order by r desc;
+
+select * from HR_GENBA;
+
+update HR_GENBA set g_station='광명' where g_no=22;
 
 ----------------------------------------
 -- 게시판 DB

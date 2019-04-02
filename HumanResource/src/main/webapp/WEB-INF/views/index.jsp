@@ -100,6 +100,11 @@
           <a class="mdl-navigation__link" href="FAQ">FAQ</a>
           <a class="mdl-navigation__link" href="QnA">1:1 QnA</a>
           <a class="mdl-navigation__link" href="Map">Map</a>
+          <c:if test="${sessionScope.loginMember.m_id == 'test' }">
+          <div class="android-drawer-separator"></div>
+          <span class="mdl-navigation__link" href="">Administer</span>
+          <a class="mdl-navigation__link" href="Admin">Admin Page</a>
+          </c:if>
         </nav>
       </div>
 

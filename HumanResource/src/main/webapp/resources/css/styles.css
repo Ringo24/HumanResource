@@ -486,12 +486,17 @@ a img{
 .demo-card-wide > .mdl-card__menu {
   color: #fff;
 }
+
 .demo-card-square.mdl-card {
   width: 320px;
   height: 320px;
+  margin: 0 0 36px 36px;
 }
-.demo-card-square > .mdl-card__title {
-  color: #fff;
+.mdl-company__button {
+	position: fixed;
+	bottom: 13%;
+	left: 80%;
+	z-index: 99;
 }
 
 /**** BBS Write Page ****/
@@ -571,6 +576,51 @@ a img{
 }
 .mdl-reply--input:FOCUS {
 	outline: none;
+}
+
+/**** Pagination ****/
+.pagination li.active a {
+    color: #fff;
+}
+.pagination li.active {
+    background-color: #3f51b5;
+}
+.pagination li a {
+    color: #444;
+    display: inline-block;
+    font-size: 1.2rem;
+    padding: 0 10px;
+    line-height: 30px;
+    text-decoration: none;
+}
+.pagination li {
+    display: inline-block;
+    border-radius: 2px;
+    text-align: center;
+    vertical-align: top;
+    height: 30px;
+}
+.pagination li i {
+    font-size: 2rem;
+}
+.waves-effect {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    vertical-align: middle;
+    z-index: 1;
+    -webkit-transition: .3s ease-out;
+    transition: .3s ease-out;
+}
+.pagination li.disabled a {
+    cursor: default;
+    color: #999;
 }
 
 

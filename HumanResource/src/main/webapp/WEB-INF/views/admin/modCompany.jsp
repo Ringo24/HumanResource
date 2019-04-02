@@ -24,22 +24,22 @@
       <main class="mdl-layout__content">
           <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
             <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--white mdl-color-text--white">
-              <img src="resources/images/android-logo.png" id="company-logo">
+              <img src="${g.g_logo }" id="company-logo">
             </header>
             <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
               <div class="mdl-card__supporting-text mdl-typography--text-left">
                 <div class="mdl-textfield mdl-js-textfield">
-					<input class="mdl-textfield__input mdl-work-title__input" type="text" name="g_name" placeholder="Company Name..">
+					<input class="mdl-textfield__input mdl-work-title__input" type="text" name="g_name" placeholder="Company Name.." value="${g.g_name }">
 				</div>
 				<div class="mdl-textfield mdl-js-textfield">
-					<input class="mdl-textfield__input mdl-work-content__input" type="text" name="g_inst" placeholder="Company Instruction.." maxlength="100">
+					<input class="mdl-textfield__input mdl-work-content__input" type="text" name="g_inst" placeholder="Company Instruction.." maxlength="100" value="${g.g_inst }">
 				</div><br>
 	              <a onclick="loadLogo();" class="mdl-button mdl-js-button mdl-js-ripple-effect">Logo</a>
-	              <input type="hidden" id="g_logo" name="g_logo">
+	              <input type="hidden" id="g_logo" name="g_logo" value="${g.g_logo }">
               </div>
               <div class="mdl-card__actions mdl-typography--text-left">
 				<div class="mdl-textfield mdl-js-textfield">
-					<input class="mdl-textfield__input mdl-work-content__input" type="text" name="g_hp" placeholder="Homepage.." maxlength="100">
+					<input class="mdl-textfield__input mdl-work-content__input" type="text" name="g_hp" placeholder="Homepage.." maxlength="100" value="${g.g_hp }">
 				</div>
               </div>
             </div>
@@ -62,7 +62,7 @@
                 <div class="section__text mdl-typography--text-left mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
                   <h5>Recruit</h5>
                   <div class="mdl-textfield mdl-js-textfield">
-	    		    <textarea class="mdl-textfield__input" type="text" rows="2" id="g_recruit" name="g_recruit" maxlength="300"></textarea>
+	    		    <textarea class="mdl-textfield__input" type="text" rows="2" id="g_recruit" name="g_recruit" maxlength="300">${g.g_recruit }</textarea>
 	  			  </div>
                 </div>
                 <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
@@ -71,7 +71,7 @@
                 <div class="section__text mdl-typography--text-left mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
                   <h5>Forms of employment</h5>
                   <div class="mdl-textfield mdl-js-textfield">
-	    		    <textarea class="mdl-textfield__input" type="text" rows="2" id="g_employment" name="g_employment" maxlength="300"></textarea>
+	    		    <textarea class="mdl-textfield__input" type="text" rows="2" id="g_employment" name="g_employment" maxlength="300">${g.g_employment }</textarea>
 	  			  </div>
                 </div>
                 <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
@@ -80,13 +80,13 @@
                 <div class="section__text mdl-typography--text-left mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
                   <h5>Required condition</h5>
                   <div class="mdl-textfield mdl-js-textfield">
-	    		    <textarea class="mdl-textfield__input" type="text" rows="3" id="g_required" name="g_required" maxlength="300"></textarea>
+	    		    <textarea class="mdl-textfield__input" type="text" rows="3" id="g_required" name="g_required" maxlength="300">${g.g_required }</textarea>
 	  			  </div>
                 </div>
               </div>
               <div class="mdl-card__actions">
                 <div class="mdl-textfield mdl-js-textfield">
-					<input class="mdl-textfield__input mdl-work-content__input" type="text" name="g_infoPage" placeholder="Recruit Infomation Homepage.." maxlength="100">
+					<input class="mdl-textfield__input mdl-work-content__input" type="text" name="g_infoPage" placeholder="Recruit Infomation Homepage.." maxlength="100" ${g.g_infoPage }>
 				</div>
               </div>
             </div>
@@ -104,7 +104,7 @@
               <div class="mdl-card__supporting-text mdl-typography--text-left">
                 <h4>Working Conditions</h4>
                 <div class="mdl-textfield mdl-js-textfield">
-                  <textarea class="mdl-textfield__input" type="text" rows="5" id="g_condition" name="g_condition" maxlength="300"></textarea>
+                  <textarea class="mdl-textfield__input" type="text" rows="5" id="g_condition" name="g_condition" maxlength="300">${g.g_condition }</textarea>
                 </div>
               </div>
               <div class="mdl-card__actions">
@@ -120,27 +120,27 @@
 				<br>
 				<a id="addrSearch" class="android-more-button mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">Find Address</a><br>
 	    		<div class="mdl-textfield mdl-js-textfield">
-	    		  <input class="mdl-textfield__input mdl-work-content__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="m_post" name="g_post" maxlength="6" readonly="readonly" placeholder="Post Code..">
+	    		  <input class="mdl-textfield__input mdl-work-content__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="m_post" name="g_post" maxlength="6" readonly="readonly" placeholder="Post Code.." value="${g.g_post }">
 	  			</div>
 	    		<div class="mdl-textfield mdl-js-textfield">
-	   		 	  <input class="mdl-textfield__input mdl-work-content__input" type="text" id="m_addr" name="g_addr" readonly="readonly" placeholder="Road Address..">
+	   		 	  <input class="mdl-textfield__input mdl-work-content__input" type="text" id="m_addr" name="g_addr" readonly="readonly" placeholder="Road Address.." value="${g.g_addr }">
 	    		</div><br>
 	    		<div class="mdl-textfield mdl-js-textfield">
-	   		 	  <input class="mdl-textfield__input mdl-work-content__input" type="text" id="m_addrdetail" name="g_addrdetail" placeholder="Detail Address..">
+	   		 	  <input class="mdl-textfield__input mdl-work-content__input" type="text" id="m_addrdetail" name="g_addrdetail" placeholder="Detail Address.." value="${g.g_addrdetail }">
 	    		</div><br>
 	    		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-	   		 	  <input class="mdl-textfield__input mdl-work-content__input" type="text" id="m_station" name="g_station" pattern="[가-힣]*" placeholder="Subway Station..">
+	   		 	  <input class="mdl-textfield__input mdl-work-content__input" type="text" id="m_station" name="g_station" pattern="[가-힣]*" placeholder="Subway Station.." value="${g.g_station }">
 	    		</div><br>
 				<div class="mdl-textfield mdl-js-textfield">
-					<input class="mdl-textfield__input mdl-work-content__input" type="text" name="g_tel" placeholder="Telephone..">
+					<input class="mdl-textfield__input mdl-work-content__input" type="text" name="g_tel" placeholder="Telephone.." value="${g.g_tel }">
 				</div><br>
 				<div class="mdl-textfield mdl-js-textfield">
-					<input class="mdl-textfield__input mdl-work-content__input" type="text" name="g_email" placeholder="E-mail..">
+					<input class="mdl-textfield__input mdl-work-content__input" type="text" name="g_email" placeholder="E-mail.." value="${g.g_email }">
 				</div>
               </div>
               <div class="mdl-card__actions">
                 <c:if test="${sessionScope.loginMember.m_id == 'test' }">
-	                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Resister</button>
+	                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Modify</button>
                 </c:if>
               </div>
             </div>

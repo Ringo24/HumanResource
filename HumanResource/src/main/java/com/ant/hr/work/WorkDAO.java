@@ -11,9 +11,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ant.hr.community.BBS;
 import com.ant.hr.community.BBSno;
-import com.ant.hr.community.CommunityMapper;
 
 @Service
 public class WorkDAO {
@@ -34,7 +32,7 @@ public class WorkDAO {
 	public void pagingCompany(int pageNo, HttpServletRequest req, HttpServletResponse res) {
 		@SuppressWarnings("unchecked")
 		List<Company> searchCompanyAl = (List<Company>) req.getSession().getAttribute("searchCompanyAl");
-		double count = 9.0;
+		double count = 6.0;
 		req.setAttribute("curPage", pageNo);
 		
 		try {
@@ -88,5 +86,14 @@ public class WorkDAO {
 			req.setAttribute("r", "Failed to Register.");
 			e.printStackTrace();
 		}
+	}
+	
+	public void getOneCompany(Company c, HttpServletRequest req, HttpServletResponse res) {
+		Company dbc = ss.getMapper(WorkMapper.class).getOneCompany(c);
+		dbc.setG_recruit(dbc.getG_recruit().replace("<br>", "\r\n"));
+		dbc.setG_employment(dbc.getG_employment().replace("<br>", "\r\n"));
+		dbc.setG_required(dbc.getG_required().replace("<br>", "\r\n"));
+		dbc.setG_condition(dbc.getG_condition().replace("<br>", "\r\n"));
+		req.setAttribute("g", dbc);
 	}
 }
