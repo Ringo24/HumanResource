@@ -2,8 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ant.hr.work.WorkMapper">
 	<insert id="regCompany" parameterType="com.ant.hr.work.Company">
-		insert into HR_GENBA values(HR_GENBA_seq.nextval, #{g_name}, #{g_inst}, #{g_logo}, #{g_hp}, #{g_recruit}, #{g_employment}, #{g_required}, #{g_infoPage}, #{g_condition}, #{g_post}, #{g_addr}, #{g_addrdetail}, #{g_tel}, #{g_email}, #{g_staion})
+		insert into HR_GENBA values(HR_GENBA_seq.nextval, #{g_name}, #{g_inst}, #{g_logo}, #{g_hp}, #{g_recruit}, #{g_employment}, #{g_required}, #{g_infoPage}, #{g_condition}, #{g_post}, #{g_addr}, #{g_addrdetail}, #{g_tel}, #{g_email}, #{g_station})
 	</insert>
+	
+	<update id="updateCompany" parameterType="com.ant.hr.work.Company">
+		update HR_GENBA set g_name=#{g_name}, g_inst=#{g_inst}, g_logo=#{g_logo}, g_hp=#{g_hp}, g_recruit=#{g_recruit}, g_employment=#{g_employment}, g_required=#{g_required}, g_infoPage=#{g_infoPage}, g_condition=#{g_condition}, g_post=#{g_post}, g_addr=#{g_addr}, g_addrdetail=#{g_addrdetail}, g_tel=#{g_tel}, g_email=#{g_email}, g_station=#{g_station} where g_no=#{g_no}
+	</update>
+	
+	<delete id="deleteCompany" parameterType="com.ant.hr.work.Company">
+		delete from HR_GENBA where g_no=#{g_no}
+	</delete>
 	
 	<select id="getCompany" parameterType="com.ant.hr.community.BBSno" resultType="com.ant.hr.work.Company">
 		select * from (

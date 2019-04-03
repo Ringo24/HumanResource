@@ -7,6 +7,8 @@ import com.ant.hr.community.BBSno;
 public interface WorkMapper {
 
 	public abstract int regCompany(Company c);
+	public abstract int updateCompany(Company c);
+	public abstract int deleteCompany(Company c);
 	
 	public abstract List<Company> getCompany(BBSno bn);
 	

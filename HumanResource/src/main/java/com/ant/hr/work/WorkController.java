@@ -18,13 +18,14 @@ public class WorkController {
 	private MemberDAO mDAO;
 	@Autowired
 	private CommunityDAO cDAO;
+	@Autowired
+	private WorkDAO wDAO;
 	
-	@RequestMapping(value = "Detail", method = RequestMethod.GET)
-	public String goDetail(HttpServletRequest req, HttpServletResponse res) {
+	@RequestMapping(value = "CompanyDetail", method = RequestMethod.GET)
+	public String goDetail(Company c, HttpServletRequest req, HttpServletResponse res) {
+		wDAO.getOneCompany(c, req, res);
 		mDAO.loginCheck(req, res);
-		cDAO.clearSearch(req, res);
-		cDAO.paging(1, req, res);
-		req.setAttribute("contentPage", "work/detail.jsp");
+		req.setAttribute("contentPage", "work/companyDetail.jsp");
 		return "index";
 	}
 	@RequestMapping(value = "Pay", method = RequestMethod.GET)

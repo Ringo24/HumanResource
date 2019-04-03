@@ -29,6 +29,7 @@ public class WorkDAO {
 	public void getAllWorkCount() {
 		
 	}
+	
 	public void pagingCompany(int pageNo, HttpServletRequest req, HttpServletResponse res) {
 		@SuppressWarnings("unchecked")
 		List<Company> searchCompanyAl = (List<Company>) req.getSession().getAttribute("searchCompanyAl");
@@ -84,6 +85,33 @@ public class WorkDAO {
 			}
 		} catch (Exception e) {
 			req.setAttribute("r", "Failed to Register.");
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateCompany(Company c, HttpServletRequest req, HttpServletResponse res) {
+		try {
+			c.setG_recruit(c.getG_recruit().replace("\r\n", "<br>"));
+			c.setG_employment(c.getG_employment().replace("\r\n", "<br>"));
+			c.setG_required(c.getG_required().replace("\r\n", "<br>"));
+			c.setG_condition(c.getG_condition().replace("\r\n", "<br>"));
+			
+			if (ss.getMapper(WorkMapper.class).updateCompany(c) == 1) {
+				req.setAttribute("r", "Update Success.");
+			}
+		} catch (Exception e) {
+			req.setAttribute("r", "Failed to Update.");
+			e.printStackTrace();
+		}
+	}
+	
+	public void deleteCompany(Company c, HttpServletRequest req, HttpServletResponse res) {
+		try {
+			if (ss.getMapper(WorkMapper.class).deleteCompany(c) == 1) {
+				req.setAttribute("r", "Delete Success.");
+			}
+		} catch (Exception e) {
+			req.setAttribute("r", "Failed to Delete.");
 			e.printStackTrace();
 		}
 	}

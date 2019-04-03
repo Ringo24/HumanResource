@@ -26,21 +26,9 @@ function execDaumPostcode() {
 
 function exeDaumMap() {
 	var map;				// 지도 객체
-	var mMarker = null;		// 마커 객체
-
-	function go(lat, lng){
-		var position = new daum.maps.LatLng(lat, lng);
-		map.panTo(position);
-		
-		if (mMarker == null) {
-			mMarker = new daum.maps.Marker({
-			    map: map,
-			    position: position			// 지도에 마커를 생성합니다 
-			});
-		} else {
-			mMarker.setPosition(position);		// 마커 위치를 옮깁니다
-		}
-	}
+	var marker = null;		// 마커 객체
+	var name = $('#companyName').text();
+	var addr = $('#companyAddr').text();
 
 	$(function() {
 		var container = document.getElementById('map');		//지도를 담을 영역의 DOM 레퍼런스
@@ -51,22 +39,30 @@ function exeDaumMap() {
 		};
 		map = new daum.maps.Map(container, options);		 //지도 생성 및 객체 리턴
 		
-		$("#m_addr").change(function(e){
-			var what = $(this).val();
-			//if(e.keyCode == 13){
-				$.ajax({
-					url : "https://dapi.kakao.com/v2/local/search/address.json",
-					data : {query : what},
-					beforeSend : function(req){
-						req.setRequestHeader("Authorization", "KakaoAK adbfc124b4b8faba06f34df8ae1a2187");
-					},
-					jsonpCallback : "?",
-					success : function(data){
-						var position = new daum.maps.LatLng(data.documents[0].y, data.documents[0].x);
-					    map.panTo(position);
-					}
-				});
-			//}
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder = new daum.maps.services.Geocoder();
+		
+		// 주소로 좌표를 검색합니다
+		geocoder.addressSearch(addr, function(result, status) {
+			// 정상적으로 검색이 완료됐으면 
+		     if (status === daum.maps.services.Status.OK) {
+		        var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+
+		        // 결과값으로 받은 위치를 마커로 표시합니다
+		        marker = new daum.maps.Marker({
+		            map: map,
+		            position: coords
+		        });
+
+		        // 인포윈도우로 장소에 대한 설명을 표시합니다
+		        var infowindow = new daum.maps.InfoWindow({
+		            content: '<div style="width:150px;text-align:center;padding:6px 0;">'+name+'</div>'
+		        });
+		        infowindow.open(map, marker);
+
+		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+		        map.setCenter(coords);
+		     }
 		});
 	});
 }

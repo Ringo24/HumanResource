@@ -20,7 +20,7 @@
 <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
 <a name="top"></a>
 <div class="android-screen-section mdl-typography--text-center">
-    <form action="Admin.RegCom" method="post" name="regcomForm">
+    <form action="Admin.ModCom" method="post" name="regcomForm" onsubmit="return regCompanyCheck();">
       <main class="mdl-layout__content">
           <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
             <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--white mdl-color-text--white">
@@ -31,11 +31,12 @@
                 <div class="mdl-textfield mdl-js-textfield">
 					<input class="mdl-textfield__input mdl-work-title__input" type="text" name="g_name" placeholder="Company Name.." value="${g.g_name }">
 				</div>
-				<div class="mdl-textfield mdl-js-textfield">
+				<div class="mdl-textfield mdl-js-textfield" style="width: 100%;">
 					<input class="mdl-textfield__input mdl-work-content__input" type="text" name="g_inst" placeholder="Company Instruction.." maxlength="100" value="${g.g_inst }">
 				</div><br>
 	              <a onclick="loadLogo();" class="mdl-button mdl-js-button mdl-js-ripple-effect">Logo</a>
 	              <input type="hidden" id="g_logo" name="g_logo" value="${g.g_logo }">
+	              <input type="hidden" id="g_no" name="g_no" value="${g.g_no }">
               </div>
               <div class="mdl-card__actions mdl-typography--text-left">
 				<div class="mdl-textfield mdl-js-textfield">
@@ -61,8 +62,8 @@
                 </div>
                 <div class="section__text mdl-typography--text-left mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
                   <h5>Recruit</h5>
-                  <div class="mdl-textfield mdl-js-textfield">
-	    		    <textarea class="mdl-textfield__input" type="text" rows="2" id="g_recruit" name="g_recruit" maxlength="300">${g.g_recruit }</textarea>
+                  <div class="mdl-textfield mdl-js-textfield" style="width: 100%;">
+	    		    <textarea class="mdl-textfield__input" type="text" rows="3" id="g_recruit" name="g_recruit" maxlength="300">${g.g_recruit }</textarea>
 	  			  </div>
                 </div>
                 <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
@@ -70,8 +71,8 @@
                 </div>
                 <div class="section__text mdl-typography--text-left mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
                   <h5>Forms of employment</h5>
-                  <div class="mdl-textfield mdl-js-textfield">
-	    		    <textarea class="mdl-textfield__input" type="text" rows="2" id="g_employment" name="g_employment" maxlength="300">${g.g_employment }</textarea>
+                  <div class="mdl-textfield mdl-js-textfield" style="width: 100%;">
+	    		    <textarea class="mdl-textfield__input" type="text" rows="3" id="g_employment" name="g_employment" maxlength="300">${g.g_employment }</textarea>
 	  			  </div>
                 </div>
                 <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
@@ -79,14 +80,14 @@
                 </div>
                 <div class="section__text mdl-typography--text-left mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
                   <h5>Required condition</h5>
-                  <div class="mdl-textfield mdl-js-textfield">
+                  <div class="mdl-textfield mdl-js-textfield" style="width: 100%;">
 	    		    <textarea class="mdl-textfield__input" type="text" rows="3" id="g_required" name="g_required" maxlength="300">${g.g_required }</textarea>
 	  			  </div>
                 </div>
               </div>
               <div class="mdl-card__actions">
                 <div class="mdl-textfield mdl-js-textfield">
-					<input class="mdl-textfield__input mdl-work-content__input" type="text" name="g_infoPage" placeholder="Recruit Infomation Homepage.." maxlength="100" ${g.g_infoPage }>
+					<input class="mdl-textfield__input mdl-work-content__input" type="text" name="g_infoPage" placeholder="Recruit Infomation Homepage.." maxlength="100" value="${g.g_infoPage }">
 				</div>
               </div>
             </div>
@@ -103,7 +104,7 @@
             <div class="mdl-card mdl-cell mdl-cell--12-col">
               <div class="mdl-card__supporting-text mdl-typography--text-left">
                 <h4>Working Conditions</h4>
-                <div class="mdl-textfield mdl-js-textfield">
+                <div class="mdl-textfield mdl-js-textfield" style="width: 100%;">
                   <textarea class="mdl-textfield__input" type="text" rows="5" id="g_condition" name="g_condition" maxlength="300">${g.g_condition }</textarea>
                 </div>
               </div>
@@ -140,7 +141,8 @@
               </div>
               <div class="mdl-card__actions">
                 <c:if test="${sessionScope.loginMember.m_id == 'test' }">
-	                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Modify</button>
+	                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Complete</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                	<a onclick="deleteCompany(${g.g_no });" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">Delete</a>
                 </c:if>
               </div>
             </div>

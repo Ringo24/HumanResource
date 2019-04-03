@@ -212,6 +212,7 @@ function regCompanyCheck(){
 	var addrdetail = document.regcomForm.g_addrdetail;
 	var tel = document.regcomForm.g_tel;
 	var email = document.regcomForm.g_email;
+	var station = document.regcomForm.g_station;
 	
 	if (isEmpty(name)) {
 		name.value = "";
@@ -269,6 +270,16 @@ function regCompanyCheck(){
 		email.value = "";
 		email.focus();
 		return false;
+	} else if (isEmpty(station)) {
+		station.value = "";
+		station.focus();
+		return false;
+	}
+}
+
+function deleteCompany(no){
+	if (confirm('정말로 삭제하시겠습니까? (복구 불가능)')){
+		location.href="Admin.DelCom?g_no="+no;
 	}
 }
 

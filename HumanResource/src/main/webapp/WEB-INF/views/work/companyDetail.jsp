@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,16 +23,16 @@
     <!-- <div class="mdl-layout mdl-js-layout"> -->
       <main class="mdl-layout__content">
           <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-            <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
-              <img src="http://www.solupia.co.kr/wp/wp-content/uploads/2016/06/logo_b2.png">
+            <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--white mdl-color-text--white">
+              <img src="${g.g_logo }" id="company-logo">
             </header>
             <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
               <div class="mdl-card__supporting-text mdl-typography--text-left">
-                <h4>SOLUPIA Co.</h4>
-                Implementing, maintaining, and developing PC security solutions for 52 hours a week
+                <h4 id="companyName">${g.g_name }</h4>
+                ${g.g_inst }
               </div>
               <div class="mdl-card__actions mdl-typography--text-left">
-                <a href="http://www.solupia.co.kr" target="_blank" class="mdl-button">Our homepage</a>
+                <a href="${g.g_hp }" target="_blank" class="mdl-button">Our homepage</a>
               </div>
             </div>
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn1">
@@ -54,27 +53,25 @@
                 </div>
                 <div class="section__text mdl-typography--text-left mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
                   <h5>Recruit</h5>
-                  Java programmer, engineer. 3 people.
+                  ${g.g_recruit }
                 </div>
                 <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
                   <div class="section__circle-container__circle mdl-color--primary"></div>
                 </div>
                 <div class="section__text mdl-typography--text-left mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
                   <h5>Forms of employment</h5>
-                  Regular worker. After 3 month later Internships.
+                  ${g.g_employment }
                 </div>
                 <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
                   <div class="section__circle-container__circle mdl-color--primary"></div>
                 </div>
                 <div class="section__text mdl-typography--text-left mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
                   <h5>Required condition</h5>
-                  Java programmer : JAVA(Spring, JPA, JavaScript), MySql<br>
-                  Engineer : Linux, Windows, MySql, MsSql<br>
-                  Positive Mind, Passion for new Technology.
+                  ${g.g_required }
                 </div>
               </div>
               <div class="mdl-card__actions">
-                <a href="http://www.solupia.co.kr/wp/06-2/%EC%B1%84%EC%9A%A9%EC%95%88%EB%82%B4/" target="_blank" class="mdl-button">Recruit Infomation</a>
+                <a href="${g.g_infoPage }" target="_blank" class="mdl-button">Recruit Infomation</a>
               </div>
             </div>
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn2">
@@ -90,12 +87,7 @@
             <div class="mdl-card mdl-cell mdl-cell--12-col">
               <div class="mdl-card__supporting-text mdl-typography--text-left">
                 <h4>Working Conditions</h4>
-                26 million won per year (80 percent on training).<br>
-                a five-day workweek 09:00 to 18:00. <br>
-                Sign up for four major insurance.<br><br>
-				Mobile phone deposit support. <br>
-				Four other non-insurance policies. <br>
-				Support for IT qualifications and training costs.
+                ${g.g_condition }
               </div>
               <div class="mdl-card__actions">
                 <a href="#" class="mdl-button"></a>
@@ -106,14 +98,13 @@
             <div class="mdl-card mdl-cell mdl-cell--12-col">
               <div class="mdl-card__supporting-text mdl-typography--text-left">
                 <h4>Contact us</h4>
-				<img src="resources/images/google_map.png" width="480px">
-				<p>서울특별시 영등포구 경인로 775 에이스하이테크시티 1-1동 411호 <br>07299</p>
+                <div id="map" style="width:450px;height:350px;"></div>
+				<p><span id="companyAddr">${g.g_addr } ${g.g_addrdetail }</span> <br>${g.g_post }<br>
+				${g.g_station }역</p>
 				<p>Tel<br>
-				+82 70 4610 7000</p>
+				${g.g_tel }</p>
 				<p>E-Mail<br>
-				사업부 : chang@solupia.co.kr<br>
-				Security : chang@solupia.co.kr, djkim@solupia.co.kr<br>
-				SW품질 : silver@solupia.co.kr</p>
+				${g.g_email }
               </div>
               <div class="mdl-card__actions">
                 <a href="#" class="mdl-button"></a>
@@ -131,5 +122,12 @@
 </div>
 		<script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 		<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7d59a19ccee2485f7bedede2b51ec6f9&libraries=services"></script>
+		<script src="resources/js/execDaumPostcode.js"></script>
+    	<script type="text/javascript">
+	    	$(function(){
+	    		exeDaumMap();
+	    	});
+    	</script>
 </body>
 </html>

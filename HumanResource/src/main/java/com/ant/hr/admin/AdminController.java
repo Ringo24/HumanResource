@@ -28,9 +28,13 @@ public class AdminController {
 	
 	@RequestMapping(value = "Admin", method = RequestMethod.GET)
 	public String goAdmin(HttpServletRequest req, HttpServletResponse res) {
-		mDAO.loginCheck(req, res);
-		req.setAttribute("contentPage", "admin/main.jsp");
-		return "adindex";
+		if (mDAO.loginCheck(req, res)) {
+			req.setAttribute("contentPage", "admin/main.jsp");
+			return "adindex";
+		} else {
+			req.setAttribute("contentPage", "main.jsp");
+			return "index";
+		}
 	}
 	@RequestMapping(value = "Admin.Company", method = RequestMethod.GET)
 	public String goCompany(HttpServletRequest req, HttpServletResponse res) {
@@ -83,7 +87,19 @@ public class AdminController {
 	@RequestMapping(value = "Admin.ModCom", method = RequestMethod.POST)
 	public String modCompany(Company c, HttpServletRequest req, HttpServletResponse res) {
 		if (mDAO.loginCheck(req, res)) {
-			wDAO.regCompany(c, req, res);
+			wDAO.updateCompany(c, req, res);
+			wDAO.pagingCompany(1, req, res);
+			req.setAttribute("contentPage", "admin/company.jsp");
+			return "adindex";
+		} else {
+			req.setAttribute("contentPage", "main.jsp");
+			return "index";
+		}
+	}
+	@RequestMapping(value = "Admin.DelCom", method = RequestMethod.GET)
+	public String delCompany(Company c, HttpServletRequest req, HttpServletResponse res) {
+		if (mDAO.loginCheck(req, res)) {
+			wDAO.deleteCompany(c, req, res);
 			wDAO.pagingCompany(1, req, res);
 			req.setAttribute("contentPage", "admin/company.jsp");
 			return "adindex";

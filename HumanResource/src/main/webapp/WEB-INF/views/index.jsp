@@ -82,8 +82,8 @@
           </c:choose>
           <div class="android-drawer-separator"></div>
           <span class="mdl-navigation__link" href="">Recruit</span>
-          <a class="mdl-navigation__link" href="Detail">Search Recruit</a>
-          <a class="mdl-navigation__link" href="">Menu 1</a>
+          <a class="mdl-navigation__link" href="Work">Search Recruit</a>
+          <a class="mdl-navigation__link" href="CompanyDetail?g_no=1">Menu 1</a>
           <a class="mdl-navigation__link" href="">Menu 2</a>
           <div class="android-drawer-separator"></div>
           <span class="mdl-navigation__link" href="">Community</span>
