@@ -126,11 +126,22 @@ insert into HR_GENBA values(HR_GENBA_seq.nextval, 'Interpark Inc.', 'e-commerce'
 create table HR_RECRUIT(
 	r_no number(6) primary key,
 	r_date date not null,
-	r_total number(3) not null,
+	r_total number(6) not null,
 	g_no number(6) not null,
 	r_state number(1) not null
 );
 create sequence HR_RECRUIT_seq;
+
+select * from HR_RECRUIT;
+drop table HR_RECRUIT cascade constraint purge;
+
+insert into HR_RECRUIT values(HR_RECRUIT_seq.nextval, sysdate, 2220, 21, 0);
+
+select * from (
+			select rownum r,r_no,r_date,r_total,g_no,r_state 
+			from (select * from HR_RECRUIT order by r_date)
+		) where r <= 10 and r >= 1 
+		order by r desc;
 
 create table HR_GENBA(
 	g_no number(6) primary key,
@@ -161,7 +172,7 @@ select * from (
 
 select * from HR_GENBA;
 
-update HR_GENBA set g_station='광명' where g_no=22;
+update HR_GENBA set g_station='광명' where g_no=25;
 
 ----------------------------------------
 -- 게시판 DB

@@ -4,6 +4,13 @@
 	<select id="getMemberInfoByM_ID" parameterType="com.ant.hr.member.Member" resultType="com.ant.hr.member.Member">
 		select * from HR_MEMBER where m_id = #{m_id}
 	</select>
+	<select id="getMember" parameterType="com.ant.hr.community.BBSno" resultType="com.ant.hr.member.Member">
+		select * from HR_MEMBER
+	</select>
+	<select id="search" parameterType="com.ant.hr.community.Query" resultType="com.ant.hr.member.Member">
+		select * from HR_MEMBER 
+		where ${search} like '%'||#{query}||'%' 
+	</select>
 	<insert id="join" parameterType="com.ant.hr.member.Member">
 		insert into HR_MEMBER values(#{m_id},#{m_pw},#{m_name},#{m_gender},#{m_email},#{m_birth},#{m_phone},#{m_school},#{m_schoolname},#{m_schoolmajor},#{m_working},#{m_army},#{m_post},#{m_addr},#{m_addrdetail},#{m_station},#{m_intro},#{m_photo},0)
 	</insert>
@@ -22,4 +29,8 @@
 	<update id="updateBankInfo" parameterType="com.ant.hr.member.Member">
 		update HR_BANK set m_bank=#{m_bank},m_account=#{m_account},m_accname=#{m_accname} where mb_id=#{m_id}
 	</update>
+	
+	<select id="getAllMemberCount" resultType="java.lang.Integer">
+		select count(*) from HR_MEMBER
+	</select>
 </mapper>

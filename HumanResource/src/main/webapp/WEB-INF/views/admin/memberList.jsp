@@ -15,43 +15,32 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.min.css">
 	<link rel="stylesheet" href="resources/css/styles.css">
+	<link rel="stylesheet" href="resources/css/admin_styles.css">
 </head>
 
 <body>
 	<!-- 컨텐츠(content) 영역 -->
 		<a name="top"></a>
 		<div class="android-screen-section mdl-typography--text-center">
-			<!-- 게시판 테이블 -->
-			<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-				<thead>
-					<tr>
-						<th class="mdl-data-table__cell--non-numeric" width="70%">Title</th>
-						<th class="mdl-data-table__cell--non-numeric">Writer</th>
-						<th>Date</th>
-						<th>Hit</th>
-					</tr>
-				</thead>
-				<tbody>
-				<c:forEach var="b" items="${BBSAl }">
-					<tr onclick="location.href='Article?bbs=${param.bbs }&b_no=${b.b_no }'" style="cursor: pointer;">
-						<td class="mdl-data-table__cell--non-numeric">
-							<c:if test="${b.b_notice == 1 }">
-							  <i class="material-icons" style="font-size: 11pt;">notification_important</i>
-							  <b>
-							</c:if>
-							${b.b_title }
-							<c:if test="${b.b_notice == 1 }">
-							  </b>
-							</c:if>
-						</td>
-						<td class="mdl-data-table__cell--non-numeric">${b.b_name }</td>
-						<td><fmt:formatDate value="${b.b_date }" pattern="yyyy-MM-dd"/></td>
-						<td>${b.b_hit }</td>
-					</tr>
-				</c:forEach>
-				</tbody>
-			</table>
+			<ul class="demo-list-two mdl-list">
+		  <c:forEach var="m" items="${MemberAl }">
+			  <li class="mdl-list__item mdl-list__item--two-line">
+			    <span class="mdl-list__item-primary-content">
+			      <i class="material-icons mdl-list__item-avatar" style="background:url('resources/file/${m.m_photo }') center/55px no-repeat #FFFFFF;"></i>
+			      <span>${m.m_name }</span>
+			      <span class="mdl-list__item-sub-title">62 Episodes</span>
+			    </span>
+			    <span class="mdl-list__item-secondary-content">
+			    <c:if test="${m.m_id == 'test' }">
+			      <span class="mdl-list__item-secondary-info">Admin</span>
+			    </c:if>
+			      <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
+			    </span>
+			  </li>
+		  </c:forEach>
+			</ul>
 			<br>
+	<!-- page -->
 			<div class="mdl-pagination">
 		      <ul class="pagination">
 		      <c:choose>
@@ -97,7 +86,6 @@
 								id="search-aticle">
 						</div>
 					</div>
-					<a href="Upload?bbs=${param.bbs }" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Write</a>
 				</div>
 			</div>
 		</div>

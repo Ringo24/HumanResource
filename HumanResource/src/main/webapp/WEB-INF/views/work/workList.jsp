@@ -25,33 +25,43 @@
 			<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
 				<thead>
 					<tr>
-						<th class="mdl-data-table__cell--non-numeric" width="70%">Title</th>
-						<th class="mdl-data-table__cell--non-numeric">Writer</th>
-						<th>Date</th>
-						<th>Hit</th>
+						<th class="mdl-data-table__cell--non-numeric">Location</th>
+						<th class="mdl-data-table__cell--non-numeric">Date</th>
+						<th class="mdl-data-table__cell--non-numeric" width="50%">Recruit</th>
+						<th class="mdl-data-table__cell--non-numeric">Application</th>
+						<th class="mdl-data-table__cell--non-numeric">Pay</th>
+						<th class="mdl-data-table__cell--non-numeric">State</th>
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach var="b" items="${BBSAl }">
-					<tr onclick="location.href='Article?bbs=${param.bbs }&b_no=${b.b_no }'" style="cursor: pointer;">
-						<td class="mdl-data-table__cell--non-numeric">
-							<c:if test="${b.b_notice == 1 }">
-							  <i class="material-icons" style="font-size: 11pt;">notification_important</i>
-							  <b>
-							</c:if>
-							${b.b_title }
-							<c:if test="${b.b_notice == 1 }">
-							  </b>
-							</c:if>
+				<c:forEach var="rec" items="${RecruitAl }">
+					<tr>
+						<td class="mdl-data-table__cell--non-numeric mdl-recruit--loc">
+							${rec.company.g_addr }<br>
+							${rec.company.g_station }역
 						</td>
-						<td class="mdl-data-table__cell--non-numeric">${b.b_name }</td>
-						<td><fmt:formatDate value="${b.b_date }" pattern="yyyy-MM-dd"/></td>
-						<td>${b.b_hit }</td>
+						<td class="mdl-data-table__cell--non-numeric" style="text-align: center;">
+							<fmt:formatDate value="${rec.r_date }" pattern="yyyy-MM-dd"/><br>
+							<fmt:formatDate value="${rec.r_date }" pattern="E"/>요일
+						</td>
+						<td class="mdl-data-table__cell--non-numeric" onclick="location.href=''" style="cursor: pointer;">
+							${rec.company.g_name }<br>
+							<span class="cut-word-ellipsis">${rec.company.g_recruit }</span>
+						</td>
+						<td class="mdl-data-table__cell--non-numeric">
+						  <a href="#" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">Applicate</a>
+						</td>
+						<td class="mdl-data-table__cell--non-numeric">${rec.r_total }만원</td>
+						<td class="mdl-data-table__cell--non-numeric">
+							<c:if test="${rec.r_state == 0 }">Now</c:if>
+							<c:if test="${rec.r_state == 1 }">Close</c:if>
+						</td>
 					</tr>
 				</c:forEach>
 				</tbody>
 			</table>
 			<br>
+	<!-- page -->
 			<div class="mdl-pagination">
 		      <ul class="pagination">
 		      <c:choose>
@@ -97,7 +107,6 @@
 								id="search-aticle">
 						</div>
 					</div>
-					<a href="Upload?bbs=${param.bbs }" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Write</a>
 				</div>
 			</div>
 		</div>

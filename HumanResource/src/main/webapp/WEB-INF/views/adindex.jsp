@@ -69,9 +69,9 @@
           <a class="mdl-navigation__link" href="Admin.Work"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">work</i>Work</a>
           <a class="mdl-navigation__link" href="Admin.QnA"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>QnA</a>
           <a class="mdl-navigation__link" href="Admin.Members"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Members</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Spam</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Ban</a>
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Promos</a>
+          <a class="mdl-navigation__link" href="index"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Back</a>
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Purchases</a>
           <div class="mdl-layout-spacer"></div>
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>

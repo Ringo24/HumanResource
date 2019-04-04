@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.min.css">
     <link rel="stylesheet" href="resources/css/styles.css">
-    <link rel="stylesheet" href="resources/css/workdetail_styles.css">
+    <!-- <link rel="stylesheet" href="resources/css/workdetail_styles.css"> -->
     <link rel="stylesheet" href="resources/css/mdl-selectfield.min.css">
     <link rel="stylesheet" href="resources/css/angular-validation.css">
 </head>
@@ -82,8 +82,8 @@
           </c:choose>
           <div class="android-drawer-separator"></div>
           <span class="mdl-navigation__link" href="">Recruit</span>
-          <a class="mdl-navigation__link" href="Work">Search Recruit</a>
-          <a class="mdl-navigation__link" href="CompanyDetail?g_no=1">Menu 1</a>
+          <a class="mdl-navigation__link" href="Recruit">Search Recruit</a>
+          <a class="mdl-navigation__link" href="Company">Menu 1</a>
           <a class="mdl-navigation__link" href="">Menu 2</a>
           <div class="android-drawer-separator"></div>
           <span class="mdl-navigation__link" href="">Community</span>

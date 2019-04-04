@@ -20,10 +20,12 @@ public class AdminController {
 	@Autowired
 	private WorkDAO wDAO;
 	
-	private boolean firstReq; // 첫 요청인지 따질 변수
+	private boolean firstCom; // 첫 요청인지 따질 변수
+	private boolean firstRec; // 첫 요청인지 따질 변수
 	
 	public AdminController() {
-		firstReq = true;
+		firstCom = true;
+		firstRec = true;
 	}
 	
 	@RequestMapping(value = "Admin", method = RequestMethod.GET)
@@ -38,9 +40,9 @@ public class AdminController {
 	}
 	@RequestMapping(value = "Admin.Company", method = RequestMethod.GET)
 	public String goCompany(HttpServletRequest req, HttpServletResponse res) {
-		if (firstReq) {
+		if (firstCom) {
 			wDAO.getAllCompanyCount();
-			firstReq = false;
+			firstCom = false;
 		}
 		if (mDAO.loginCheck(req, res)) {
 			wDAO.pagingCompany(1, req, res);
@@ -108,4 +110,36 @@ public class AdminController {
 			return "index";
 		}
 	}
+	
+	@RequestMapping(value = "Admin.Work", method = RequestMethod.GET)
+	public String goRecruit(HttpServletRequest req, HttpServletResponse res) {
+		if (firstRec) {
+			wDAO.getAllRecruitCount();
+			firstRec = false;
+		}
+		if (mDAO.loginCheck(req, res)) {
+			wDAO.pagingRecruit(1, req, res);
+			req.setAttribute("contentPage", "admin/workList.jsp");
+			return "adindex";
+		} else {
+			req.setAttribute("contentPage", "main.jsp");
+			return "index";
+		}
+	}
+	
+	@RequestMapping(value = "Admin.Members", method = RequestMethod.GET)
+	public String goMembers(HttpServletRequest req, HttpServletResponse res) {
+		if (mDAO.loginCheck(req, res)) {
+			mDAO.getAllMemberCount();
+			mDAO.clearSearch(req, res);
+			mDAO.pagingMember(1, req, res);
+			req.setAttribute("contentPage", "admin/memberList.jsp");
+			return "adindex";
+		} else {
+			req.setAttribute("contentPage", "main.jsp");
+			return "index";
+		}
+	}
+	
+	
 }

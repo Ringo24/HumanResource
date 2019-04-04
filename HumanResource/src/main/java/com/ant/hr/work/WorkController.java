@@ -21,6 +21,36 @@ public class WorkController {
 	@Autowired
 	private WorkDAO wDAO;
 	
+	private boolean firstCom; // 첫 요청인지 따질 변수
+	private boolean firstRec; // 첫 요청인지 따질 변수
+	
+	public WorkController() {
+		firstCom = true;
+		firstRec = true;
+	}
+	
+	@RequestMapping(value = "Company", method = RequestMethod.GET)
+	public String goCompany(HttpServletRequest req, HttpServletResponse res) {
+		if (firstCom) {
+			wDAO.getAllCompanyCount();
+			firstCom = false;
+		}
+		wDAO.pagingCompany(1, req, res);
+		mDAO.loginCheck(req, res);
+		req.setAttribute("contentPage", "work/company.jsp");
+		return "index";
+	}
+	@RequestMapping(value = "Recruit", method = RequestMethod.GET)
+	public String goRecruit(HttpServletRequest req, HttpServletResponse res) {
+		if (firstRec) {
+			wDAO.getAllRecruitCount();
+			firstRec = false;
+		}
+		wDAO.pagingRecruit(1, req, res);
+		mDAO.loginCheck(req, res);
+		req.setAttribute("contentPage", "work/workList.jsp");
+		return "index";
+	}
 	@RequestMapping(value = "CompanyDetail", method = RequestMethod.GET)
 	public String goDetail(Company c, HttpServletRequest req, HttpServletResponse res) {
 		wDAO.getOneCompany(c, req, res);

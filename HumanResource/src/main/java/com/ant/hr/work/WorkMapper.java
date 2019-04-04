@@ -10,10 +10,17 @@ public interface WorkMapper {
 	public abstract int updateCompany(Company c);
 	public abstract int deleteCompany(Company c);
 	
+	public abstract int regRecruit(Recruit c);
+	public abstract int updateRecruit(Recruit c);
+	public abstract int deleteRecruit(Recruit c);
+	
 	public abstract List<Company> getCompany(BBSno bn);
+	public abstract List<Recruit> getRecruit(BBSno bn);
 	
 	public abstract Company getOneCompany(Company c);
+	public abstract Company getOneCompanybyR_no(Recruit r);
+	public abstract Recruit getOneRecruit(Recruit r);
 	
 	public abstract int getAllCompanyCount();
-	public abstract int getAllWorkCount();
+	public abstract int getAllRecruitCount();
 }

@@ -99,7 +99,7 @@
               <div class="mdl-card__supporting-text mdl-typography--text-left">
                 <h4>Contact us</h4>
                 <div id="map" style="width:450px;height:350px;"></div>
-				<p><span id="companyAddr">${g.g_addr } ${g.g_addrdetail }</span> <br>${g.g_post }<br>
+				<p><span id="companyAddr">${g.g_addr }</span> ${g.g_addrdetail } <br>${g.g_post }<br>
 				${g.g_station }역</p>
 				<p>Tel<br>
 				${g.g_tel }</p>

@@ -623,6 +623,19 @@ a img{
     color: #999;
 }
 
+.cut-word-ellipsis {
+	display: inline-block;
+	width: 250px; 
+	height: 12pt;
+	white-space: nowrap; 
+	overflow: hidden; 
+	color: #3f51b5;
+}
+.demo-list-two {
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 /**** Mobile layout ****/
 @media (max-width: 900px) {

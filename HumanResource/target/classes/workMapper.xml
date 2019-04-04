@@ -20,10 +20,26 @@
 		) where r &lt;= #{start} and r &gt;= #{end} 
 		order by r desc
 	</select>
+	<select id="getRecruit" parameterType="com.ant.hr.community.BBSno" resultType="com.ant.hr.work.Recruit">
+		select * from (
+			select rownum r,r_no,r_date,r_total,g_no,r_state 
+			from (select * from HR_RECRUIT order by r_date)
+		) where r &lt;= #{start} and r &gt;= #{end} 
+		order by r desc
+	</select>
 	<select id="getOneCompany" parameterType="com.ant.hr.work.Company" resultType="com.ant.hr.work.Company">
 		select * from HR_GENBA where g_no = #{g_no}
 	</select>
+	<select id="getOneCompanybyR_no" parameterType="com.ant.hr.work.Recruit" resultType="com.ant.hr.work.Company">
+		select * from HR_GENBA where g_no = #{g_no}
+	</select>
+	<select id="getOneRecruit" parameterType="com.ant.hr.work.Recruit" resultType="com.ant.hr.work.Recruit">
+		select * from HR_RECRUIT where r_no = #{r_no}
+	</select>
 	<select id="getAllCompanyCount" resultType="java.lang.Integer">
 		select count(*) from HR_GENBA
+	</select>
+	<select id="getAllRecruitCount" resultType="java.lang.Integer">
+		select count(*) from HR_RECRUIT
 	</select>
 </mapper>

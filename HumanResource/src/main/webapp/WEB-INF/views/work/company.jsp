@@ -14,7 +14,6 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.min.css">
 	<link rel="stylesheet" href="resources/css/styles.css">
-	<link rel="stylesheet" href="resources/css/admin_styles.css">
 </head>
 
 <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
@@ -31,14 +30,14 @@
 			  	${c.g_inst }
 			  </div>
 			  <div class="mdl-card__actions mdl-card--border">
-			    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="Admin.ModCompany?g_no=${c.g_no }">
+			    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="CompanyDetail?g_no=${c.g_no }">
 			      View Company information.
 			    </a>
 			  </div>
 			</div>
 	      </c:forEach>
       </div>
-      <div>
+      <div class="mdl-pagination">
 	      <ul class="pagination">
 	      <c:choose>
 			<c:when test="${curPage == 1 }">
@@ -67,11 +66,6 @@
 			</c:otherwise>
    		  </c:choose>
 	  	  </ul>
-      </div>
-      <div class="mdl-company__button">
-	      <a href="Admin.RegCompany" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
-			<i class="material-icons">add</i>
-		  </a>
       </div>
       </main>
 </div>

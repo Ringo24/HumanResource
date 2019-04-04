@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ant.hr.community.BBSno;
+import com.ant.hr.community.CommunityMapper;
+import com.ant.hr.community.Query;
+import com.ant.hr.work.WorkMapper;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -22,7 +27,13 @@ public class MemberDAO implements MemberDaoI {
 
 	@Autowired
 	private SqlSession ss;
+	
+	private int allMemberCount;
 
+	public void getAllMemberCount() {
+		allMemberCount = ss.getMapper(MemberMapper.class).getAllMemberCount();
+	}
+	
 	@Override
 	public void join(Member m, HttpServletRequest req, HttpServletResponse res) {
 		String path = null;
@@ -225,4 +236,53 @@ public class MemberDAO implements MemberDaoI {
 		return ms;
 	}
 
+	public void pagingMember(int pageNo, HttpServletRequest req, HttpServletResponse res) {
+		@SuppressWarnings("unchecked")
+		List<Member> searchMemberAl = (List<Member>) req.getSession().getAttribute("searchMemberAl");
+		double count = 10.0;
+		req.setAttribute("curPage", pageNo);
+		
+		try {
+			if (searchMemberAl != null && searchMemberAl.size() > 0) {
+				// 검색
+				int pageCount = (int) Math.ceil(searchMemberAl.size() / count);
+				req.setAttribute("pageCount", pageCount);
+				
+				// 해당 페이지 게시물 추출
+				int start = (searchMemberAl.size() - ((pageNo - 1) * (int)count));
+				int end = (pageNo == pageCount) ? 1 : (start - ((int)count - 1));
+				
+				ArrayList<Member> MemberAl = new ArrayList<Member>();
+				Member m = null;
+				
+				for (int i = start-1; i >= end-1; i--) {
+					m = searchMemberAl.get(i);
+					MemberAl.add(m);
+				}
+				req.setAttribute("MemberAl", MemberAl);
+			} else if (allMemberCount > 0) {
+				// 전체 페이지 수 계산
+				int pageCount = (int) Math.ceil(allMemberCount / count);
+				req.setAttribute("pageCount", pageCount);
+				
+				int start = (allMemberCount - ((pageNo - 1) * (int)count));
+				int end = (pageNo == pageCount) ? 1 : (start - ((int)count - 1));
+				
+				BBSno bn = new BBSno(new BigDecimal(start), new BigDecimal(end));
+				List<Member> MemberAl = new ArrayList<Member>();
+				MemberAl = ss.getMapper(MemberMapper.class).getMember(bn);
+				req.setAttribute("MemberAl", MemberAl);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void search(Query q, HttpServletRequest req, HttpServletResponse res) {
+		req.getSession().setAttribute("searchMemberAl", ss.getMapper(CommunityMapper.class).search(q));
+	}
+	
+	public void clearSearch(HttpServletRequest req, HttpServletResponse res) {
+		req.getSession().setAttribute("searchMemberAl", null);
+	}
 }
