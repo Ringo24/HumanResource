@@ -3,6 +3,7 @@ package com.ant.hr.work;
 import java.util.List;
 
 import com.ant.hr.community.BBSno;
+import com.ant.hr.community.Query;
 
 public interface WorkMapper {
 
@@ -16,6 +17,7 @@ public interface WorkMapper {
 	
 	public abstract List<Company> getCompany(BBSno bn);
 	public abstract List<Recruit> getRecruit(BBSno bn);
+	public abstract List<Application> getApplication(BBSno bn);
 	
 	public abstract Company getOneCompany(Company c);
 	public abstract Company getOneCompanybyR_no(Recruit r);
@@ -23,4 +25,10 @@ public interface WorkMapper {
 	
 	public abstract int getAllCompanyCount();
 	public abstract int getAllRecruitCount();
+	public abstract int getApplicationCount();
+	
+	public abstract int applicate(Application a);
+	public abstract int cancleApplication(Application a);
+	
+	public abstract Application searchApplication(Query q);
 }

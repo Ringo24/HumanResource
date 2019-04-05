@@ -126,6 +126,16 @@ public class AdminController {
 			return "index";
 		}
 	}
+	@RequestMapping(value = "Admin.RegWork", method = RequestMethod.GET)
+	public String goRegRecruit(HttpServletRequest req, HttpServletResponse res) {
+		if (mDAO.loginCheck(req, res)) {
+			req.setAttribute("contentPage", "admin/workList.jsp");
+			return "adindex";
+		} else {
+			req.setAttribute("contentPage", "main.jsp");
+			return "index";
+		}
+	}
 	
 	@RequestMapping(value = "Admin.Members", method = RequestMethod.GET)
 	public String goMembers(HttpServletRequest req, HttpServletResponse res) {
@@ -134,6 +144,18 @@ public class AdminController {
 			mDAO.clearSearch(req, res);
 			mDAO.pagingMember(1, req, res);
 			req.setAttribute("contentPage", "admin/memberList.jsp");
+			return "adindex";
+		} else {
+			req.setAttribute("contentPage", "main.jsp");
+			return "index";
+		}
+	}
+	
+	@RequestMapping(value = "Admin.AllApp", method = RequestMethod.GET)
+	public String goApplication(HttpServletRequest req, HttpServletResponse res) {
+		if (mDAO.loginCheck(req, res)) {
+			wDAO.getAllApplicationCount();
+			req.setAttribute("contentPage", "admin/applicationList.jsp");
 			return "adindex";
 		} else {
 			req.setAttribute("contentPage", "main.jsp");

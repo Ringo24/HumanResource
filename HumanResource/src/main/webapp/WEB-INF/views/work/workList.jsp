@@ -49,12 +49,12 @@
 							<span class="cut-word-ellipsis">${rec.company.g_recruit }</span>
 						</td>
 						<td class="mdl-data-table__cell--non-numeric">
-						  <a href="#" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">Applicate</a>
+						  <a href="RecruitDetail?r_no=${rec.r_no }" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">Applicate</a>
 						</td>
 						<td class="mdl-data-table__cell--non-numeric">${rec.r_total }만원</td>
 						<td class="mdl-data-table__cell--non-numeric">
-							<c:if test="${rec.r_state == 0 }">Now</c:if>
-							<c:if test="${rec.r_state == 1 }">Close</c:if>
+							<c:if test="${rec.r_state == 0 }"><span class="Now">Now</span></c:if>
+							<c:if test="${rec.r_state == 1 }"><span class="Close">Close</span></c:if>
 						</td>
 					</tr>
 				</c:forEach>

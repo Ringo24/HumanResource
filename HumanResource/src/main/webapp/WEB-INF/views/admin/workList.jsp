@@ -106,6 +106,7 @@
 							<input class="mdl-textfield__input" type="text"
 								id="search-aticle">
 						</div>
+						<a href="Admin.RegWork" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Resister</a>
 					</div>
 				</div>
 			</div>

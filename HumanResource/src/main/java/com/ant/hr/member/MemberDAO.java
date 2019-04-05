@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 import com.ant.hr.community.BBSno;
 import com.ant.hr.community.CommunityMapper;
 import com.ant.hr.community.Query;
-import com.ant.hr.work.WorkMapper;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -114,6 +113,7 @@ public class MemberDAO implements MemberDaoI {
 			}
 		} catch (Exception e) {
 			req.setAttribute("r", "DB서버 이상");
+			e.printStackTrace();
 		}
 	}
 

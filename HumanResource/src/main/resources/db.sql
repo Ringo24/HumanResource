@@ -44,6 +44,7 @@ insert into HR_MEMBER values('test','1234','test',0,'test@gmail.com','950611','0
 insert into HR_BANK values('test','국민은행','3350303295302','test');
 
 update HR_MEMBER set m_name = 'ADMIN' where m_id = 'test';
+select * from HR_MEMBER, HR_BANK where m_id = 'test' and m_id = mb_id;
 ---------------------------------------------------------------------------
 --급여신청, 지급
 create table HR_APPLICATION(
@@ -71,10 +72,10 @@ delete from HR_APPLICATION;
 drop table HR_APPLICATION cascade constraint purge;
 
 insert into HR_APPLICATION values(
-	HR_REQUEST_seq.nextval,
-	'test',
-	'ㅋㅋㅋㅋ',
-	sysdate
+	HR_APPLICATION_seq.nextval,
+	24,
+	'tes2',
+	1
 );
 
 select * from HR_APPLICATION a, HR_REQUEST rq 
@@ -82,8 +83,8 @@ where a.m_id = rq.m_id
 order by a.a_no;
 
 select * from (
-select rownum r, js_no, js_txt, js_date from (select * from JSC_SNS order by js_no desc))
-where r >= 5 and r <= 10;
+select rownum r, a_no, r_no, m_id, a_state from (select * from HR_APPLICATION order by a_state desc, a_no))
+where r >= 1 and r <= 10 order by r desc;
 
 select * from (
 select rownum r, js_no, js_id, js_txt, js_date, jm_name, jm_photo  

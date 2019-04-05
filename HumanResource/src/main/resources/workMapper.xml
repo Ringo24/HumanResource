@@ -4,13 +4,28 @@
 	<insert id="regCompany" parameterType="com.ant.hr.work.Company">
 		insert into HR_GENBA values(HR_GENBA_seq.nextval, #{g_name}, #{g_inst}, #{g_logo}, #{g_hp}, #{g_recruit}, #{g_employment}, #{g_required}, #{g_infoPage}, #{g_condition}, #{g_post}, #{g_addr}, #{g_addrdetail}, #{g_tel}, #{g_email}, #{g_station})
 	</insert>
+	<insert id="regRecruit" parameterType="com.ant.hr.work.Recruit">
+		insert into HR_RECRUIT values(HR_RECRUIT_seq.nextval, #{r_date}, #{r_total}, #{g_no}, 0)
+	</insert>
+	<insert id="applicate" parameterType="com.ant.hr.work.Application">
+		insert into HR_APPLICATION values(HR_APPLICATION_seq.nextval, #{r_no}, #{m_id}, 0)
+	</insert>
 	
 	<update id="updateCompany" parameterType="com.ant.hr.work.Company">
 		update HR_GENBA set g_name=#{g_name}, g_inst=#{g_inst}, g_logo=#{g_logo}, g_hp=#{g_hp}, g_recruit=#{g_recruit}, g_employment=#{g_employment}, g_required=#{g_required}, g_infoPage=#{g_infoPage}, g_condition=#{g_condition}, g_post=#{g_post}, g_addr=#{g_addr}, g_addrdetail=#{g_addrdetail}, g_tel=#{g_tel}, g_email=#{g_email}, g_station=#{g_station} where g_no=#{g_no}
 	</update>
+	<update id="updateRecruit" parameterType="com.ant.hr.work.Recruit">
+		update HR_RECRUIT set r_date=#{r_date}, r_total=#{r_total}, g_no=#{g_no}, r_state=#{r_state} where r_no=#{r_no}
+	</update>
 	
 	<delete id="deleteCompany" parameterType="com.ant.hr.work.Company">
 		delete from HR_GENBA where g_no=#{g_no}
+	</delete>
+	<delete id="deleteRecruit" parameterType="com.ant.hr.work.Recruit">
+		delete from HR_RECRUIT where r_no=#{r_no}
+	</delete>
+	<delete id="cancleApplication" parameterType="com.ant.hr.work.Application">
+		delete from HR_APPLICATION where a_no=#{a_no}
 	</delete>
 	
 	<select id="getCompany" parameterType="com.ant.hr.community.BBSno" resultType="com.ant.hr.work.Company">
@@ -27,6 +42,14 @@
 		) where r &lt;= #{start} and r &gt;= #{end} 
 		order by r desc
 	</select>
+	<select id="getApplication" parameterType="com.ant.hr.community.BBSno" resultType="com.ant.hr.work.Application">
+		select * from (
+			select rownum r, a_no, r_no, m_id, a_state 
+			from (select * from HR_APPLICATION order by a_state desc, a_no)
+		) where r &lt;= #{start} and r &gt;= #{end} 
+		order by r desc
+	</select>
+	
 	<select id="getOneCompany" parameterType="com.ant.hr.work.Company" resultType="com.ant.hr.work.Company">
 		select * from HR_GENBA where g_no = #{g_no}
 	</select>
@@ -36,10 +59,19 @@
 	<select id="getOneRecruit" parameterType="com.ant.hr.work.Recruit" resultType="com.ant.hr.work.Recruit">
 		select * from HR_RECRUIT where r_no = #{r_no}
 	</select>
+	
 	<select id="getAllCompanyCount" resultType="java.lang.Integer">
 		select count(*) from HR_GENBA
 	</select>
 	<select id="getAllRecruitCount" resultType="java.lang.Integer">
 		select count(*) from HR_RECRUIT
+	</select>
+	<select id="getApplicationCount" resultType="java.lang.Integer">
+		select count(*) from HR_APPLICATION
+	</select>
+	
+	<select id="searchApplication" parameterType="com.ant.hr.community.Query" resultType="com.ant.hr.work.Application">
+		select * from HR_APPLICATION 
+		where ${search} like '%'||#{query}||'%'
 	</select>
 </mapper>

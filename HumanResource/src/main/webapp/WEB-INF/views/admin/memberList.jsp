@@ -28,7 +28,7 @@
 			    <span class="mdl-list__item-primary-content">
 			      <i class="material-icons mdl-list__item-avatar" style="background:url('resources/file/${m.m_photo }') center/55px no-repeat #FFFFFF;"></i>
 			      <span>${m.m_name }</span>
-			      <span class="mdl-list__item-sub-title">62 Episodes</span>
+			      <span class="mdl-list__item-sub-title">${m.m_point } Worked</span>
 			    </span>
 			    <span class="mdl-list__item-secondary-content">
 			    <c:if test="${m.m_id == 'test' }">

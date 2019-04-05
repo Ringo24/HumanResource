@@ -24,6 +24,11 @@ public class Recruit {
 		this.r_state = r_state;
 		this.company = company;
 	}
+	
+	public Recruit(BigDecimal r_no) {
+		super();
+		this.r_no = r_no;
+	}
 
 	public BigDecimal getR_no() {
 		return r_no;

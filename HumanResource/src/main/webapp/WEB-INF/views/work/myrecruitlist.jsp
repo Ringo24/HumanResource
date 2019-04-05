@@ -14,7 +14,6 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.min.css">
-	<link rel="stylesheet" href="resources/css/mdl-selectfield.min.css">
 	<link rel="stylesheet" href="resources/css/styles.css">
 </head>
 
@@ -31,20 +30,17 @@
 					<tr>
 						<th class="mdl-data-table__cell--non-numeric">Date</th>
 						<th class="mdl-data-table__cell--non-numeric">Place</th>
-						<th class="mdl-data-table__cell--non-numeric">Recruit</th>
-						<th class="mdl-data-table__cell--non-numeric">Time</th>
 						<th class="mdl-data-table__cell--non-numeric">State</th>
 						<th class="mdl-data-table__cell--non-numeric">Contract</th>
 						<th class="mdl-data-table__cell--non-numeric">Cancel</th>
 					</tr>
 				</thead>
 				<tbody>
+				  <c:forEach var="a" items="${ApplicationAl }">
 					<tr style="cursor: pointer;">
-						<td class="mdl-data-table__cell--non-numeric">2019-03-22</td>
-						<td class="mdl-data-table__cell--non-numeric">SOLDESK</td>
-						<td class="mdl-data-table__cell--non-numeric">Programmer</td>
-						<td class="mdl-data-table__cell--non-numeric">09:00~18:00</td>
-						<td class="mdl-data-table__cell--non-numeric"></td>
+						<td class="mdl-data-table__cell--non-numeric"><fmt:formatDate value="${a.recruit.r_date }" pattern="yyyy-MM-dd"/></td>
+						<td class="mdl-data-table__cell--non-numeric">${a.company.g_name }</td>
+						<td class="mdl-data-table__cell--non-numeric">${a.a_state }</td>
 						<td class="mdl-data-table__cell--non-numeric">
 						  <a href="" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Download</a>
 						</td>
@@ -52,58 +48,44 @@
 						  <a href="" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Cancel</a>
 						</td>
 					</tr>
-					<tr style="cursor: pointer;">
-						<td class="mdl-data-table__cell--non-numeric">2019-03-25</td>
-						<td class="mdl-data-table__cell--non-numeric">SOLDESK</td>
-						<td class="mdl-data-table__cell--non-numeric">Programmer</td>
-						<td class="mdl-data-table__cell--non-numeric">09:00~18:00</td>
-						<td class="mdl-data-table__cell--non-numeric"></td>
-						<td class="mdl-data-table__cell--non-numeric">
-						  <a href="" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Download</a>
-						</td>
-						<td class="mdl-data-table__cell--non-numeric">
-						  <a href="" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Cancel</a>
-						</td>
-					</tr>
-					<tr style="cursor: pointer;">
-						<td class="mdl-data-table__cell--non-numeric">2019-03-26</td>
-						<td class="mdl-data-table__cell--non-numeric">SOLDESK</td>
-						<td class="mdl-data-table__cell--non-numeric">Programmer</td>
-						<td class="mdl-data-table__cell--non-numeric">09:00~18:00</td>
-						<td class="mdl-data-table__cell--non-numeric"></td>
-						<td class="mdl-data-table__cell--non-numeric">
-						  <a href="" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Download</a>
-						</td>
-						<td class="mdl-data-table__cell--non-numeric">
-						  <a href="" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Cancel</a>
-						</td>
-					</tr>
-					<tr style="cursor: pointer;">
-						<td class="mdl-data-table__cell--non-numeric">2019-03-27</td>
-						<td class="mdl-data-table__cell--non-numeric">SOLDESK</td>
-						<td class="mdl-data-table__cell--non-numeric">Programmer</td>
-						<td class="mdl-data-table__cell--non-numeric">09:00~18:00</td>
-						<td class="mdl-data-table__cell--non-numeric"></td>
-						<td class="mdl-data-table__cell--non-numeric">
-						  <a href="" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Download</a>
-						</td>
-						<td class="mdl-data-table__cell--non-numeric">
-						  <a href="" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Cancel</a>
-						</td>
-					</tr>
+				  </c:forEach>
 				</tbody>
 			</table>
 			<br> 
-			<i class="material-icons">first_page</i> <i class="material-icons">chevron_left</i> 
-			<i class="material-icons">looks_one</i>
-			<i class="material-icons">looks_two</i> 
-			<i class="material-icons">looks_3</i>
-			<i class="material-icons">chevron_right</i> <i class="material-icons">last_page</i>
-			<br>
+	<!-- page -->
+			<div class="mdl-pagination">
+		      <ul class="pagination">
+		      <c:choose>
+				<c:when test="${curPage == 1 }">
+			    	<li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+				</c:when>
+				<c:otherwise>
+			    	<li class="waves-effect mdl-js-button mdl-js-ripple-effect"><a href="Page?p=1"><i class="material-icons">chevron_left</i></a></li>
+				</c:otherwise>
+	   		  </c:choose>
+			    	<c:forEach var="p" begin="1" end="${pageCount }">
+			    		<c:choose>
+							<c:when test="${curPage == p }">
+					    		<li class="active"><a href="Page?p=${p }">${p }</a></li>
+							</c:when>
+							<c:otherwise>
+						    	<li class="waves-effect mdl-js-button mdl-js-ripple-effect"><a href="Page?p=${p }">${p }</a></li>
+							</c:otherwise>
+			    		</c:choose>
+			    	</c:forEach>
+		      <c:choose>
+				<c:when test="${curPage == pageCount }">
+			    	<li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+				</c:when>
+				<c:otherwise>
+			    	<li class="waves-effect mdl-js-button mdl-js-ripple-effect"><a href="Page?p=${curPage }"><i class="material-icons">chevron_right</i></a></li>
+				</c:otherwise>
+	   		  </c:choose>
+		  	  </ul>
+	      </div>
 		</div>
 
 		<script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-		<script src="resources/js/mdl-selectfield.min.js"></script>
 		<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </body>
 </html>

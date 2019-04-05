@@ -58,6 +58,28 @@ public class WorkController {
 		req.setAttribute("contentPage", "work/companyDetail.jsp");
 		return "index";
 	}
+	@RequestMapping(value = "RecruitDetail", method = RequestMethod.GET)
+	public String goRecruitDetail(Recruit r, HttpServletRequest req, HttpServletResponse res) {
+		if (mDAO.loginCheck(req, res)) {
+			wDAO.getOneRecruit(r, req, res);
+			req.setAttribute("contentPage", "work/recruitDetail.jsp");
+		} else {
+			req.setAttribute("r", "Require Sign In.");
+			req.setAttribute("contentPage", "main.jsp");
+		}
+		return "index";
+	}
+	@RequestMapping(value = "Application", method = RequestMethod.GET)
+	public String application(Recruit r, HttpServletRequest req, HttpServletResponse res) {
+		if (mDAO.loginCheck(req, res)) {
+			wDAO.getOneRecruit(r, req, res);
+			req.setAttribute("contentPage", "work/myrecruitlist.jsp");
+		} else {
+			req.setAttribute("r", "Require Sign In.");
+			req.setAttribute("contentPage", "work/workList.jsp");
+		}
+		return "index";
+	}
 	@RequestMapping(value = "Pay", method = RequestMethod.GET)
 	public String goPay(HttpServletRequest req, HttpServletResponse res) {
 		mDAO.loginCheck(req, res);

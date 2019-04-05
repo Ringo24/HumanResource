@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ant.hr.community.BBSno;
+import com.ant.hr.community.Query;
 
 @Service
 public class WorkDAO {
@@ -21,6 +22,7 @@ public class WorkDAO {
 	
 	private int allCompanyCount;
 	private int allRecruitCount;
+	private int allApplicationCount;
 	
 	public void getAllCompanyCount() {
 		allCompanyCount = ss.getMapper(WorkMapper.class).getAllCompanyCount();
@@ -28,6 +30,9 @@ public class WorkDAO {
 	
 	public void getAllRecruitCount() {
 		allRecruitCount = ss.getMapper(WorkMapper.class).getAllRecruitCount();
+	}
+	public void getAllApplicationCount() {
+		allApplicationCount = ss.getMapper(WorkMapper.class).getApplicationCount();
 	}
 	
 	public void pagingCompany(int pageNo, HttpServletRequest req, HttpServletResponse res) {
@@ -120,6 +125,71 @@ public class WorkDAO {
 		}
 	}
 	
+	public void pagingApplication(int pageNo, HttpServletRequest req, HttpServletResponse res) {
+		@SuppressWarnings("unchecked")
+		List<Application> searchApplicationAl = (List<Application>) req.getSession().getAttribute("searchApplicationAl");
+		double count = 10.0;
+		req.setAttribute("curPage", pageNo);
+		
+		try {
+			if (searchApplicationAl != null && searchApplicationAl.size() > 0) {
+				// 검색
+				int pageCount = (int) Math.ceil(searchApplicationAl.size() / count);
+				req.setAttribute("pageCount", pageCount);
+				
+				// 해당 페이지 게시물 추출
+				int start = (searchApplicationAl.size() - ((pageNo - 1) * (int)count));
+				int end = (pageNo == pageCount) ? 1 : (start - ((int)count - 1));
+				
+				ArrayList<Application> ApplicationAl = new ArrayList<Application>();
+				Application a = null;
+				Recruit r = null;
+				
+				for (int i = start-1; i >= end-1; i--) {
+					a = searchApplicationAl.get(i);
+					r = new Recruit(a.getR_no());
+					a.setRecruit(ss.getMapper(WorkMapper.class).getOneRecruit(r));
+					a.setCompany(ss.getMapper(WorkMapper.class).getOneCompanybyR_no(r));
+					ApplicationAl.add(a);
+				}
+				req.setAttribute("ApplicationAl", ApplicationAl);
+			} else if (allApplicationCount > 0) {
+				// 전체 페이지 수 계산
+				int pageCount = (int) Math.ceil(allApplicationCount / count);
+				req.setAttribute("pageCount", pageCount);
+				
+				int start = (allApplicationCount - ((pageNo - 1) * (int)count));
+				int end = (pageNo == pageCount) ? 1 : (start - ((int)count - 1));
+				
+				BBSno bn = new BBSno(new BigDecimal(start), new BigDecimal(end));
+				List<Application> ApplicationAl = new ArrayList<Application>();
+				ApplicationAl = ss.getMapper(WorkMapper.class).getApplication(bn);
+				Application aa = null;
+				Recruit rr = null;
+				
+				for (int i = 0; i < ApplicationAl.size(); i++) {
+					aa = ApplicationAl.get(i);
+					rr = new Recruit(aa.getR_no());
+					aa.setRecruit(ss.getMapper(WorkMapper.class).getOneRecruit(rr));
+					aa.setCompany(ss.getMapper(WorkMapper.class).getOneCompanybyR_no(rr));
+				}
+				req.setAttribute("ApplicationAl", ApplicationAl);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void searchApplication(Query q, HttpServletRequest req, HttpServletResponse res) {
+		req.getSession().setAttribute("searchApplicationAl", ss.getMapper(WorkMapper.class).searchApplication(q));
+	}
+	
+	public void clearSearch(HttpServletRequest req, HttpServletResponse res) {
+		req.getSession().setAttribute("searchCompanyAl", null);
+		req.getSession().setAttribute("searchRecruitAl", null);
+		req.getSession().setAttribute("searchApplicationAl", null);
+	}
+	
 	public void regCompany(Company c, HttpServletRequest req, HttpServletResponse res) {
 		try {
 			c.setG_recruit(c.getG_recruit().replace("\r\n", "<br>"));
@@ -164,6 +234,40 @@ public class WorkDAO {
 		}
 	}
 	
+	public void regRecruit(Recruit r, HttpServletRequest req, HttpServletResponse res) {
+		try {
+			if (ss.getMapper(WorkMapper.class).regRecruit(r) == 1) {
+				req.setAttribute("r", "Register Success.");
+				allRecruitCount++;
+			}
+		} catch (Exception e) {
+			req.setAttribute("r", "Failed to Register.");
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateRecruit(Recruit r, HttpServletRequest req, HttpServletResponse res) {
+		try {
+			if (ss.getMapper(WorkMapper.class).updateRecruit(r) == 1) {
+				req.setAttribute("r", "Update Success.");
+			}
+		} catch (Exception e) {
+			req.setAttribute("r", "Failed to Update.");
+			e.printStackTrace();
+		}
+	}
+	
+	public void deleteRecruit(Recruit r, HttpServletRequest req, HttpServletResponse res) {
+		try {
+			if (ss.getMapper(WorkMapper.class).deleteRecruit(r) == 1) {
+				req.setAttribute("r", "Delete Success.");
+			}
+		} catch (Exception e) {
+			req.setAttribute("r", "Failed to Delete.");
+			e.printStackTrace();
+		}
+	}
+	
 	public void getOneCompany(Company c, HttpServletRequest req, HttpServletResponse res) {
 		Company dbc = ss.getMapper(WorkMapper.class).getOneCompany(c);
 		dbc.setG_recruit(dbc.getG_recruit().replace("<br>", "\r\n"));
@@ -176,5 +280,16 @@ public class WorkDAO {
 		Recruit dbr = ss.getMapper(WorkMapper.class).getOneRecruit(r);
 		dbr.setCompany(ss.getMapper(WorkMapper.class).getOneCompanybyR_no(dbr));
 		req.setAttribute("oneRecruit", dbr);
+	}
+	
+	public void applicate(Application a, HttpServletRequest req, HttpServletResponse res) {
+		try {
+			if (ss.getMapper(WorkMapper.class).applicate(a) == 1) {
+				req.setAttribute("r", "Application Success.");
+			}
+		} catch (Exception e) {
+			req.setAttribute("r", "Failed to Application.");
+			e.printStackTrace();
+		}
 	}
 }
