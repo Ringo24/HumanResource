@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ant.hr.community.CommunityDAO;
+import com.ant.hr.community.Query;
 import com.ant.hr.member.MemberDAO;
 
 @Controller
@@ -70,9 +71,9 @@ public class WorkController {
 		return "index";
 	}
 	@RequestMapping(value = "Application", method = RequestMethod.GET)
-	public String application(Recruit r, HttpServletRequest req, HttpServletResponse res) {
+	public String application(Application a, HttpServletRequest req, HttpServletResponse res) {
 		if (mDAO.loginCheck(req, res)) {
-			wDAO.getOneRecruit(r, req, res);
+			wDAO.applicate(a, req, res);
 			req.setAttribute("contentPage", "work/myrecruitlist.jsp");
 		} else {
 			req.setAttribute("r", "Require Sign In.");
@@ -83,17 +84,18 @@ public class WorkController {
 	@RequestMapping(value = "Pay", method = RequestMethod.GET)
 	public String goPay(HttpServletRequest req, HttpServletResponse res) {
 		mDAO.loginCheck(req, res);
-		cDAO.clearSearch(req, res);
-		cDAO.paging(1, req, res);
 		req.setAttribute("contentPage", "work/payrequest.jsp");
 		return "index";
 	}
 	@RequestMapping(value = "MyRecruit", method = RequestMethod.GET)
-	public String goMyRecruit(HttpServletRequest req, HttpServletResponse res) {
-		mDAO.loginCheck(req, res);
-		cDAO.clearSearch(req, res);
-		cDAO.paging(1, req, res);
-		req.setAttribute("contentPage", "work/myrecruitlist.jsp");
+	public String goMyRecruit(Query q, HttpServletRequest req, HttpServletResponse res) {
+		if (mDAO.loginCheck(req, res)) {
+			wDAO.getMyApplicationList(q, req, res);
+			req.setAttribute("contentPage", "work/myrecruitlist.jsp");
+		} else {
+			req.setAttribute("r", "Require Sign In.");
+			req.setAttribute("contentPage", "main.jsp");
+		}
 		return "index";
 	}
 }

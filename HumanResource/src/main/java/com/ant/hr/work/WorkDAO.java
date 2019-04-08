@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.ant.hr.community.BBSno;
 import com.ant.hr.community.Query;
+import com.ant.hr.member.Member;
 
 @Service
 public class WorkDAO {
@@ -282,8 +283,30 @@ public class WorkDAO {
 		req.setAttribute("oneRecruit", dbr);
 	}
 	
+	public void getMyApplicationList(Query q, HttpServletRequest req, HttpServletResponse res){
+		try {
+			List<Application> ApplicationAl = ss.getMapper(WorkMapper.class).searchApplication(q);
+			Application aa = null;
+			Recruit rr = null;
+			Company c = null;
+			for (int i = 0; i < ApplicationAl.size(); i++) {
+				aa = ApplicationAl.get(i);
+				rr = new Recruit(aa.getR_no());
+				rr = ss.getMapper(WorkMapper.class).getOneRecruit(rr);
+				aa.setRecruit(rr);
+				c = ss.getMapper(WorkMapper.class).getOneCompanybyR_no(rr);
+				aa.setCompany(c);
+			}
+			req.setAttribute("myApplication", ApplicationAl);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void applicate(Application a, HttpServletRequest req, HttpServletResponse res) {
 		try {
+			Member m = (Member) req.getSession().getAttribute("loginMember");
+			a.setM_id(m.getM_id());
 			if (ss.getMapper(WorkMapper.class).applicate(a) == 1) {
 				req.setAttribute("r", "Application Success.");
 			}

@@ -40,7 +40,7 @@
 	<select id="getBBS" parameterType="com.ant.hr.community.BBSno" resultType="com.ant.hr.community.BBS">
 		select * from (
 			select rownum r, b_no, b_category, b_id, b_name, b_title, b_content, b_date, b_hit, b_notice, m_photo 
-			from (select * from HR_BBS, HR_MEMBER where b_id = m_id order by b_no)
+			from (select * from HR_BBS, HR_MEMBER where b_id = m_id and b_category = #{bbs} order by b_no)
 		) where r &lt;= #{start} and r &gt;= #{end} 
 		order by b_notice desc, r desc
 	</select>

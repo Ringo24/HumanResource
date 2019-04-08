@@ -31,7 +31,7 @@ public class CommunityDAO {
 		System.out.println(allBBSCount);
 	}
 	
-	public void paging(int pageNo, HttpServletRequest req, HttpServletResponse res) {
+	public void paging(int pageNo, String bbs, HttpServletRequest req, HttpServletResponse res) {
 		@SuppressWarnings("unchecked")
 		List<BBS> searchBBSAl = (List<BBS>) req.getSession().getAttribute("searchBBSAl");
 		double count = 10.0;
@@ -64,7 +64,7 @@ public class CommunityDAO {
 				int start = (allBBSCount - ((pageNo - 1) * (int)count));
 				int end = (pageNo == pageCount) ? 1 : (start - ((int)count - 1));
 				
-				BBSno bn = new BBSno(new BigDecimal(start), new BigDecimal(end));
+				BBSno bn = new BBSno(new BigDecimal(start), new BigDecimal(end), bbs);
 				List<BBS> BBSAl = new ArrayList<BBS>();
 				BBSAl = ss.getMapper(CommunityMapper.class).getBBS(bn);
 				BBS b = null;

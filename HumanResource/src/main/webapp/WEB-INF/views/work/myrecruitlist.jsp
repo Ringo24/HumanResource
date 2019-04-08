@@ -36,11 +36,14 @@
 					</tr>
 				</thead>
 				<tbody>
-				  <c:forEach var="a" items="${ApplicationAl }">
+				  <c:forEach var="a" items="${myApplication }">
 					<tr style="cursor: pointer;">
 						<td class="mdl-data-table__cell--non-numeric"><fmt:formatDate value="${a.recruit.r_date }" pattern="yyyy-MM-dd"/></td>
 						<td class="mdl-data-table__cell--non-numeric">${a.company.g_name }</td>
-						<td class="mdl-data-table__cell--non-numeric">${a.a_state }</td>
+						<td class="mdl-data-table__cell--non-numeric">
+							<c:if test="${a.a_state == 0 }">신청중</c:if>
+							<c:if test="${a.a_state == 1 }">신청중</c:if>
+						</td>
 						<td class="mdl-data-table__cell--non-numeric">
 						  <a href="" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Download</a>
 						</td>
@@ -51,38 +54,6 @@
 				  </c:forEach>
 				</tbody>
 			</table>
-			<br> 
-	<!-- page -->
-			<div class="mdl-pagination">
-		      <ul class="pagination">
-		      <c:choose>
-				<c:when test="${curPage == 1 }">
-			    	<li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-				</c:when>
-				<c:otherwise>
-			    	<li class="waves-effect mdl-js-button mdl-js-ripple-effect"><a href="Page?p=1"><i class="material-icons">chevron_left</i></a></li>
-				</c:otherwise>
-	   		  </c:choose>
-			    	<c:forEach var="p" begin="1" end="${pageCount }">
-			    		<c:choose>
-							<c:when test="${curPage == p }">
-					    		<li class="active"><a href="Page?p=${p }">${p }</a></li>
-							</c:when>
-							<c:otherwise>
-						    	<li class="waves-effect mdl-js-button mdl-js-ripple-effect"><a href="Page?p=${p }">${p }</a></li>
-							</c:otherwise>
-			    		</c:choose>
-			    	</c:forEach>
-		      <c:choose>
-				<c:when test="${curPage == pageCount }">
-			    	<li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-				</c:when>
-				<c:otherwise>
-			    	<li class="waves-effect mdl-js-button mdl-js-ripple-effect"><a href="Page?p=${curPage }"><i class="material-icons">chevron_right</i></a></li>
-				</c:otherwise>
-	   		  </c:choose>
-		  	  </ul>
-	      </div>
 		</div>
 
 		<script src="https://code.getmdl.io/1.3.0/material.min.js"></script>

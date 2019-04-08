@@ -97,7 +97,12 @@
 								id="search-aticle">
 						</div>
 					</div>
-					<a href="Upload?bbs=${param.bbs }" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Write</a>
+					<c:if test="${param.bbs == 'notice' && sessionScope.loginMember.m_id == 'test' }">
+						<a href="Upload?bbs=${param.bbs }" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Write</a>
+					</c:if>
+					<c:if test="${param.bbs != 'notice' && sessionScope.loginMember != null }">
+						<a href="Upload?bbs=${param.bbs }" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Write</a>
+					</c:if>
 				</div>
 			</div>
 		</div>

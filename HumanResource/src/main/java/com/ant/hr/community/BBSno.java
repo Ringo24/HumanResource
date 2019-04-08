@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 public class BBSno {
 	private BigDecimal start;
 	private BigDecimal end;
+	private String bbs;
 	
 	public BBSno() {super();}
 	
@@ -13,6 +14,13 @@ public class BBSno {
 		this.end = end;
 	}
 	
+	public BBSno(BigDecimal start, BigDecimal end, String bbs) {
+		super();
+		this.start = start;
+		this.end = end;
+		this.bbs = bbs;
+	}
+
 	public BigDecimal getStart() {
 		return start;
 	}
@@ -24,5 +32,11 @@ public class BBSno {
 	}
 	public void setEnd(BigDecimal end) {
 		this.end = end;
+	}
+	public String getBbs() {
+		return bbs;
+	}
+	public void setBbs(String bbs) {
+		this.bbs = bbs;
 	}
 }

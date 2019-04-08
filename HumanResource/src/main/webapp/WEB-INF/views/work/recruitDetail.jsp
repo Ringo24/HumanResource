@@ -24,15 +24,15 @@
       <main class="mdl-layout__content">
           <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
             <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--white mdl-color-text--white">
-              <img src="${g.g_logo }" id="company-logo">
+              <img src="${oneRecruit.company.g_logo }" id="company-logo">
             </header>
             <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
               <div class="mdl-card__supporting-text mdl-typography--text-left">
-                <h4 id="companyName">${g.g_name }</h4>
-                ${g.g_inst }
+                <h4 id="companyName">${oneRecruit.company.g_name }</h4>
+                ${oneRecruit.company.g_inst }
               </div>
               <div class="mdl-card__actions mdl-typography--text-left">
-                <a href="${g.g_hp }" target="_blank" class="mdl-button">Our homepage</a>
+                <a href="${oneRecruit.company.g_hp }" target="_blank" class="mdl-button">Our homepage</a>
               </div>
             </div>
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn1">
@@ -53,25 +53,25 @@
                 </div>
                 <div class="section__text mdl-typography--text-left mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
                   <h5>Recruit</h5>
-                  ${g.g_recruit }
+                  ${oneRecruit.company.g_recruit }
                 </div>
                 <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
                   <div class="section__circle-container__circle mdl-color--primary"></div>
                 </div>
                 <div class="section__text mdl-typography--text-left mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
                   <h5>Forms of employment</h5>
-                  ${g.g_employment }
+                  ${oneRecruit.company.g_employment }
                 </div>
                 <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
                   <div class="section__circle-container__circle mdl-color--primary"></div>
                 </div>
                 <div class="section__text mdl-typography--text-left mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
                   <h5>Required condition</h5>
-                  ${g.g_required }
+                  ${oneRecruit.company.g_required }
                 </div>
               </div>
               <div class="mdl-card__actions">
-                <a href="${g.g_infoPage }" target="_blank" class="mdl-button">Recruit Infomation</a>
+                <a href="${oneRecruit.company.g_infoPage }" target="_blank" class="mdl-button">Recruit Infomation</a>
               </div>
             </div>
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn2">
@@ -87,7 +87,7 @@
             <div class="mdl-card mdl-cell mdl-cell--12-col">
               <div class="mdl-card__supporting-text mdl-typography--text-left">
                 <h4>Working Conditions</h4>
-                ${g.g_condition }
+                ${oneRecruit.company.g_condition }
               </div>
               <div class="mdl-card__actions">
                 <a href="#" class="mdl-button"></a>
@@ -99,15 +99,15 @@
               <div class="mdl-card__supporting-text mdl-typography--text-left">
                 <h4>Contact us</h4>
                 <div id="map" style="width:450px;height:350px;"></div>
-				<p><span id="companyAddr">${g.g_addr }</span> ${g.g_addrdetail } <br>${g.g_post }<br>
-				${g.g_station }역</p>
+				<p><span id="companyAddr">${oneRecruit.company.g_addr }</span> ${oneRecruit.company.g_addrdetail } <br>${oneRecruit.company.g_post }<br>
+				${oneRecruit.company.g_station }역</p>
 				<p>Tel<br>
-				${g.g_tel }</p>
+				${oneRecruit.company.g_tel }</p>
 				<p>E-Mail<br>
-				${g.g_email }
+				${oneRecruit.company.g_email }
               </div>
               <div class="mdl-card__actions">
-                <a href="Application?r_no=" class="mdl-button">Application</a>&nbsp;&nbsp;&nbsp;
+                <a href="Application?r_no=${oneRecruit.r_no }" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect mdl-color-text--white">Application</a>&nbsp;&nbsp;&nbsp;
                 <a href="Recruit" class="mdl-button">Back</a>
               </div>
             </div>

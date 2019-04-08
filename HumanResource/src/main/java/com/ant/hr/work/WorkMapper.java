@@ -30,5 +30,5 @@ public interface WorkMapper {
 	public abstract int applicate(Application a);
 	public abstract int cancleApplication(Application a);
 	
-	public abstract Application searchApplication(Query q);
+	public abstract List<Application> searchApplication(Query q);
 }

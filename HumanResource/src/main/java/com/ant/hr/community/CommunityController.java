@@ -24,7 +24,7 @@ public class CommunityController {
 		firstReq = true;
 	}
 	
-	@RequestMapping(value = "Notice", method = RequestMethod.GET)
+	@RequestMapping(value = "BBS", method = RequestMethod.GET)
 	public String goNotice(HttpServletRequest req, HttpServletResponse res) {
 		if (firstReq) {
 			cDAO.getAllBBSCount();
@@ -32,14 +32,16 @@ public class CommunityController {
 		}
 		mDAO.loginCheck(req, res);
 		cDAO.clearSearch(req, res);
-		cDAO.paging(1, req, res);
+		String bbs = req.getParameter("bbs");
+		cDAO.paging(1, bbs, req, res);
 		req.setAttribute("contentPage", "community/bbs.jsp");
 		return "index";
 	}
 	@RequestMapping(value = "Page", method = RequestMethod.GET)
 	public String page(HttpServletRequest req, HttpServletResponse res) {
 		mDAO.loginCheck(req, res);
-		cDAO.paging(Integer.parseInt(req.getParameter("p")), req, res);
+		String bbs = req.getParameter("bbs");
+		cDAO.paging(Integer.parseInt(req.getParameter("p")), bbs, req, res);
 		req.setAttribute("contentPage", "community/bbs.jsp");
 		return "index";
 	}
@@ -50,7 +52,8 @@ public class CommunityController {
 		}
 		mDAO.loginCheck(req, res);
 		cDAO.clearSearch(req, res);
-		cDAO.paging(1, req, res);
+		String bbs = b.getB_category();
+		cDAO.paging(1, bbs, req, res);
 		req.setAttribute("contentPage", "community/bbs.jsp");
 		return "index";
 	}
@@ -61,9 +64,10 @@ public class CommunityController {
 		}
 		mDAO.loginCheck(req, res);
 		cDAO.clearSearch(req, res);
-		cDAO.paging(1, req, res);
-		req.setAttribute("contentPage", "community/bbs.jsp");
-		return "index";
+		String bbs = req.getParameter("bbs");
+		cDAO.paging(1, bbs, req, res);
+//		req.setAttribute("contentPage", "community/bbs.jsp");
+		return "redirect:Article?b_no" + r.getB_no();
 	}
 	@RequestMapping(value = "Update", method = RequestMethod.POST)
 	public String update(BBS b, HttpServletRequest req, HttpServletResponse res) {
@@ -72,7 +76,8 @@ public class CommunityController {
 		}
 		mDAO.loginCheck(req, res);
 		cDAO.clearSearch(req, res);
-		cDAO.paging(1, req, res);
+		String bbs = b.getB_category();
+		cDAO.paging(1, bbs, req, res);
 		req.setAttribute("contentPage", "community/bbs.jsp");
 		return "index";
 	}
@@ -83,7 +88,8 @@ public class CommunityController {
 		}
 		mDAO.loginCheck(req, res);
 		cDAO.clearSearch(req, res);
-		cDAO.paging(1, req, res);
+		String bbs = req.getParameter("bbs");
+		cDAO.paging(1, bbs, req, res);
 		req.setAttribute("contentPage", "community/bbs.jsp");
 		return "index";
 	}
@@ -94,7 +100,8 @@ public class CommunityController {
 		}
 		mDAO.loginCheck(req, res);
 		cDAO.clearSearch(req, res);
-		cDAO.paging(1, req, res);
+		String bbs = b.getB_category();
+		cDAO.paging(1, bbs, req, res);
 		req.setAttribute("contentPage", "community/bbs.jsp");
 		return "index";
 	}
@@ -105,7 +112,8 @@ public class CommunityController {
 		}
 		mDAO.loginCheck(req, res);
 		cDAO.clearSearch(req, res);
-		cDAO.paging(1, req, res);
+		String bbs = req.getParameter("bbs");
+		cDAO.paging(1, bbs, req, res);
 		req.setAttribute("contentPage", "community/bbs.jsp");
 		return "index";
 	}
@@ -113,7 +121,8 @@ public class CommunityController {
 	public String search(Query q, HttpServletRequest req, HttpServletResponse res) {
 		cDAO.search(q, req, res);
 		mDAO.loginCheck(req, res);
-		cDAO.paging(1, req, res);
+		String bbs = req.getParameter("bbs");
+		cDAO.paging(1, bbs, req, res);
 		req.setAttribute("contentPage", "community/bbs.jsp");
 		return "index";
 	}
@@ -126,13 +135,14 @@ public class CommunityController {
 		return "index";
 	}
 	@RequestMapping(value = "Upload", method = RequestMethod.GET)
-	public String goWrite(BBS b, HttpServletRequest req, HttpServletResponse res) {
+	public String goWrite(HttpServletRequest req, HttpServletResponse res) {
 		if (mDAO.loginCheck(req, res)) {
 			req.setAttribute("contentPage", "community/write.jsp");
 		} else {
 			req.setAttribute("contentPage", "community/bbs.jsp");
 		}
-		cDAO.paging(1, req, res);
+		String bbs = req.getParameter("bbs");
+		cDAO.paging(1, bbs, req, res);
 		return "index";
 	}
 	@RequestMapping(value = "Revision", method = RequestMethod.GET)
@@ -143,7 +153,8 @@ public class CommunityController {
 		} else {
 			req.setAttribute("contentPage", "community/bbs.jsp");
 		}
-		cDAO.paging(1, req, res);
+		String bbs = req.getParameter("bbs");
+		cDAO.paging(1, bbs, req, res);
 		return "index";
 	}
 }

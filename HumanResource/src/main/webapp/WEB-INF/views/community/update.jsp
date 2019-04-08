@@ -55,10 +55,17 @@
 				</div>
 				<div class="mdl-bbs-bottom">
 					<div class="mdl-selectfield mdl-js-selectfield">
-						<select name="b_notice" class="mdl-selectfield__select mdl-bbs-selectfield">
-							<option value="0">Public</option>
-							<option value="1">Notification</option>
-						</select>
+						<c:choose>
+						<c:when test="${sessionScope.loginMember.m_id == 'test' }">
+							<select name="b_notice" class="mdl-selectfield__select mdl-bbs-selectfield">
+								<option value="0">Public</option>
+								<option value="1">Notification</option>
+							</select>
+						</c:when>
+						<c:otherwise>
+							<input type="hidden" name="b_notice" value="0">
+						</c:otherwise>
+					  </c:choose>
 						<input type="hidden" name="b_no" value="${b.b_no }">
 						<input type="hidden" name="b_category" value="${b.b_category }">
 					</div>&nbsp;&nbsp;&nbsp;

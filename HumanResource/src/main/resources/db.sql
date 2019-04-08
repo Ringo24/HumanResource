@@ -65,7 +65,7 @@ create table HR_REQUEST(
 );
 create sequence HR_REQUEST_seq;
 
-select * from HR_APPLICATION;
+select * from HR_APPLICATION where m_id like 'tes2';
 
 delete from HR_APPLICATION;
 

@@ -69,7 +69,7 @@
         </span>
         <nav class="mdl-navigation">
           <span class="mdl-navigation__link" href="">My Page</span>
-          <a class="mdl-navigation__link" href="MyRecruit">My Recruit</a>
+          <a class="mdl-navigation__link" href="MyRecruit?search=m_id&query=${sessionScope.loginMember.m_id }">My Recruit</a>
           <a class="mdl-navigation__link" href="Pay">Payment</a>
           <a class="mdl-navigation__link" href="Modify">Modify Info</a>
           <c:choose>
@@ -87,9 +87,9 @@
           <a class="mdl-navigation__link" href="">Menu 2</a>
           <div class="android-drawer-separator"></div>
           <span class="mdl-navigation__link" href="">Community</span>
-          <a class="mdl-navigation__link" href="Notice">Notice</a>
-          <a class="mdl-navigation__link" href="Review">Review</a>
-          <a class="mdl-navigation__link" href="Data">Data Room</a>
+          <a class="mdl-navigation__link" href="BBS?bbs=notice">Notice</a>
+          <a class="mdl-navigation__link" href="BBS?bbs=review">Review</a>
+          <a class="mdl-navigation__link" href="BBS?bbs=data">Data Room</a>
           <div class="android-drawer-separator"></div>
           <span class="mdl-navigation__link" href="">About</span>
           <a class="mdl-navigation__link" href="Greeting">Greeting</a>
