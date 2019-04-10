@@ -45,7 +45,7 @@
           <div class="android-navigation-container">
             <nav class="android-navigation mdl-navigation">
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="Modify">My Page</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="Notice?bbs=notice">Community</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="BBS?bbs=notice">Community</a>
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="Intro">About</a>
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="FAQ">Service</a>
             </nav>

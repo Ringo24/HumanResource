@@ -23,12 +23,8 @@
       <div ng-app="validationApp" ng-controller="mainController" class="">
           <form action="Crystal" method="post" name="joinForm" enctype="multipart/form-data" onsubmit="return joinCheck();" novalidate>
   			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-   		 	  <input class="mdl-textfield__input" type="text" id="m_id" name="m_id" maxlength="16" ng-model="data.m_id" ng-required="true" disabled>
+   		 	  <input class="mdl-textfield__input" type="text" id="m_id" name="m_id" maxlength="16" value="${sessionScope.loginMember.m_id }" disabled>
     		  <label class="mdl-textfield__label" for="m_id">ID...</label>
-              <span class="mdl-tooltip mdl-tooltip--validation" for="m_id" id="joinIdCheckMsg">ID.</span>
-    		  <span class="mdl-tooltip mdl-tooltip--validation" for="m_id" ng-show="joinForm.m_id.$invalid && joinForm.m_id.$touched">
-                <span ng-show="joinForm.m_id.$error.required">Required.</span>
-              </span>
   			</div><br>
   			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
    		 	  <input class="mdl-textfield__input" type="password" id="m_pw" name="m_pw" maxlength="16" ng-model="data.m_pw" ng-required="true">
